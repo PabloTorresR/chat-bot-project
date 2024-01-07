@@ -1,0 +1,60 @@
+@import './variables';
+
+@font-face {
+  font-weight: lighter;
+  font-family: $eina-font;
+  font-style: normal;
+  src: url('./fonts/Eina03-Light.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: lighter;
+  font-family: $eina-font;
+  font-style: italic;
+  src: url('./fonts/Eina03-LightItalic.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: normal;
+  font-family: $eina-font;
+  font-style: normal;
+  font-display: swap;
+  src: local('Eina03-Regular'), url('./fonts/Eina03-Regular.woff2') format('woff2'),
+    url('./fonts/Eina03-Regular.woff') format('woff'), url('./fonts/Eina03-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-weight: normal;
+  font-family: $eina-font;
+  font-style: italic;
+  src: url('./fonts/Eina03-RegularItalic.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: $eina-font;
+  font-style: normal;
+  src: local('Eina03-SemiBold'), url('./fonts/Eina03-SemiBold.woff2') format('woff2'),
+    url('./fonts/Eina03-SemiBold.woff') format('woff'), url('./fonts/Eina03-SemiBold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: $eina-font;
+  font-style: italic;
+  src: url('./fonts/Eina03-SemiboldItalic.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: bold;
+  font-family: $eina-font;
+  font-style: bold;
+  font-display: swap;
+  src: local('Eina03-Bold'), url('./fonts/Eina03-Bold.woff2') format('woff2'),
+    url('./fonts/Eina03-Bold.woff') format('woff'), url('./fonts/Eina03-Bold.otf') format('opentype');
+}

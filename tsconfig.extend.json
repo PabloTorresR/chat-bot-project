@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@app/config/*": ["config/*"],
+      "@app/locales/*": ["locales/*"],
+      "@app/pages/*": ["app/pages/*"],
+      "@app/components/*": ["app/components/*"],
+      "@app/features/": ["app/features/"],
+      "@app/features/*": ["app/features/*"],
+      "@app/enums/*": ["app/enums/*"],
+      "@app/enums": ["app/enums"],
+      "@app/hooks/*": ["app/hooks/*"],
+      "@app/routes/*": ["app/routes/*"],
+      "@app/routes": ["app/routes"],
+      "@app/integrations/*": ["app/integrations/*"],
+      "@app/integrations": ["app/integrations"],
+      "@app/layouts/*": ["app/layouts/*"],
+      "@app/layouts": ["app/layouts"],
+      "@app/interfaces/*": ["app/interfaces/*"],
+      "@app/interfaces": ["app/interfaces"],
+      "@app/tools/*": ["app/tools/*"],
+      "@app/tools": ["app/tools"],
+      "@app/context/*": ["app/context/*"],
+      "@app/context": ["app/context"],
+      "@app/constants/*": ["app/constants/*"],
+      "@app/constants": ["app/constants"],
+      "@app/images/*": ["images/*"],
+      "@app/styles/*": ["styles/*"],
+      "@app/types/*": ["types/*"],
+      "@app/utils/*": ["utils/*"],
+      "@app/assets/*": ["assets/*"]
+    }
+  }
+}
