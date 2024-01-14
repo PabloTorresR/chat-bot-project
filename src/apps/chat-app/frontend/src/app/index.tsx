@@ -1,6 +1,6 @@
 // import * as React from 'react';
-import { AppRoutes } from '@app/routes';
 
+import { AppRoutes } from '@chat-app/routes';
 import { TopLevelProviders } from './top-level-providers';
 
 export const App = () => (

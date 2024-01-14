@@ -1,4 +1,4 @@
-import { WithChildren } from 'app/types/with-children';
+import { WithChildren } from '@chat-app/types/with-children';
 import React, { useState } from 'react';
 import { createContext } from 'use-context-selector';
 

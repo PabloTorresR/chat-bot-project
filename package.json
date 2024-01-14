@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "dev:chatapp:backend": "ts-node-dev --ignore-watch node_modules  ./src/apps/chat-app/backend/start.ts"
+    "dev:chatapp:backend": "ts-node-dev --ignore-watch node_modules  ./src/apps/chat-app/backend/start.ts",
+    "dev:chatapp:frontend": "cd ./src/apps/chat-app/frontend && npm run dev"
   },
   "author": "PTman",
   "license": "ISC",
@@ -24,6 +25,17 @@
     "@types/errorhandler": "^1.5.3",
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.7",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-testing-library": "^5.11.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.2"
   }
 }
