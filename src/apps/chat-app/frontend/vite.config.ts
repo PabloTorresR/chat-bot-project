@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   resolve: {
     alias: {
-      '@chat-app': path.resolve(__dirname, './src'),
+      '@chat-app/styles': path.resolve(__dirname, './src/styles'),
+      '@chat-app': path.resolve(__dirname, './src/app'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });

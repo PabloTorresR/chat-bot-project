@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout } from '@app/layouts/main';
+import { MainLayout } from '@chat-app/layouts/main';
 // import { NotFoundRoute } from '@app/routes/components/not-found';
 
 const MAIN_ROUTE = '/';

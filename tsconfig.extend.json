@@ -2,9 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@/*": ["./*"],
       "@chat-app/config/*": ["apps/chat-app/frontend/src/config/*"],
       "@chat-app/locales/*": ["apps/chat-app/frontend/src/locales/*"],
       "@chat-app/components/*": ["apps/chat-app/frontend/src/app/components/*"],
+      "@chat-app/components/": ["apps/chat-app/frontend/src/app/components"],
       "@chat-app/features/": ["apps/chat-app/frontend/src/app/features/"],
       "@chat-app/features/*": ["apps/chat-app/frontend/src/app/features/*"],
       "@chat-app/enums/*": ["apps/chat-app/frontend/src/app/enums/*"],
