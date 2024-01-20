@@ -1,26 +1,26 @@
-import { Form, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Button from '../button';
 
 interface Props {
-  onSendMessage: (message: string) => void;
+  onSubmitClick: (message: string) => void;
+  isLoading: boolean;
 }
 
-const InputBox = ({ onSendMessage }: Props) => {
-  const form = useForm();
+const InputBox = ({ onSubmitClick }: Props) => {
+  const { handleSubmit, register, reset } = useForm();
 
   const onSubmit = (data: any) => {
-    onSendMessage(data.bio);
-    form.reset();
+    onSubmitClick(data.message);
+    reset();
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <Button label="Submit" type="submit" onClick={() => {}}>
-          Submit
-        </Button>
-      </form>
-    </Form>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="text" {...register('message')} />
+      <Button label="Submit" type="submit">
+        Submit
+      </Button>
+    </form>
   );
 };
 

@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import InputBox from '../../components/input-box';
+import { MessageInputBox } from '../../features/conversation/components/message-input-box';
 
-export const MainLayout = memo(() => (
-  <div id="main-container">
-    <InputBox onSendMessage={() => {}} />
-  </div>
-));
-
-export default MainLayout;
+export const MainLayout = memo(() => {
+  return (
+    <div id="main-container">
+      <MessageInputBox />
+    </div>
+  );
+});
