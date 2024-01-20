@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styles from './styles.module.scss';
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: () => void;
+  onClick?: () => void;
   label: string;
 }
 
