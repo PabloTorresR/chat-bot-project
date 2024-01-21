@@ -1,0 +1,12 @@
+services:
+  Apps.Chatapp.Backend.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
+    # arguments: ['@Chatapp.Shared.domain.QueryBus']
+
+  Apps.Chatapp.Backend.controllers.MessagePostController:
+    class: ../../controllers/MessagePostController
+    # arguments: ['@Chatapp.Shared.domain.CommandBus']
+
+  Apps.Chatapp.Backend.controllers.MessageGetController:
+    class: ../../controllers/MessageGetController
+    # arguments: ['@Chatapp.Shared.domain.QueryBus']

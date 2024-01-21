@@ -1,11 +1,13 @@
-import { Router, Request, Response } from "express";
-import { sync } from "glob";
-import { ValidationError, validationResult } from "express-validator";
-import httpStatus from "http-status";
+import { Router, Request, Response } from 'express';
+import { sync } from 'glob';
+import { ValidationError, validationResult } from 'express-validator';
+import httpStatus from 'http-status';
+
+import path from 'path';
 
 export function registerRoutes(router: Router) {
-  const routes = sync(__dirname + "/**/*.route.*");
-  routes.map((route) => register(route, router));
+  const routes = sync(path.join(__dirname, './**/*.route.*'));
+  routes.map(route => register(route, router));
 }
 
 function register(routePath: string, router: Router) {
@@ -18,9 +20,7 @@ export function validateReqSchema(req: Request, res: Response, next: Function) {
   if (validationErrors.isEmpty()) {
     return next();
   }
-  const errors = validationErrors
-    .array()
-    .map((err: ValidationError) => ({ [err.type]: err.msg }));
+  const errors = validationErrors.array().map((err: ValidationError) => ({ [err.type]: err.msg }));
 
   return res.status(httpStatus.UNPROCESSABLE_ENTITY).json({
     errors,
