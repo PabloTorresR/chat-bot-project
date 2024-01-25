@@ -2,11 +2,10 @@ import { Router, Request, Response } from 'express';
 import { sync } from 'glob';
 import { ValidationError, validationResult } from 'express-validator';
 import httpStatus from 'http-status';
-
-import path from 'path';
+import { normalizePath } from '../utils/path';
 
 export function registerRoutes(router: Router) {
-  const routes = sync(path.join(__dirname, './**/*.route.*'));
+  const routes = sync(normalizePath(__dirname) + '/**/*.route.*');
   routes.map(route => register(route, router));
 }
 

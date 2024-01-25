@@ -1,14 +1,14 @@
 // import { EventBus } from "../../../Contexts/Shared/domain/EventBus";
 // import container from "./dependency-injection";
 // import { DomainEventSubscribers } from "../../../Contexts/Shared/infrastructure/EventBus/DomainEventSubscribers";
-import { Server } from "./server";
+import { Server } from './server';
 // import { RabbitMqConnection } from "../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection";
 
 export class ChatBackendApp {
   server?: Server;
 
   async start() {
-    const port = process.env.PORT || "5001";
+    const port = process.env.PORT || '5001';
     this.server = new Server(port);
 
     //TODO: add event bus
