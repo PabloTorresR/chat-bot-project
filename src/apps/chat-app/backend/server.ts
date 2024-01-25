@@ -7,6 +7,8 @@ import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
 import { registerRoutes } from './routes';
+import CorsMiddleware from './middleware/cors';
+import { ALLOWED_ORIGINS } from './constants/allowed-origins';
 
 export class Server {
   private express: express.Express;
@@ -23,6 +25,8 @@ export class Server {
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
+    const cors = new CorsMiddleware(ALLOWED_ORIGINS);
+    this.express.use(cors.handle);
     const router = Router();
     router.use(errorHandler());
     this.express.use(router);

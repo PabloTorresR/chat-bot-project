@@ -1,0 +1,25 @@
+.message {
+  background-color: #989998;
+  padding: 10px;
+  border-radius: 10px;
+
+  &.-user {
+    background-color: #4e941f;
+  }
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  &__text {
+    font-size: 14px;
+    color: #333;
+  }
+
+  &__timestamp {
+    font-size: 12px;
+    color: #999;
+  }
+}
