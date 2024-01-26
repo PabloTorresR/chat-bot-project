@@ -1,9 +1,15 @@
+$color-white: #fff;
+$color-dark: rgb(9, 9, 11);
+
 $color-very-light: #f8f6f4;
 $color-error: #ff6969;
 $color-light: #e3f4f4;
-$color-normal: #c4dfdf;
-$color-dark: #d2e9e9;
-$color-text: #2f3541;
-$color-text-light: #2f354183;
+$color-text-light: #dfe6e6;
 
-$color-highlight: #b8f1b0;
+$color-highlight-1: $color-white;
+$color-highlight-2: rgb(39, 39, 42);
+$color-highlight-3: #b8f1b0;
+
+$color-background: $color-dark;
+$color-text: $color-white;
+$color-border: $color-highlight-2;

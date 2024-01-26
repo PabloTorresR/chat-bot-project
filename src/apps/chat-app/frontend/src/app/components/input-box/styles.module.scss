@@ -1,0 +1,42 @@
+@import '../../../styles/colors.scss';
+
+.inputBox {
+  height: 156px;
+  width: 870px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+
+  > button {
+    align-self: flex-end;
+  }
+  > textarea {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 12px;
+    border-radius: 4px;
+    color: $color-text;
+    border: 1px solid $color-border;
+    transition: all 0.3s ease-in-out;
+    background-color: transparent;
+    padding: 12px;
+    resize: none;
+
+    &::placeholder {
+      color: #999;
+    }
+    &:focus {
+      border-color: $color-highlight-1;
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .inputBox {
+    width: 100%;
+  }
+}

@@ -7,11 +7,12 @@ import { MessageSender } from '../../../../enums/message-sender';
 type Props = {
   content: string;
   messageSender: MessageSender;
+  className?: string;
 };
 
-const MessageItem = ({ content, messageSender }: Props) => {
+const MessageItem = ({ content, messageSender, className }: Props) => {
   return (
-    <div className={classnames(styles.message, messageSender === MessageSender.USER && styles['-user'])}>
+    <div className={classnames(styles.message, className, messageSender === MessageSender.USER && styles['-user'])}>
       <p className={styles.message__text}>{content}</p>
     </div>
   );
