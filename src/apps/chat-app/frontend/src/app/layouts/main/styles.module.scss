@@ -1,0 +1,36 @@
+@import '../../../styles/colors';
+#mainContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-background;
+
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 56px 1fr;
+}
+
+#leftPane {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#header {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#contentContainer {
+  grid-column: 2;
+  grid-row: 2;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px;
+  margin: 20px;
+}

@@ -1,10 +1,11 @@
+@import '../../../../../../../styles/colors';
 .message {
-  background-color: #989998;
+  background-color: $color-highlight-1;
   padding: 10px;
   border-radius: 10px;
 
   &.-user {
-    background-color: #4e941f;
+    background-color: $color-highlight-3;
   }
   &__avatar {
     width: 40px;

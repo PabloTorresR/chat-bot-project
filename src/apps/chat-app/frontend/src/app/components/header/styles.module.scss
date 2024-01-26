@@ -1,0 +1,8 @@
+@import '../../../styles/colors.scss';
+.header {
+  > h1 {
+    color: $color-text;
+  }
+  width: 100vw;
+  padding: 20px;
+}
