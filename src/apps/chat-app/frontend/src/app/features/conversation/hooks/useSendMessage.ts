@@ -1,20 +1,21 @@
 import { useMemo, useState } from 'react';
 import SendMessageService from '../services/send-message';
+import { Message } from '../types/message';
 
 const useSendMessage = (url: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const service = useMemo(() => {
+  const sendMessageService = useMemo(() => {
     return new SendMessageService(url);
   }, [url]);
 
-  const sendMessage = async (message: string) => {
+  const sendMessage = async (message: Message) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      await service.sendMessage(message);
+      await sendMessageService.sendMessage(message);
     } catch (error) {
       setError('Failed to send message');
     } finally {
