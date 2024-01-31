@@ -1,11 +1,11 @@
 @import '../../../../../../../styles/colors';
 .message {
-  background-color: $color-highlight-1;
+  background-color: $color-highlight-3;
   padding: 10px;
   border-radius: 10px;
 
-  &.-user {
-    background-color: $color-highlight-3;
+  &.-isLeftSide {
+    background-color: $color-highlight-1;
   }
   &__avatar {
     width: 40px;
