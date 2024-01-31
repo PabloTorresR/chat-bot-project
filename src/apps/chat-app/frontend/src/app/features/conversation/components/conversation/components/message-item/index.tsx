@@ -3,7 +3,8 @@ import React, { memo } from 'react';
 import styles from './styles.module.scss';
 import classnames from 'classnames';
 import { MessageSender } from '../../../../enums/message-sender';
-import botAvatarIcon from '/SVG/icn_robot_face.svg';
+import botAvatar from '/SVG/icn_robot_face.svg';
+import Avatar from '../../../../../../components/avatar';
 
 type Props = {
   content: string;
@@ -11,10 +12,16 @@ type Props = {
   className?: string;
   isLeftSide?: boolean;
   dateTime?: string;
+  userAvatarUrl?: string;
 };
 
-const MessageItem = memo(({ content, messageSender, className, isLeftSide, dateTime }: Props) => {
-  const avatarImage = messageSender === MessageSender.BOT ? botAvatarIcon : botAvatarIcon;
+const AVATAR_SIZE = 36;
+
+const MessageItem = memo(({ content, messageSender, className, isLeftSide, dateTime, userAvatarUrl }: Props) => {
+  const avatarImage = {
+    [MessageSender.BOT]: <img src={botAvatar} alt="Avatar" className={styles.message__avatar} />,
+    [MessageSender.USER]: <Avatar imageUrl={userAvatarUrl ?? ''} size={AVATAR_SIZE} />,
+  };
 
   return (
     <div className={classnames(styles.messageItem, className, isLeftSide && styles['-isLeftSide'])}>
@@ -22,7 +29,7 @@ const MessageItem = memo(({ content, messageSender, className, isLeftSide, dateT
         <p className={styles.message__text}>{content}</p>
         <p className={styles.message__dateTime}>{dateTime}</p>
       </div>
-      <img src={avatarImage} alt="Avatar" className={styles.message__avatar} />
+      {avatarImage[messageSender]}
     </div>
   );
 });
