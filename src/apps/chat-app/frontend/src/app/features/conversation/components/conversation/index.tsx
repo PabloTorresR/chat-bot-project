@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import classNames from 'classnames';
 import { MessageSender } from '../../enums/message-sender';
 import useConversationStore from '../../stores/conversation';
+import { formatTimestamp } from '../../../../utils/time';
 
 const Conversation = () => {
   const conversation = useConversationStore(state => state.conversation);
@@ -17,6 +18,7 @@ const Conversation = () => {
           messageSender={message.sender}
           content={message.content}
           isLeftSide={message.sender !== MessageSender.USER}
+          dateTime={formatTimestamp(message.timestamp)}
         />
       ))}
     </div>

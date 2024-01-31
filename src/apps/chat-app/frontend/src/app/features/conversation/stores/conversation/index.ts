@@ -7,22 +7,28 @@ const messages: Message[] = [
   {
     id: '2',
     sender: MessageSender.USER,
-    content: 'Hola',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: '3',
+    sender: MessageSender.BOT,
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+    timestamp: new Date().toISOString(),
   },
   {
     id: '3',
     sender: MessageSender.BOT,
     content: 'Hola',
-  },
-  {
-    id: '3',
-    sender: MessageSender.BOT,
-    content: 'Hola',
+    timestamp: new Date().toISOString(),
   },
   {
     id: '3',
     sender: MessageSender.USER,
     content: 'Adios',
+    timestamp: new Date().toISOString(),
   },
 ];
 
