@@ -19,6 +19,7 @@ const Conversation = ({ messages }: Props) => {
           key={message.id}
           messageSender={message.sender}
           content={message.content}
+          isLeftSide={message.sender !== MessageSender.USER}
         />
       ))}
     </div>
