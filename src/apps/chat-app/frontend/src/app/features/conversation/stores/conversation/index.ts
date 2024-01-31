@@ -34,21 +34,19 @@ const messages: Message[] = [
 
 type ConversationStore = {
   conversation: Conversation | null;
+  messages: Message[];
   setConversation: (conversation: Conversation) => void;
   addMessage: (message: Message) => void;
 };
 
 const useConversationStore = create<ConversationStore>(set => ({
-  conversation: { messages: messages, id: '1' },
+  conversation: { id: '1', title: 'Conversation 1' },
+  messages,
   setConversation: conversation => set({ conversation }),
   addMessage: message =>
     set(state => ({
-      conversation: state.conversation
-        ? {
-            ...state.conversation,
-            messages: [...state.conversation.messages, message],
-          }
-        : null,
+      ...state,
+      messages: state.messages ? [...state.messages, message] : [message],
     })),
 }));
 

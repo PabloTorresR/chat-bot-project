@@ -7,11 +7,13 @@ import { MessageSender } from '../../enums/message-sender';
 import useConversationStore from '../../stores/conversation';
 import { formatTimestamp } from '../../../../utils/time';
 
+const fakeAvatarUrl = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50';
+
 const Conversation = () => {
-  const conversation = useConversationStore(state => state.conversation);
+  const messages = useConversationStore(state => state.messages);
   return (
     <div className={styles.conversation}>
-      {conversation?.messages.map(message => (
+      {messages.map(message => (
         <MessageItem
           className={classNames(styles.conversation__message, message.sender === MessageSender.USER && styles['-user'])}
           key={message.id}
@@ -19,6 +21,7 @@ const Conversation = () => {
           content={message.content}
           isLeftSide={message.sender !== MessageSender.USER}
           dateTime={formatTimestamp(message.timestamp)}
+          userAvatarUrl={message.sender === MessageSender.USER ? fakeAvatarUrl : undefined}
         />
       ))}
     </div>
