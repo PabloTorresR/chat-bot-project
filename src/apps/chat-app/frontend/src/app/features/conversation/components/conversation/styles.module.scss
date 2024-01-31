@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 560px;
+  width: 660px;
 
   &__message {
     margin-bottom: 10px;
@@ -13,7 +13,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .conversation {
     width: 100%;
   }

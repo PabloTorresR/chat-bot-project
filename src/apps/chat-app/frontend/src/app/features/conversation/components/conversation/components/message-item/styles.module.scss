@@ -1,25 +1,43 @@
 @import '../../../../../../../styles/colors';
+
+.messageItem {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  max-width: 480px;
+  &.-isLeftSide {
+    flex-direction: row-reverse;
+    .message {
+      align-items: flex-start;
+
+      // background-color: $color-highlight-1;
+    }
+  }
+}
 .message {
-  background-color: $color-highlight-3;
+  // background-color: $color-highlight-3;
   padding: 10px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 
-  &.-isLeftSide {
-    background-color: $color-highlight-1;
-  }
   &__avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
+    margin-bottom: 8px;
   }
 
   &__text {
     font-size: 14px;
-    color: #333;
+    color: $color-text;
+    word-wrap: break-word;
+    text-align: justify;
   }
 
-  &__timestamp {
+  &__dateTime {
     font-size: 12px;
     color: #999;
   }
