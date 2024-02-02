@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import SendMessageService from '../services/send-message';
 import { Message } from '../types/message';
 
+//TODO: pensar si esto va a socketio o si lo metemos en useMessages
 const useSendMessage = (url: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
