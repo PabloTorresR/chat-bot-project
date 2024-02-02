@@ -16,8 +16,10 @@ export const MainLayout = () => {
       <div></div>
       <div id={styles.contentContainer}>
         <ConversationList />
-        <Conversation />
-        <MessageInputBox />
+        <div id={styles.contentContainer__conversation}>
+          <Conversation />
+          <MessageInputBox />
+        </div>
       </div>
     </div>
   );

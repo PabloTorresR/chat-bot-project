@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import useConversationStore from '../../stores/conversation';
 import { Conversation } from '../../types/conversation';
 import styles from './styles.module.scss';
+import newChatIcon from '/SVG/icn_squares_layers.svg';
 
 const FAKE_CONVERSATIONS: Conversation[] = [
   { id: '1', title: 'Conversation 1' },
@@ -21,18 +22,19 @@ const ConversationList = () => {
 
   return (
     <div className={styles.conversationList}>
-      <h2>Conversations</h2>
-      <ul>
-        {FAKE_CONVERSATIONS.map(conversation => (
-          <li
-            className={styles.conversationList__item}
-            key={conversation.id}
-            onClick={() => handleConversationClick(conversation)}
-          >
-            {conversation.title}
-          </li>
-        ))}
-      </ul>
+      <button className={styles.conversationList__newChat}>
+        <img src={newChatIcon} alt="icn" />
+        <span>New chat</span>
+      </button>
+      {FAKE_CONVERSATIONS.map(conversation => (
+        <button
+          className={styles.conversationList__item}
+          key={conversation.id}
+          onClick={() => handleConversationClick(conversation)}
+        >
+          {conversation.title}
+        </button>
+      ))}
     </div>
   );
 };
