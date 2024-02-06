@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Message } from '../../types/message';
 
-class SendMessageService {
+class SendMessagesService {
   private url: string;
 
   constructor(url: string) {
@@ -18,4 +18,4 @@ class SendMessageService {
   }
 }
 
-export default SendMessageService;
+export default SendMessagesService;

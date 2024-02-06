@@ -35,11 +35,14 @@
   margin: 20px;
 }
 #contentContainer__conversation {
+  height: 80vh;
+  width: 100%;
   border-left: 1px solid $color-border;
   display: grid;
-  grid-template-rows: 1fr 300px;
+  grid-template-rows: 1fr 150px;
   grid-template-columns: 1fr;
+  gap: 32px;
+  padding: 0 32px;
   justify-items: center;
   align-items: center;
-  overflow-y: hidden;
 }

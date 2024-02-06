@@ -3,7 +3,8 @@
 
 .inputBox {
   height: 156px;
-  width: 870px;
+  width: 100%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -15,7 +16,7 @@
   }
   > textarea {
     height: 100%;
-    width: 100%;
+    width: 90%;
     outline: none;
     font-size: 12px;
     border-radius: 4px;
@@ -37,8 +38,8 @@
   }
 }
 
-@media (max-width: 1200px) {
-  .inputBox {
-    width: 100%;
-  }
-}
+// @media (max-width: 1200px) {
+//   .inputBox {
+//     width: 100%;
+//   }
+// }
