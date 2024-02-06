@@ -1,0 +1,16 @@
+services:
+  Apps.Chatapp.Backend.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
+    arguments: []
+
+  Apps.Chatapp.Backend.controllers.MessagesPostController:
+    class: ../../controllers/MessagesPostController
+    arguments: []
+
+  Apps.Chatapp.Backend.controllers.ConversationsGetController:
+    class: ../../controllers/ConversationsGetController
+    arguments: []
+
+  Apps.Chatapp.Backend.controllers.ConversationsPostController:
+    class: ../../controllers/ConversationsPostController
+    arguments: []
