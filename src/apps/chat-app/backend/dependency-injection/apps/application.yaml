@@ -3,6 +3,14 @@ services:
     class: ../../controllers/StatusGetController
     arguments: []
 
-  Apps.Chatapp.Backend.controllers.MessagePostController:
-    class: ../../controllers/MessagePostController
+  Apps.Chatapp.Backend.controllers.MessagesPostController:
+    class: ../../controllers/MessagesPostController
+    arguments: []
+
+  Apps.Chatapp.Backend.controllers.ConversationsGetController:
+    class: ../../controllers/ConversationsGetController
+    arguments: []
+
+  Apps.Chatapp.Backend.controllers.ConversationsPostController:
+    class: ../../controllers/ConversationsPostController
     arguments: []

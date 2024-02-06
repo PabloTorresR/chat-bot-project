@@ -4,7 +4,7 @@ import useConversationStore from '../../stores/conversation';
 import { MessageBuilder } from '../../services/message-builder';
 
 export const MessageInputBox = () => {
-  const API_URL = `${import.meta.env.VITE_API_URL_PROD}/message`;
+  const API_URL = `${import.meta.env.VITE_API_URL_PROD}/messages`;
   const addMessageToStore = useConversationStore(state => state.addMessage);
   const { sendMessage, isLoading } = useSendMessage(API_URL);
 
