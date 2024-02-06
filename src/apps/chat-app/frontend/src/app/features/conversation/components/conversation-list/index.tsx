@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import useConversationStore from '../../stores/conversation';
 import { Conversation } from '../../types/conversation';
 import styles from './styles.module.scss';
 import newChatIcon from '/SVG/icn_squares_layers.svg';
+import useConversationPick from '../../hooks/useConversationPick';
 
 const FAKE_CONVERSATIONS: Conversation[] = [
   { id: '1', title: 'Conversation 1' },
@@ -10,12 +10,12 @@ const FAKE_CONVERSATIONS: Conversation[] = [
   { id: '1', title: 'Conversation 3' },
 ];
 const ConversationList = () => {
-  const setConversation = useConversationStore(state => state.setConversation);
+  const { setConversation } = useConversationPick();
   const handleConversationClick = useCallback(
     //TODO: the type will be string, when clicking the button, the conversation is fetched to the BE, using react-qeury
     //then the new one is added to the store
-    (conversation: Conversation) => {
-      setConversation(conversation);
+    (conversationId: string) => {
+      setConversation(conversationId);
     },
     [setConversation],
   );
@@ -30,7 +30,7 @@ const ConversationList = () => {
         <button
           className={styles.conversationList__item}
           key={conversation.id}
-          onClick={() => handleConversationClick(conversation)}
+          onClick={() => handleConversationClick(conversation.id)}
         >
           {conversation.title}
         </button>
