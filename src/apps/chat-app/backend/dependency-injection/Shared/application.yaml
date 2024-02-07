@@ -1,0 +1,7 @@
+Chatapp.Shared.QueryHandlers:
+  class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlers
+  arguments: ['!tagged queryHandler']
+
+Chatapp.Shared.domain.ConversationsService:
+  class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+  arguments: ['@Chatapp.Shared.QueryHandlers']
