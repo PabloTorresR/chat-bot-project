@@ -1,5 +1,5 @@
 import { StringValueObject } from '../../../Shared/domain/value-object/StringValueObject';
-import { ConversationTitleLengthExceeded } from './ConversationTitleLenghtExceeded';
+import { ConversationTitleLengthExceeded } from './ConversationTitleLengthExceeded';
 
 export class ConversationTitle extends StringValueObject {
   constructor(value: string) {
