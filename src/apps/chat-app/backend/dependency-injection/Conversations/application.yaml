@@ -1,0 +1,6 @@
+services:
+  Backoffice.courses.SearchCoursesByCriteriaQueryHandler:
+    class: ../../../../../Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQueryHandler
+    arguments: ['@Backoffice.courses.application.CoursesByCriteriaSearcher']
+    tags:
+      - { name: 'queryHandler' }

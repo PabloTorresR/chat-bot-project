@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';
-import { SearchCoursesByCriteriaQuery } from '@/Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQuery';
+import { SearchConversationsByCriteriaQuery } from '@/Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQuery';
 import { ConversationsResponse } from '@/Contexts/Chatapp/Conversations/application/ConversationsResponse';
 
 type FilterType = { value: string; operator: string; field: string };
@@ -30,7 +30,7 @@ export class ConversationsGetController implements Controller {
     const { query: queryParams } = _req;
     const { filters, orderBy, order, limit, offset } = queryParams;
 
-    const query = new SearchCoursesByCriteriaQuery(
+    const query = new SearchConversationsByCriteriaQuery(
       this.parseFilters(filters as Array<FilterType>),
       orderBy as string,
       order as string,

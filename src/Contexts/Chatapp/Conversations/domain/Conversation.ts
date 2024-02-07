@@ -1,6 +1,6 @@
 import { AggregateRoot } from '@/Contexts/Shared/domain/AggregateRoot';
-import { ConversationId } from '../../Shared/domain/ConversationId';
 import { ConversationCreatedDomainEvent } from './ConversationCreatedDomainEvent';
+import { ConversationId } from '../../Shared/domain/ConversationId';
 import { ConversationTitle } from './ConversationTitle';
 
 export class Conversation extends AggregateRoot {

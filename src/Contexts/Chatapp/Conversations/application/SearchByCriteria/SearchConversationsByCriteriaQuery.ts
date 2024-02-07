@@ -1,6 +1,6 @@
 import { Query } from '../../../../Shared/domain/Query';
 
-export class SearchCoursesByCriteriaQuery implements Query {
+export class SearchConversationsByCriteriaQuery implements Query {
   readonly filters: Array<Map<string, string>>;
   readonly orderBy?: string;
   readonly orderType?: string;
