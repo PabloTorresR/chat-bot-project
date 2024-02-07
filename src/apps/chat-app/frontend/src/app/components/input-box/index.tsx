@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import Button from '../button';
 import styles from './styles.module.scss';
 interface Props {
@@ -10,7 +10,10 @@ const PLACEHOLDER = 'Type a message...';
 const InputBox = ({ onSubmitClick }: Props) => {
   const { handleSubmit, register, reset } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FieldValues) => {
+    if (!data.message) {
+      return;
+    }
     onSubmitClick(data.message);
     reset();
   };
