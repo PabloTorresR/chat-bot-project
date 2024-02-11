@@ -6,7 +6,7 @@ import { ConversationsResponse } from '../ConversationsResponse';
 import { ConversationsByCriteriaSearcher } from './ConversationsByCriteriaSearcher';
 import { SearchConversationsByCriteriaQuery } from './SearchConversationsByCriteriaQuery';
 
-export class SearchCoursesByCriteriaQueryHandler
+export class SearchConversationsByCriteriaQueryHandler
   implements QueryHandler<SearchConversationsByCriteriaQuery, ConversationsResponse>
 {
   constructor(private searcher: ConversationsByCriteriaSearcher) {}

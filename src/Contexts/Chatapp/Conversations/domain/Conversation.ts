@@ -1,7 +1,7 @@
-import { AggregateRoot } from '@/Contexts/Shared/domain/AggregateRoot';
 import { ConversationCreatedDomainEvent } from './ConversationCreatedDomainEvent';
 import { ConversationId } from '../../Shared/domain/ConversationId';
 import { ConversationTitle } from './ConversationTitle';
+import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
 
 export class Conversation extends AggregateRoot {
   readonly id: ConversationId;
@@ -25,7 +25,7 @@ export class Conversation extends AggregateRoot {
 
     return conversation;
   }
-  static fromPrimitives(plainData: { id: string; title: string; duration: string }): Conversation {
+  static fromPrimitives(plainData: { id: string; title: string }): Conversation {
     return new Conversation(new ConversationId(plainData.id), new ConversationTitle(plainData.title));
   }
 

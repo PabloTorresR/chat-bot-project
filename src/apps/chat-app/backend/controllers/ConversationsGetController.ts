@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';
-import { SearchConversationsByCriteriaQuery } from '@/Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQuery';
-import { ConversationsResponse } from '@/Contexts/Chatapp/Conversations/application/ConversationsResponse';
+import { SearchConversationsByCriteriaQuery } from '../../../../Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQuery';
+import { ConversationsResponse } from '../../../../Contexts/Chatapp/Conversations/application/ConversationsResponse';
 
 type FilterType = { value: string; operator: string; field: string };
 
@@ -39,7 +39,6 @@ export class ConversationsGetController implements Controller {
     );
 
     const response = await this.queryBus.ask<ConversationsResponse>(query);
-
     res.status(httpStatus.OK).send(response.courses);
   }
 

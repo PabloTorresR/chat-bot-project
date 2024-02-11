@@ -18,11 +18,11 @@ services:
   #   ports:
   #     - '5432:5432'
   #   restart: always
-  # rabbitmq:
-  #   image: 'rabbitmq:3.8-management'
-  #   ports:
-  #     - 5672:5672
-  #     - 15672:15672
+  rabbitmq:
+    image: 'rabbitmq:3.8-management'
+    ports:
+      - 5672:5672
+      - 15672:15672
   # elasticsearch:
   #   image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
   #   container_name: codely-elasticsearch

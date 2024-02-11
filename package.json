@@ -6,13 +6,15 @@
   "scripts": {
     "test": "test",
     "dev:chatapp:backend": "ts-node-dev --ignore-watch node_modules  ./src/apps/chat-app/backend/start.ts",
-    "dev:chatapp:frontend": "cd ./src/apps/chat-app/frontend && npm run dev"
+    "dev:chatapp:frontend": "cd ./src/apps/chat-app/frontend && npm run dev",
+    "find-circular-deps": "madge . -c"
   },
   "author": "PTman",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.5",
     "compression": "^1.7.4",
+    "convict": "^6.2.4",
     "cors": "^2.8.5",
     "errorhandler": "^1.5.1",
     "express": "^4.18.2",
@@ -21,6 +23,8 @@
     "glob": "^10.3.10",
     "helmet": "^7.1.0",
     "http-status": "^1.7.3",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.1",
     "node-dependency-injection": "^2.6.11",
     "react-hook-form": "^7.49.3",
     "react-query": "^3.39.3",
@@ -30,9 +34,12 @@
   },
   "devDependencies": {
     "@types/compression": "^1.7.5",
+    "@types/convict": "^6.1.6",
     "@types/errorhandler": "^1.5.3",
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.4",
+    "@types/uuid": "^9.0.8",
+    "@types/uuid-validate": "^0.0.3",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.45.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -43,6 +50,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-testing-library": "^5.11.0",
+    "madge": "^6.1.0",
     "prettier": "^2.8.8",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.2"
