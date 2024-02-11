@@ -7,7 +7,7 @@ export class QueryHandlers extends Map<Query, QueryHandler<Query, Response>> {
   constructor(queryHandlers: QueryHandler<Query, Response>[]) {
     super();
     queryHandlers.forEach(queryHandler => {
-      this.set(queryHandler.subscribedTo(), queryHandler);
+      this.set(queryHandler?.subscribedTo(), queryHandler);
     });
   }
 

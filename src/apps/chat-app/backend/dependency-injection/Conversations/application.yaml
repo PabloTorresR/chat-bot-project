@@ -1,6 +1,14 @@
 services:
-  Backoffice.courses.SearchCoursesByCriteriaQueryHandler:
+  Chatapp.Conversations.SearchConversationsByCriteriaQueryHandler:
     class: ../../../../../Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQueryHandler
-    arguments: ['@Backoffice.courses.application.CoursesByCriteriaSearcher']
+    arguments: ['@Chatapp.Conversations.application.ConversationsByCriteriaSearcher']
     tags:
       - { name: 'queryHandler' }
+
+  Chatapp.Conversations.application.ConversationsByCriteriaSearcher:
+    class: ../../../../../Contexts/Chatapp/Conversations/application/SearchByCriteria/ConversationsByCriteriaSearcher
+    arguments: ['@Chatapp.Conversations.domain.ConversationRepository']
+
+  Chatapp.Conversations.domain.ConversationRepository:
+    class: ../../../../../Contexts/Chatapp/Conversations/infrastructure/persistence/mongo/MongoConversationRepository
+    arguments: ['@Chatapp.Shared.ConnectionManager']

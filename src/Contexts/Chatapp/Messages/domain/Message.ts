@@ -1,4 +1,4 @@
-import { AggregateRoot } from '@/Contexts/Shared/domain/AggregateRoot';
+import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
 import { MessageId } from '../../Shared/domain/MessageId';
 import { MessageContent } from './MessageContent';
 import { MessageCreatedDomainEvent } from './MessageCreatedDomainEvent';
