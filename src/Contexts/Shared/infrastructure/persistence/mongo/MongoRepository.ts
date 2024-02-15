@@ -11,13 +11,14 @@ export abstract class MongoRepository<T extends AggregateRoot> {
   }
 
   protected abstract collectionName(): string;
+  protected abstract dbName(): string;
 
   protected client(): Promise<MongoClient> {
     return this._client;
   }
 
   protected async collection(): Promise<Collection> {
-    return (await this._client).db().collection(this.collectionName());
+    return (await this._client).db(this.dbName()).collection(this.collectionName());
   }
 
   protected async persist(id: string, aggregateRoot: T): Promise<void> {

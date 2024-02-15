@@ -11,9 +11,8 @@ class SendMessagesService {
   public async sendMessage(message: Message): Promise<void> {
     try {
       await axios.post(this.url, message);
-      console.log('Message sent successfully!');
     } catch (error) {
-      console.error('Failed to send message:', error);
+      console.error('Failed to send message');
     }
   }
 }

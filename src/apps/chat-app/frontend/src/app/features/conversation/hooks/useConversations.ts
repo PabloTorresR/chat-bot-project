@@ -2,7 +2,7 @@ import useConversationStore from '../stores/conversation';
 import useConversationsQuery from '../queries/useConversationsQuery';
 import useMessagesQuery from '../queries/useMessagesQuery';
 
-const useConversationPick = () => {
+const useConversations = () => {
   const { data: conversations } = useConversationsQuery();
   const conversationStore = useConversationStore(state => ({
     conversation: state.conversation,
@@ -12,13 +12,12 @@ const useConversationPick = () => {
   const { data: messages } = useMessagesQuery(conversationStore.conversation?.id);
 
   const setConversation = (conversationId: string) => {
-    console.log('messages', messages);
     const selectedConversation = conversations?.find(conversation => conversation.id === conversationId);
     conversationStore.setConversation(selectedConversation);
     conversationStore.setMessages(messages ?? []);
   };
 
-  return { setConversation };
+  return { value: conversations, actions: { setConversation } };
 };
 
-export default useConversationPick;
+export default useConversations;
