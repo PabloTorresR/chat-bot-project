@@ -29,4 +29,4 @@ clean:
 
 # Start databases containers in background
 start_database:
-	docker-compose up -d mongo elasticsearch rabbitmqj
+	docker-compose up -d mongo elasticsearch rabbitmq

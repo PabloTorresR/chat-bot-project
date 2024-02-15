@@ -5,8 +5,9 @@ services:
     image: mongo:6.0.7
     environment:
       - MONGO_URL=mongodb://mongo:27017/dev
-    volumes:
-      - ./data/mongo:/data/db:delegated
+    # NOTE: This is a workaround to avoid the error "Cannot start service mongo... :"
+    # volumes:
+    #   - ./data/mongo:/data/db:delegated
     ports:
       - 27017:27017
   # postgres:

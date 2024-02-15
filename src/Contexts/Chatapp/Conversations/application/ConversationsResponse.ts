@@ -6,9 +6,9 @@ interface ConversationResponse {
 }
 
 export class ConversationsResponse {
-  public readonly courses: ConversationResponse[];
+  public readonly conversations: ConversationResponse[];
 
-  constructor(courses: Conversation[]) {
-    this.courses = courses.map(course => course.toPrimitives());
+  constructor(conversations: Conversation[]) {
+    this.conversations = conversations.map(conversation => conversation.toPrimitives());
   }
 }
