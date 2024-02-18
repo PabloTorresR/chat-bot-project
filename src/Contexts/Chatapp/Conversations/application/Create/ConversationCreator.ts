@@ -1,0 +1,15 @@
+import { EventBus } from '../../../../Shared/domain/EventBus';
+import { ConversationId } from '../../../Shared/domain/ConversationId';
+import { Conversation } from '../../domain/Conversation';
+import { ConversationTitle } from '../../domain/ConversationTitle';
+import { ConversationRepository } from '../../domain/ConversationRepository';
+
+export class ConversationCreator {
+  constructor(private repository: ConversationRepository, private eventBus: EventBus) {}
+
+  async run(params: { id: ConversationId; title: ConversationTitle }): Promise<void> {
+    const conversation = Conversation.create(params.id, params.title);
+    await this.repository.save(conversation);
+    await this.eventBus.publish(conversation.pullDomainEvents());
+  }
+}

@@ -13,4 +13,4 @@ services:
 
   Apps.Chatapp.Backend.controllers.ConversationsPostController:
     class: ../../controllers/ConversationsPostController
-    arguments: []
+    arguments: ['@Chatapp.Shared.domain.CommandBus']

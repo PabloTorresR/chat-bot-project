@@ -12,3 +12,13 @@ services:
   Chatapp.Conversations.domain.ConversationRepository:
     class: ../../../../../Contexts/Chatapp/Conversations/infrastructure/persistence/mongo/MongoConversationRepository
     arguments: ['@Chatapp.Shared.ConnectionManager']
+
+  Chatapp.Conversations.CreateConversationCommandHandler:
+    class: ../../../../../Contexts/Chatapp/Conversations/application/Create/CreateConversationCommandHandler
+    arguments: ['@Chatapp.Conversations.application.ConversationCreator']
+    tags:
+      - { name: 'commandHandler' }
+
+  Chatapp.Conversations.application.ConversationCreator:
+    class: ../../../../../Contexts/Chatapp/Conversations/application/Create/ConversationCreator
+    arguments: ['@Chatapp.Conversations.domain.ConversationRepository', '@Chatapp.Shared.domain.EventBus']
