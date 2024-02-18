@@ -12,6 +12,7 @@
   "author": "PTman",
   "license": "ISC",
   "dependencies": {
+    "amqplib": "^0.10.3",
     "axios": "^1.6.5",
     "compression": "^1.7.4",
     "convict": "^6.2.4",
@@ -33,6 +34,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.10.4",
     "@types/compression": "^1.7.5",
     "@types/convict": "^6.1.6",
     "@types/errorhandler": "^1.5.3",

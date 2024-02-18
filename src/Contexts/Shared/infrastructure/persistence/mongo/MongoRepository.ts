@@ -26,7 +26,7 @@ export abstract class MongoRepository<T extends AggregateRoot> {
 
     const document = { ...aggregateRoot.toPrimitives(), _id: id, id: undefined };
 
-    await collection.updateOne({ _id: new ObjectId(id) }, { $set: document }, { upsert: true });
+    await collection.updateOne({ id: id }, { $set: document }, { upsert: true });
   }
 
   protected async searchByCriteria<D extends Document>(criteria: Criteria): Promise<D[]> {

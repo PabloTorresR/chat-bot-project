@@ -39,7 +39,7 @@ export class ConversationsGetController implements Controller {
     );
 
     const response = await this.queryBus.ask<ConversationsResponse>(query);
-    res.status(httpStatus.OK).send(response.courses);
+    res.status(httpStatus.OK).send(response.conversations);
   }
 
   private parseFilters(params: Array<FilterType>): Map<string, string>[] {

@@ -5,4 +5,5 @@ export interface Message {
   sender: MessageSender;
   content: string;
   timestamp: string;
+  conversationId: string;
 }

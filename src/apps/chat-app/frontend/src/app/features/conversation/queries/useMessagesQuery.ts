@@ -22,7 +22,7 @@ const useMessagesQuery = (conversationId?: string, startDate?: Date, endDate?: D
         },
       },
     );
-    return data;
+    return data ?? [];
   });
 };
 

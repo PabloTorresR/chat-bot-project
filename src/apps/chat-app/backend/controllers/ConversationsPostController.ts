@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-// import { CreateCourseCommand } from '../../../../Contexts/Mooc/Courses/domain/CreateCourseCommand';
-// import { CommandBus } from '../../../../Contexts/Shared/domain/CommandBus';
+import { CreateConversationCommand } from '../../../../Contexts/Chatapp/Conversations/domain/CreateConversationCommand';
+import { CommandBus } from '../../../../Contexts/Shared/domain/CommandBus';
 import { Controller } from './Controller';
 
 type PostConversationsRequest = {
@@ -14,14 +14,20 @@ type PostConversationsResponse = {
   title: string;
 };
 
-const defaultConversationsResponse: PostConversationsResponse = {
-  id: '1',
-  title: 'Hello world',
-};
-
 export class ConversationsPostController implements Controller {
-  //   constructor(private readonly commandBus: CommandBus) {}
+  constructor(private readonly commandBus: CommandBus) {}
   async run(req: Request<PostConversationsRequest>, res: Response<PostConversationsResponse>) {
-    res.status(httpStatus.OK).json(defaultConversationsResponse);
+    console.log(req.body);
+    await this.createConversation(req);
+    res.status(httpStatus.OK).send();
+  }
+
+  private async createConversation(req: Request<PostConversationsRequest>) {
+    const createConversationCommand = new CreateConversationCommand({
+      id: req.body.id,
+      title: req.body.title,
+    });
+
+    await this.commandBus.dispatch(createConversationCommand);
   }
 }
