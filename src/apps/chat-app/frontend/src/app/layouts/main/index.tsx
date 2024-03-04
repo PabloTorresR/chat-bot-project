@@ -13,7 +13,6 @@ export const MainLayout = () => {
         <Header />
       </div>
       <div id={styles.leftPane}></div>
-      <div></div>
       <div id={styles.contentContainer}>
         <ConversationList />
         <div id={styles.contentContainer__conversation}>
