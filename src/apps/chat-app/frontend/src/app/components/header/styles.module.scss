@@ -1,8 +1,12 @@
 @import '../../../styles/colors.scss';
 .header {
   > h1 {
+    margin-left: 20px;
     color: $color-text;
   }
   width: 100vw;
-  padding: 20px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

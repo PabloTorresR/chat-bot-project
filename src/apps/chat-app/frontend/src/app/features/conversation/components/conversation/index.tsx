@@ -16,7 +16,7 @@ const Conversation = () => {
 
   return (
     <div className={styles.conversation} ref={chatRef}>
-      {messages.map(message => (
+      {messages?.map(message => (
         <MessageItem
           className={classNames(styles.conversation__message, message.sender === MessageSender.USER && styles['-user'])}
           key={message.id}
