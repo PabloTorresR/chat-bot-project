@@ -4,6 +4,7 @@
   background-color: $color-highlight-1;
   padding: 10px;
   border-radius: 10px;
+  font-size: 12px;
 
   &:hover {
     background-color: darken($color-highlight-1, 10%);
