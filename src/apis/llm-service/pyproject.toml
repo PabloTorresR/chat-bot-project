@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "llm-service"
+version = "0.1.0"
+description = ""
+authors = ["Pablo Torres <pablo.torres@check24.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.110.0"
+uvicorn = "^0.27.1"
+dependency-injector = {extras = ["yaml"], version = "^4.38.0"}
+
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
