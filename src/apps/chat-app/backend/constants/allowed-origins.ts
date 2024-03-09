@@ -1,1 +1,1 @@
-export const ALLOWED_ORIGINS = ['http://localhost:3000', 'http://localhost:5001', 'http://localhost:5000'];
+export const ALLOWED_ORIGINS = ['http://localhost:3800', 'http://localhost:5001', 'http://localhost:5000'];

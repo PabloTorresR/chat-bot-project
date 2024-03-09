@@ -1,0 +1,68 @@
+@import '../../../../../styles/colors.scss';
+
+.userBadge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  justify-content: space-between;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 20px;
+  padding: 8px;
+  border-radius: 4px;
+  width: 160px;
+
+  &:hover {
+    background-color: $color-highlight-2;
+  }
+
+  &__image {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 8px;
+  }
+
+  &__name {
+    font-size: 12px;
+    font-weight: bold;
+    color: $color-text;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    height: auto;
+    width: 144px;
+    background-color: $color-highlight-2;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 4px 8px;
+    z-index: 1000;
+    border-radius: 4px;
+
+    &__item {
+      padding: 8px;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 4px;
+      color: $color-text;
+      font-size: 12px;
+
+      &:hover {
+        background-color: $color-highlight-2;
+      }
+
+      &.-logout {
+        background-color: $color-error;
+      }
+    }
+  }
+}
