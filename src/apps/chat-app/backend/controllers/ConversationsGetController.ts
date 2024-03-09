@@ -7,22 +7,6 @@ import { ConversationsResponse } from '../../../../Contexts/Chatapp/Conversation
 
 type FilterType = { value: string; operator: string; field: string };
 
-// type GetConversationsResponse = {
-//   id: string;
-//   title: string;
-// }[];
-
-// const defaultConversationResponse: GetConversationsResponse = [
-//   {
-//     id: '1',
-//     title: 'Hello world',
-//   },
-//   {
-//     id: '2',
-//     title: 'Hello world 2',
-//   },
-// ];
-
 export class ConversationsGetController implements Controller {
   constructor(private readonly queryBus: QueryBus) {}
 

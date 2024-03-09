@@ -7,9 +7,13 @@ services:
     class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
     arguments: ['@Chatapp.Shared.QueryHandlers']
 
+  Chatapp.Shared.domain.MessagesService:
+    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Chatapp.Shared.QueryHandlers']
+
   Chatapp.Shared.MongoConfig:
     factory:
-      class: ../../../../../Contexts/Chatapp/Conversations/infrastructure/persistence/mongo/MongoConfigFactory
+      class: ../../../../../Contexts/Chatapp/Shared/infrastructure/persistence/mongo/MongoConfigFactory
       method: 'createConfig'
 
   Chatapp.Shared.ConnectionManager:

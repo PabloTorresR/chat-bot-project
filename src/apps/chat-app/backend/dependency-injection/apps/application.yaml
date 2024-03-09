@@ -5,7 +5,11 @@ services:
 
   Apps.Chatapp.Backend.controllers.MessagesPostController:
     class: ../../controllers/MessagesPostController
-    arguments: []
+    arguments: ['@Chatapp.Shared.domain.CommandBus']
+
+  Apps.Chatapp.Backend.controllers.MessagesGetController:
+    class: ../../controllers/ConversationsGetController
+    arguments: ['@Chatapp.Shared.domain.MessagesService']
 
   Apps.Chatapp.Backend.controllers.ConversationsGetController:
     class: ../../controllers/ConversationsGetController

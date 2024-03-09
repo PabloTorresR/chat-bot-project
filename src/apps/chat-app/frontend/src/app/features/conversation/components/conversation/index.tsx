@@ -16,14 +16,14 @@ const Conversation = () => {
 
   return (
     <div className={styles.conversation} ref={chatRef}>
-      {messages.map(message => (
+      {messages?.map(message => (
         <MessageItem
           className={classNames(styles.conversation__message, message.sender === MessageSender.USER && styles['-user'])}
           key={message.id}
           messageSender={message.sender}
           content={message.content}
           isLeftSide={message.sender !== MessageSender.USER}
-          dateTime={formatTimestamp(message.timestamp)}
+          dateTime={formatTimestamp(message.createdAt)}
           userAvatarUrl={message.sender === MessageSender.USER ? fakeAvatarUrl : undefined}
         />
       ))}

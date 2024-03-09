@@ -1,4 +1,4 @@
-import { Collection, MongoClient, ObjectId } from 'mongodb';
+import { Collection, MongoClient } from 'mongodb';
 import { AggregateRoot } from '../../../domain/AggregateRoot';
 import { Criteria } from '../../../domain/criteria/Criteria';
 import { MongoCriteriaConverter } from './MongoCriteriaConverter';

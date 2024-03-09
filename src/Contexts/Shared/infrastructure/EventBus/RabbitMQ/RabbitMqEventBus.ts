@@ -13,14 +13,14 @@ export class RabbitMQEventBus implements EventBus {
   private connection: RabbitMqConnection;
   private exchange: string;
   private queueNameFormatter: RabbitMQqueueFormatter;
-  private maxRetries: Number;
+  private maxRetries: number;
 
   constructor(params: {
     failoverPublisher: DomainEventFailoverPublisher;
     connection: RabbitMqConnection;
     exchange: string;
     queueNameFormatter: RabbitMQqueueFormatter;
-    maxRetries: Number;
+    maxRetries: number;
   }) {
     const { failoverPublisher, connection, exchange } = params;
     this.failoverPublisher = failoverPublisher;
@@ -60,7 +60,7 @@ export class RabbitMQEventBus implements EventBus {
     return {
       messageId: event.eventId,
       contentType: 'application/json',
-      contentEncoding: 'utf-8'
+      contentEncoding: 'utf-8',
     };
   }
 

@@ -13,7 +13,7 @@ class MessageBuilder {
       id: messageId,
       content: message,
       sender: MessageSender.USER,
-      timestamp: this._getTimestamp(),
+      createdAt: this._getTimestamp(),
       conversationId,
     };
   }
