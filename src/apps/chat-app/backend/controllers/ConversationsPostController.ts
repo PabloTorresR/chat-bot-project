@@ -16,8 +16,8 @@ type PostConversationsResponse = {
 
 export class ConversationsPostController implements Controller {
   constructor(private readonly commandBus: CommandBus) {}
+
   async run(req: Request<PostConversationsRequest>, res: Response<PostConversationsResponse>) {
-    console.log(req.body);
     await this.createConversation(req);
     res.status(httpStatus.OK).send();
   }

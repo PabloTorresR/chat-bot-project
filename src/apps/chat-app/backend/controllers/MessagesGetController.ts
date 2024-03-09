@@ -2,19 +2,19 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';
-import { SearchConversationsByCriteriaQuery } from '../../../../Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQuery';
-import { ConversationsResponse } from '../../../../Contexts/Chatapp/Conversations/application/ConversationsResponse';
+import { SearchMessagesByCriteriaQuery } from '../../../../Contexts/Chatapp/Messages/application/SearchByCriteria/SearchMessagesByCriteriaQuery';
+import { MessagesResponse } from '../../../../Contexts/Chatapp/Messages/application/MessagesResponse';
 
 type FilterType = { value: string; operator: string; field: string };
 
-export class ConversationsGetController implements Controller {
+export class MessagesGetController implements Controller {
   constructor(private readonly queryBus: QueryBus) {}
 
   async run(_req: Request, res: Response) {
     const { query: queryParams } = _req;
     const { filters, orderBy, order, limit, offset } = queryParams;
 
-    const query = new SearchConversationsByCriteriaQuery(
+    const query = new SearchMessagesByCriteriaQuery(
       this.parseFilters(filters as Array<FilterType>),
       orderBy as string,
       order as string,
@@ -22,8 +22,8 @@ export class ConversationsGetController implements Controller {
       offset ? Number(offset) : undefined,
     );
 
-    const response = await this.queryBus.ask<ConversationsResponse>(query);
-    res.status(httpStatus.OK).send(response.conversations);
+    const response = await this.queryBus.ask<MessagesResponse>(query);
+    res.status(httpStatus.OK).send(response.messages);
   }
 
   private parseFilters(params: Array<FilterType>): Map<string, string>[] {

@@ -11,7 +11,6 @@ export abstract class ValueObject<T extends Primitives> {
   }
 
   private ensureValueIsDefined(value: T): void {
-    console.log(value);
     if (value === null || value === undefined) {
       throw new InvalidArgumentError('Value must be defined');
     }

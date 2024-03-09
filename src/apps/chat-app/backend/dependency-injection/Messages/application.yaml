@@ -1,0 +1,24 @@
+services:
+  Chatapp.Messages.SearchMessagesByCriteriaQueryHandler:
+    class: ../../../../../Contexts/Chatapp/Messages/application/SearchByCriteria/SearchMessagesByCriteriaQueryHandler
+    arguments: ['@Chatapp.Messages.application.MessagesByCriteriaSearcher']
+    tags:
+      - { name: 'queryHandler' }
+
+  Chatapp.Messages.application.MessagesByCriteriaSearcher:
+    class: ../../../../../Contexts/Chatapp/Messages/application/SearchByCriteria/MessagesByCriteriaSearcher
+    arguments: ['@Chatapp.Messages.domain.MessageRepository']
+
+  Chatapp.Messages.domain.MessageRepository:
+    class: ../../../../../Contexts/Chatapp/Messages/infrastructure/persistence/mongo/MongoMessageRepository
+    arguments: ['@Chatapp.Shared.ConnectionManager']
+
+  Chatapp.Messages.CreateMessageCommandHandler:
+    class: ../../../../../Contexts/Chatapp/Messages/application/Create/CreateMessageCommandHandler
+    arguments: ['@Chatapp.Messages.application.MessageCreator']
+    tags:
+      - { name: 'commandHandler' }
+
+  Chatapp.Messages.application.MessageCreator:
+    class: ../../../../../Contexts/Chatapp/Messages/application/Create/MessageCreator
+    arguments: ['@Chatapp.Messages.domain.MessageRepository', '@Chatapp.Shared.domain.EventBus']
