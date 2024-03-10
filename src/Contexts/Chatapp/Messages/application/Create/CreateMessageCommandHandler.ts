@@ -7,6 +7,7 @@ import { CreateMessageCommand } from '../../domain/CreateMessageCommand';
 import { ConversationId } from '../../../../../Contexts/Chatapp/Shared/domain/ConversationId';
 import { UserId } from '../../../../../Contexts/Chatapp/Shared/domain/UserId';
 import { MessageCreatedAt } from '../../domain/MessageCreatedAt';
+import { MessageSender, MessageSenderValues } from '../../domain/MessageSender';
 
 export class CreateMessageCommandHandler implements CommandHandler<CreateMessageCommand> {
   constructor(private messageCreator: MessageCreator) {}
@@ -21,6 +22,7 @@ export class CreateMessageCommandHandler implements CommandHandler<CreateMessage
     const userId = new UserId(command.userId);
     const content = new MessageContent(command.content);
     const createdAt = MessageCreatedAt.createFromString(command.createdAt);
-    await this.messageCreator.run({ id, conversationId, userId, content, createdAt });
+    const sender = new MessageSender(command.sender as MessageSenderValues);
+    await this.messageCreator.run({ id, conversationId, userId, content, createdAt, sender });
   }
 }

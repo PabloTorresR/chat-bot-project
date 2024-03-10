@@ -6,6 +6,7 @@ import { MessageContent } from '../../domain/MessageContent';
 import { MessageRepository } from '../../domain/MessageRepository';
 import { UserId } from '../../../../../Contexts/Chatapp/Shared/domain/UserId';
 import { MessageCreatedAt } from '../../domain/MessageCreatedAt';
+import { MessageSender } from '../../domain/MessageSender';
 
 export class MessageCreator {
   constructor(private repository: MessageRepository, private eventBus: EventBus) {}
@@ -16,8 +17,16 @@ export class MessageCreator {
     conversationId: ConversationId;
     userId: UserId;
     createdAt: MessageCreatedAt;
+    sender: MessageSender;
   }): Promise<void> {
-    const message = Message.create(params.id, params.content, params.conversationId, params.userId, params.createdAt);
+    const message = Message.create(
+      params.id,
+      params.content,
+      params.conversationId,
+      params.userId,
+      params.createdAt,
+      params.sender,
+    );
     await this.repository.save(message);
     await this.eventBus.publish(message.pullDomainEvents());
   }

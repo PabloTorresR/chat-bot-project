@@ -1,22 +1,17 @@
-import { useMemo, useState } from 'react';
-import SendMessageService from '../services/send-message';
-import { Message } from '../types/message';
-import useConversationStore from '../stores/conversation';
+import { useState } from 'react';
+import { postMessages } from '../api/messages';
+import { PostMessageDto } from '../types/dto';
 
-//TODO: pensar si esto va a socketio o si lo metemos en useMessages
-const useSendMessage = (url: string) => {
+const useSendMessage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const sendMessageService = useMemo(() => {
-    return new SendMessageService(url);
-  }, [url]);
 
-  const sendMessage = async (message: Message) => {
+  const sendMessage = async (body: PostMessageDto) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      await sendMessageService.sendMessage(message);
+      await postMessages(body);
     } catch (error) {
       setError('Failed to send message');
     } finally {

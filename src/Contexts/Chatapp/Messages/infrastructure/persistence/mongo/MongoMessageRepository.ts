@@ -4,11 +4,12 @@ import { MessageRepository } from '../../../domain/MessageRepository';
 import { Message } from '../../../domain/Message';
 
 interface MessageDocument extends Document {
-  id: string;
+  _id: string;
   content: string;
   conversationId: string;
   userId: string;
   createdAt: string;
+  sender: string;
 }
 
 export class MongoMessageRepository extends MongoRepository<Message> implements MessageRepository {
@@ -29,11 +30,12 @@ export class MongoMessageRepository extends MongoRepository<Message> implements 
 
     return documents.map(document =>
       Message.fromPrimitives({
-        id: document.id,
+        id: document._id,
         content: document.content,
         conversationId: document.conversationId,
         userId: document.userId,
         createdAt: document.createdAt,
+        sender: document.sender,
       }),
     );
   }
@@ -43,11 +45,12 @@ export class MongoMessageRepository extends MongoRepository<Message> implements 
 
     return documents.map(document =>
       Message.fromPrimitives({
-        id: document.id,
+        id: document._id,
         content: document.content,
         conversationId: document.conversationId,
         userId: document.userId,
         createdAt: document.createdAt,
+        sender: document.sender,
       }),
     );
   }

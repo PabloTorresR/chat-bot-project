@@ -10,7 +10,6 @@ export class MessageCreatedAt extends DateValueObject {
     return new MessageCreatedAt(date);
   }
   toString(): string {
-    console.log(this.value, 'this.value.toISOString()');
     return this.value.toISOString();
   }
 }

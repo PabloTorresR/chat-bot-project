@@ -5,6 +5,7 @@ import { MessageContent } from './MessageContent';
 import { MessageCreatedDomainEvent } from './MessageCreatedDomainEvent';
 import { UserId } from '../../../../Contexts/Chatapp/Shared/domain/UserId';
 import { MessageCreatedAt } from './MessageCreatedAt';
+import { MessageSender, MessageSenderValues } from './MessageSender';
 
 export class Message extends AggregateRoot {
   readonly id: MessageId;
@@ -12,6 +13,7 @@ export class Message extends AggregateRoot {
   readonly conversationId: ConversationId;
   readonly userId: UserId;
   readonly createdAt: MessageCreatedAt;
+  readonly sender: MessageSender;
 
   constructor(
     id: MessageId,
@@ -19,14 +21,15 @@ export class Message extends AggregateRoot {
     conversationId: ConversationId,
     userId: UserId,
     createdAt: MessageCreatedAt,
+    sender: MessageSender,
   ) {
-    console.log('Message', id, content, conversationId, userId, createdAt);
     super();
     this.id = id;
     this.content = content;
     this.conversationId = conversationId;
     this.userId = userId;
     this.createdAt = createdAt;
+    this.sender = sender;
   }
 
   static create(
@@ -35,9 +38,9 @@ export class Message extends AggregateRoot {
     conversationId: ConversationId,
     userId: UserId,
     createdAt: MessageCreatedAt,
+    sender: MessageSender,
   ): Message {
-    const message = new Message(id, content, conversationId, userId, createdAt);
-
+    const message = new Message(id, content, conversationId, userId, createdAt, sender);
     message.record(
       new MessageCreatedDomainEvent({
         aggregateId: message.id.value,
@@ -45,6 +48,7 @@ export class Message extends AggregateRoot {
         conversationId: message.conversationId.value,
         userId: message.userId.value,
         createdAt: message.createdAt.toString(),
+        sender: message.sender.value,
       }),
     );
 
@@ -57,6 +61,7 @@ export class Message extends AggregateRoot {
     conversationId: string;
     userId: string;
     createdAt: string;
+    sender: string;
   }): Message {
     return new Message(
       new MessageId(plainData.id),
@@ -64,6 +69,7 @@ export class Message extends AggregateRoot {
       new ConversationId(plainData.conversationId),
       new UserId(plainData.userId),
       MessageCreatedAt.createFromString(plainData.createdAt),
+      new MessageSender(plainData.sender as MessageSenderValues),
     );
   }
 
@@ -71,9 +77,10 @@ export class Message extends AggregateRoot {
     return {
       id: this.id.value,
       content: this.content.value,
-      conversationId: this.conversationId,
-      userId: this.userId,
-      createdAt: this.createdAt,
+      conversationId: this.conversationId.value,
+      userId: this.userId.value,
+      createdAt: this.createdAt.value,
+      sender: this.sender.value,
     };
   }
 }

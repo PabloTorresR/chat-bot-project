@@ -1,4 +1,4 @@
-import { ChatBackendApp } from "./chat-backend-app";
+import { ChatBackendApp } from './chat-backend-app';
 
 try {
   new ChatBackendApp().start();
@@ -7,7 +7,7 @@ try {
   process.exit(1);
 }
 
-process.on("uncaughtException", (err) => {
-  console.log("uncaughtException", err);
+process.on('uncaughtException', err => {
+  console.log('uncaughtException', err);
   process.exit(1);
 });

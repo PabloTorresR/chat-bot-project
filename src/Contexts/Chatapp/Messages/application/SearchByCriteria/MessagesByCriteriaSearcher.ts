@@ -9,7 +9,6 @@ export class MessagesByCriteriaSearcher {
 
   async run(filters: Filters, order: Order, limit?: number, offset?: number): Promise<MessagesResponse> {
     const criteria = new Criteria(filters, order, limit, offset);
-    console.log(this.repository, criteria, 'this.repository, criteria');
     const messages = await this.repository.matching(criteria);
 
     return new MessagesResponse(messages);

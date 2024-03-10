@@ -5,8 +5,8 @@ import useConversations from '../../hooks/useConversations';
 
 const ConversationList = () => {
   const {
-    value: conversations,
-    actions: { set: setConversation, clear: clearConversation },
+    userConversations,
+    actions: { setConversation, clearConversation },
   } = useConversations();
 
   const handleConversationClick = useCallback(
@@ -26,7 +26,7 @@ const ConversationList = () => {
         <img src={newChatIcon} alt="icn" />
         <span>New chat</span>
       </button>
-      {conversations?.map(conversation => (
+      {userConversations?.map(conversation => (
         <button
           className={styles.conversationList__item}
           key={conversation.id}

@@ -6,6 +6,7 @@ type Params = {
   conversationId: string;
   userId: string;
   createdAt: string;
+  sender: string;
 };
 
 export class CreateMessageCommand extends Command {
@@ -14,13 +15,15 @@ export class CreateMessageCommand extends Command {
   conversationId: string;
   userId: string;
   createdAt: string;
+  sender: string;
 
-  constructor({ id, content, conversationId, userId, createdAt }: Params) {
+  constructor({ id, content, conversationId, userId, createdAt, sender }: Params) {
     super();
     this.id = id;
     this.content = content;
     this.conversationId = conversationId;
     this.userId = userId;
     this.createdAt = createdAt;
+    this.sender = sender;
   }
 }

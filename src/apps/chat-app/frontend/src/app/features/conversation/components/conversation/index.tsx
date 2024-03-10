@@ -13,7 +13,6 @@ const fakeAvatarUrl = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec0771
 const Conversation = () => {
   const messages = useConversationStore(state => state.messages);
   const chatRef = useChatScroll(messages);
-
   return (
     <div className={styles.conversation} ref={chatRef}>
       {messages?.map(message => (
