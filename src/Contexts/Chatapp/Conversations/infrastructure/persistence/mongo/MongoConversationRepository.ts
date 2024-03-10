@@ -4,7 +4,7 @@ import { ConversationRepository } from '../../../domain/ConversationRepository';
 import { Conversation } from '../../../domain/Conversation';
 
 interface ConversationDocument extends Document {
-  id: string;
+  _id: string;
   title: string;
 }
 
@@ -24,12 +24,12 @@ export class MongoConversationRepository extends MongoRepository<Conversation> i
     const collection = await this.collection();
     const documents = await collection.find<ConversationDocument>({}, {}).toArray();
 
-    return documents.map(document => Conversation.fromPrimitives({ title: document.title, id: document.id }));
+    return documents.map(document => Conversation.fromPrimitives({ title: document.title, id: document._id }));
   }
 
   public async matching(criteria: Criteria): Promise<Conversation[]> {
     const documents = await this.searchByCriteria<ConversationDocument>(criteria);
 
-    return documents.map(document => Conversation.fromPrimitives({ title: document.title, id: document.id }));
+    return documents.map(document => Conversation.fromPrimitives({ title: document.title, id: document._id }));
   }
 }

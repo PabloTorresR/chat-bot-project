@@ -7,7 +7,9 @@
     "test": "test",
     "dev:chatapp:backend": "ts-node-dev --ignore-watch node_modules  ./src/apps/chat-app/backend/start.ts",
     "dev:chatapp:frontend": "cd ./src/apps/chat-app/frontend && npm run dev",
-    "find-circular-deps": "madge . -c"
+    "find-circular-deps": "madge . -c",
+    "lint": "prettier --write src/**/*.ts{,x}"
+
   },
   "author": "PTman",
   "license": "ISC",

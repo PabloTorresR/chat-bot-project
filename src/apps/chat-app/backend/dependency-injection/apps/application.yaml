@@ -8,7 +8,7 @@ services:
     arguments: ['@Chatapp.Shared.domain.CommandBus']
 
   Apps.Chatapp.Backend.controllers.MessagesGetController:
-    class: ../../controllers/ConversationsGetController
+    class: ../../controllers/MessagesGetController
     arguments: ['@Chatapp.Shared.domain.MessagesService']
 
   Apps.Chatapp.Backend.controllers.ConversationsGetController:

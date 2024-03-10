@@ -9,14 +9,14 @@ export class RabbitMQEventBusFactory {
     failoverPublisher: DomainEventFailoverPublisher,
     connection: RabbitMqConnection,
     queueNameFormatter: RabbitMQqueueFormatter,
-    config: RabbitMQConfig
+    config: RabbitMQConfig,
   ): RabbitMQEventBus {
     return new RabbitMQEventBus({
       failoverPublisher,
       connection,
       exchange: config.exchangeSettings.name,
       queueNameFormatter: queueNameFormatter,
-      maxRetries: config.maxRetries
+      maxRetries: config.maxRetries,
     });
   }
 }

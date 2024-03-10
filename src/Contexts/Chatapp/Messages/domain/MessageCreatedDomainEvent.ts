@@ -5,6 +5,7 @@ type CreateMessageDomainEventAttributes = {
   readonly conversationId: string;
   readonly userId: string;
   readonly createdAt: string;
+  readonly sender: string;
 };
 export class MessageCreatedDomainEvent extends DomainEvent {
   static readonly EVENT_NAME = 'message.created';
@@ -13,6 +14,7 @@ export class MessageCreatedDomainEvent extends DomainEvent {
   readonly conversationId: string;
   readonly userId: string;
   readonly createdAt: string;
+  readonly sender: string;
 
   constructor({
     aggregateId,
@@ -22,12 +24,14 @@ export class MessageCreatedDomainEvent extends DomainEvent {
     createdAt,
     eventId,
     occurredOn,
+    sender,
   }: {
     aggregateId: string;
     content: string;
     conversationId: string;
     userId: string;
     createdAt: string;
+    sender: string;
     eventId?: string;
     occurredOn?: Date;
   }) {
@@ -36,6 +40,7 @@ export class MessageCreatedDomainEvent extends DomainEvent {
     this.conversationId = conversationId;
     this.userId = userId;
     this.createdAt = createdAt;
+    this.sender = sender;
   }
 
   toPrimitives(): CreateMessageDomainEventAttributes {
@@ -44,6 +49,7 @@ export class MessageCreatedDomainEvent extends DomainEvent {
       conversationId: this.conversationId,
       userId: this.userId,
       createdAt: this.createdAt,
+      sender: this.sender,
     };
   }
 
@@ -60,6 +66,7 @@ export class MessageCreatedDomainEvent extends DomainEvent {
       conversationId: attributes.conversationId,
       userId: attributes.userId,
       createdAt: attributes.createdAt,
+      sender: attributes.sender,
       eventId,
       occurredOn,
     });

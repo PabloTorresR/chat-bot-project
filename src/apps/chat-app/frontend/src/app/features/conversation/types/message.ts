@@ -6,4 +6,7 @@ export interface Message {
   content: string;
   createdAt: string;
   conversationId: string;
+  userId: string;
 }
+
+export interface HistoryMessage extends Omit<Message, 'userId' | 'conversationId' | 'id'> {}

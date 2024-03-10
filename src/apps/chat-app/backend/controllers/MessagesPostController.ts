@@ -4,14 +4,17 @@ import { CreateMessageCommand } from '../../../../Contexts/Chatapp/Messages/doma
 import { CommandBus } from '../../../../Contexts/Shared/domain/CommandBus';
 import { Controller } from './Controller';
 import { v4 as uuidv4 } from 'uuid';
+import { MessageSenderValues } from '../../../../Contexts/Chatapp/Messages/domain/MessageSender';
 
-type PostMessagesRequest = {
-  id: string;
+type HistoryMessage = {
   content: string;
-  conversationId: string;
   createdAt: string;
-  //NOTE: implement messageHistory
-  // messageHistory: Array<Message>;
+  sender: string;
+};
+
+type PostMessagesRequest = Request & {
+  message: { id: string; content: string; conversationId: string; createdAt: string };
+  messageHistory: HistoryMessage[];
 };
 
 type PostMessagesResponse = {
@@ -34,23 +37,22 @@ const FAKE_RESPONSE = {
 export class MessagesPostController implements Controller {
   constructor(private readonly commandBus: CommandBus) {}
 
-  async run(req: Request<PostMessagesRequest>, res: Response<PostMessagesResponse>) {
+  async run(req: PostMessagesRequest, res: Response<PostMessagesResponse>) {
     await this.createMessage(req);
     //NOTE: call the OpenAI service and get the response
 
     res.status(httpStatus.OK).json({ ...FAKE_RESPONSE, conversationId: req.body.conversationId, id: uuidv4() });
   }
 
-  private async createMessage(req: Request<PostMessagesRequest>) {
-    console.log(req.body);
+  private async createMessage(req: PostMessagesRequest) {
     const createMessageCommand = new CreateMessageCommand({
-      id: req.body.id,
-      content: req.body.content,
-      conversationId: req.body.conversationId,
+      id: req.body.message.id,
+      content: req.body.message.content,
+      conversationId: req.body.message.conversationId,
       userId: HARDCODED_USER_ID,
-      createdAt: req.body.createdAt,
+      createdAt: req.body.message.createdAt,
+      sender: MessageSenderValues.USER,
     });
-
     await this.commandBus.dispatch(createMessageCommand);
   }
 }

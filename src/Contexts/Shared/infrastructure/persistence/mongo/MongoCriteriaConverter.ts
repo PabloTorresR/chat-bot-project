@@ -32,7 +32,7 @@ export class MongoCriteriaConverter {
       [Operator.GT, this.greaterThanFilter],
       [Operator.LT, this.lowerThanFilter],
       [Operator.CONTAINS, this.containsFilter],
-      [Operator.NOT_CONTAINS, this.notContainsFilter]
+      [Operator.NOT_CONTAINS, this.notContainsFilter],
     ]);
   }
 
@@ -41,7 +41,7 @@ export class MongoCriteriaConverter {
       filter: criteria.hasFilters() ? this.generateFilter(criteria.filters) : {},
       sort: criteria.order.hasOrder() ? this.generateSort(criteria.order) : { _id: -1 },
       skip: criteria.offset || 0,
-      limit: criteria.limit || 0
+      limit: criteria.limit || 0,
     };
   }
 
@@ -61,7 +61,7 @@ export class MongoCriteriaConverter {
 
   protected generateSort(order: Order): MongoSort {
     return {
-      [order.orderBy.value === 'id' ? '_id' : order.orderBy.value]: order.orderType.isAsc() ? 1 : -1
+      [order.orderBy.value === 'id' ? '_id' : order.orderBy.value]: order.orderType.isAsc() ? 1 : -1,
     };
   }
 

@@ -21,7 +21,6 @@ export class MessagesGetController implements Controller {
       limit ? Number(limit) : undefined,
       offset ? Number(offset) : undefined,
     );
-
     const response = await this.queryBus.ask<MessagesResponse>(query);
     res.status(httpStatus.OK).send(response.messages);
   }
