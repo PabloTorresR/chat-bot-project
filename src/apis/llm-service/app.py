@@ -6,8 +6,9 @@ from core.fastapi.routes import add_routes
 
 app = FastAPI()
 
-add_routes([], app)
+add_routes([message_route], app)
 container = Container()
+container.wire(modules=[answer_message_service])
 
 
 @app.get("/", include_in_schema=False)
