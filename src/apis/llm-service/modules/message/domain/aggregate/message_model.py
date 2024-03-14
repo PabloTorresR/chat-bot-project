@@ -11,9 +11,9 @@ from modules.message.domain.aggregate.id import MessageId
 class Message:
     id: str
     content: str
-    conversationId: str
-    userId: str
-    createdAt: str
+    conversation_id: str
+    user_id: str
+    created_at: str
     sender: str
 
     @classmethod
@@ -21,17 +21,17 @@ class Message:
         cls,
         id: MessageId,
         content: MessageContent,
-        conversationId: ConversationId,
-        userId: UserId,
-        createdAt: MessageCreatedAt,
+        conversation_id: ConversationId,
+        user_id: UserId,
+        created_at: MessageCreatedAt,
         sender: MessageSender,
     ) -> "Message":
         message = cls(
             id=id,
             content=content,
-            conversationId=conversationId,
-            userId=userId,
-            createdAt=createdAt,
+            conversationId=conversation_id,
+            userId=user_id,
+            createdAt=created_at,
             sender=sender,
         )
         return message
@@ -44,8 +44,8 @@ class Message:
         return {
             "id": self.id,
             "content": self.content,
-            "conversationId": self.conversationId,
-            "userId": self.userId,
-            "createdAt": self.createdAt,
+            "conversationId": self.conversation_id,
+            "userId": self.user_id,
+            "createdAt": self.created_at,
             "sender": self.sender,
         }

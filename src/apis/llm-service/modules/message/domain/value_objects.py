@@ -3,7 +3,7 @@ from common.domain.id import Uuid
 
 from core.pydantic import ConStr
 from datetime import datetime
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 from enum import Enum
 from pydantic import BaseModel
 
