@@ -1,37 +1,41 @@
-from message.domain.value_objects import (
+from modules.message.domain.value_objects import (
     MessageContent,
     MessageCreatedAt,
     MessageSender,
+    MessageSenderValues,
 )
 
 
 class HistoryMessage:
-    id: str
-    content: str
-    created_at: str
-    sender: str
+    content: MessageContent
+    created_at: MessageCreatedAt
+    sender: MessageSender
 
-    @classmethod
-    def create(
-        cls,
+    def __init__(
+        self,
         content: MessageContent,
         created_at: MessageCreatedAt,
         sender: MessageSender,
-    ) -> "HistoryMessage":
-        message = cls(
-            content=content,
-            createdAt=created_at,
-            sender=sender,
-        )
-        return message
+    ):
+        self.content = content
+        self.created_at = created_at
+        self.sender = sender
 
-    @classmethod
-    def from_primitives(cls, plain_data: dict) -> "HistoryMessage":
-        return cls(**plain_data)
+    @staticmethod
+    def from_primitives(
+        content: str,
+        created_at: str,
+        sender: str,
+    ) -> "HistoryMessage":
+        return HistoryMessage(
+            content=MessageContent(content),
+            created_at=MessageCreatedAt.create_from_string(created_at),
+            sender=MessageSender.create(MessageSenderValues(sender)),
+        )
 
     def to_primitives(self) -> dict:
         return {
             "content": self.content,
-            "createdAt": self.created_at,
-            "sender": self.sender,
+            "createdAt": self.created_at.value,
+            "sender": self.sender.value,
         }

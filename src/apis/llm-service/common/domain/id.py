@@ -10,14 +10,6 @@ class InvalidArgumentError(Exception):
 class Uuid(BaseModel):
     value: str
 
-    @validator("value")
-    def validate_uuid(self, value):
-        if not self.is_valid_uuid(value):
-            raise InvalidArgumentError(
-                f"<{self.__name__}> does not allow the value <{value}>"
-            )
-        return value
-
     @staticmethod
     def is_valid_uuid(value):
         try:
@@ -25,6 +17,15 @@ class Uuid(BaseModel):
             return str(uuid_obj) == value
         except (ValueError, AttributeError, TypeError):
             return False
+
+    @validator("value")
+    @classmethod
+    def validate_uuid(cls, value):
+        if not cls.is_valid_uuid(value):
+            raise InvalidArgumentError(
+                f"<{cls.value}> does not allow the value <{value}>"
+            )
+        return value
 
     @classmethod
     def random(cls):

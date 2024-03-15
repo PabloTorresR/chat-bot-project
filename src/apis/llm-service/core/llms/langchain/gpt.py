@@ -1,23 +1,42 @@
+from typing import List, Optional
 from langchain_openai import ChatOpenAI
-from langchain.memory import ChatMessageHistory
+from langchain.chains import LLMChain
+from core.llms.history_formatter import HistoryFormatter
 from core.llms.llm import LLM
 from langchain.prompts.chat import ChatPromptTemplate
 
+from modules.message.domain.aggregate.message_history_model import HistoryMessage
+
 
 class GptLLM(LLM):
-    def __init__(self, chat_prompt: ChatPromptTemplate):
+    def __init__(
+        self,
+        chat_prompt: ChatPromptTemplate,
+        history_formatter: Optional[HistoryFormatter] = None,
+    ):
+        super().__init__(history_formatter)
         self.chat_prompt = chat_prompt
         # TODO: cola de mensajes?
-        return
 
-    async def chat(self, prompt: str, history: ChatMessageHistory) -> str:
-        llm = ChatOpenAI(
-            temperature=0,
-            callbacks=[CostCalcAsyncHandler("gpt-3.5-turbo", self.token_cost_process)],
+    async def chat(self, prompt: str, message_history: List[HistoryMessage]) -> str:
+        memory = (
+            self.history_formatter.format(message_history)
+            if self.history_formatter and message_history
+            else None
         )
 
-        chain = LLMChain(llm=llm, prompt=self.chat_prompt, memory=history, verbose=True)
+        llm = ChatOpenAI(
+            temperature=0,
+            # TODO: cost calculator
+            # callbacks=[CostCalcAsyncHandler("gpt-3.5-turbo", self.token_cost_process)],
+        )
 
-        result: str = await chain.arun({"text": prompt})
+        chain = LLMChain(
+            llm=llm,
+            prompt=self.chat_prompt,
+            memory=memory,
+            verbose=True,
+        )
 
+        result: str = await chain.arun({"text": prompt, "chat_history": memory})
         return result

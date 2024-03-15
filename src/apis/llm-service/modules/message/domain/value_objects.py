@@ -31,6 +31,11 @@ class MessageCreatedAt(BaseModel):
     def __str__(self) -> str:
         return self.value.isoformat()
 
+    @classmethod
+    def create_now(cls) -> "MessageCreatedAt":
+        now = datetime.now()
+        return cls(value=now)
+
 
 class MessageSenderValues(str, Enum):
     BOT = "bot"
