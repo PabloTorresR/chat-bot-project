@@ -11,10 +11,14 @@ from modules.message.domain.aggregate.message_history_model import HistoryMessag
 @router.post(path="/answer", name="Answer Message")
 @inject
 async def answer_message(
-    body: dict = Depends(),
+    body: dict,
     service: AnswerMessageService = Depends(Provide[Container.answer_message_service]),
 ):
-    message = Message(**body.get("message", {}))
-    # TODO: cada mensaje debe mapearse como un HistoryMessage en un array
-    message_history = HistoryMessage(**body.get("message_history", {}))
+
+    message = Message.from_primitives(**body.get("message", {}))
+    message_history = [
+        HistoryMessage.from_primitives(**message)
+        for message in body.get("message_history", [])
+    ]
+
     return await service.run(message, message_history)
