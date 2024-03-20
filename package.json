@@ -7,9 +7,9 @@
     "test": "test",
     "dev:chatapp:backend": "ts-node-dev --ignore-watch node_modules  ./src/apps/chat-app/backend/start.ts",
     "dev:chatapp:frontend": "cd ./src/apps/chat-app/frontend && npm run dev",
+    "dev:llm-service": "cd ./src/apis/llm-service && poetry shell && uvicorn app:app --host=0.0.0.0",
     "find-circular-deps": "madge . -c",
     "lint": "prettier --write src/**/*.ts{,x}"
-
   },
   "author": "PTman",
   "license": "ISC",

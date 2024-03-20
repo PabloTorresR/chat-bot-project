@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { Message } from '../../types/message';
 import { Conversation } from '../../types/conversation';
+import { MessageSender } from '../../enums/message-sender';
 
 type ConversationStore = {
   conversation?: Conversation | null;
@@ -14,7 +15,7 @@ const useConversationStore = create<ConversationStore>(set => ({
   conversation: null,
   messages: [],
   setConversation: conversation => set({ conversation }),
-  setMessages: messages => set({ messages: messages }),
+  setMessages: messages => set({ messages }),
   addMessage: message =>
     set(state => ({
       ...state,
