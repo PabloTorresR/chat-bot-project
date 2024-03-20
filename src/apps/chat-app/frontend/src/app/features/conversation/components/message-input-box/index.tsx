@@ -14,10 +14,10 @@ export const MessageInputBox = () => {
 
   const handleSubmitClick = useCallback(
     async (value: string) => {
-      if (isConversationEmpty) {
-        createConversation();
+      if (!conversation?.id) {
+        return;
       }
-      sendUserMessage(value, messageBuilder.buildPostMessageDto);
+      sendUserMessage(value, conversation?.id, messageBuilder.buildPostMessageDto);
     },
     [sendUserMessage, createConversation, isConversationEmpty],
   );

@@ -16,7 +16,7 @@ const useConversations = () => {
     addMessage: state.addMessage,
   }));
 
-  const { data: userConversations } = useConversationsQuery();
+  const { data: userConversations, refetch: refetchConversations } = useConversationsQuery();
   const { data: messages } = useMessagesQuery(conversationStore.conversation?.id);
 
   const { sendMessage, isLoading } = useSendMessage();
@@ -30,9 +30,13 @@ const useConversations = () => {
     conversationStore.setConversation(selectedConversation);
   };
 
-  const createConversation = () => {
-    const newConversation = conversationService.buildConversation();
+  const createConversation = async () => {
+    const newConversation = conversationService.createConversation();
     conversationStore.setConversation(newConversation);
+    conversationStore.setMessages([]);
+
+    await conversationService.postConversation(newConversation, () => refetchConversations());
+    return newConversation;
   };
 
   const clearConversation = () => {
@@ -42,15 +46,13 @@ const useConversations = () => {
 
   const sendUserMessage = (
     content: string,
+    conversationId: string,
     messageBuilder: (content: string, conversationId: string, conversationHistory?: Message[]) => PostMessageDto,
   ) => {
-    if (!conversationStore.conversation) {
-      throw new Error('No conversation selected');
-    }
-    const { message, messageHistory } = messageBuilder(content, conversationStore.conversation?.id, messages);
+    const { message, messageHistory } = messageBuilder(content, conversationId, conversationStore.messageHistory);
 
     conversationStore.addMessage(message);
-    sendMessage({ message, messageHistory });
+    sendMessage({ message, messageHistory }, (response: Message) => conversationStore.addMessage(response));
   };
 
   return {
