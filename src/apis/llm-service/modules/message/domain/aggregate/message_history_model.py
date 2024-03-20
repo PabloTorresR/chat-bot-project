@@ -26,6 +26,7 @@ class HistoryMessage:
         content: str,
         created_at: str,
         sender: str,
+        **kwargs,
     ) -> "HistoryMessage":
         return HistoryMessage(
             content=MessageContent(content),

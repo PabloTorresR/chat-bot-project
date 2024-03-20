@@ -1,6 +1,5 @@
 from dependency_injector import containers, providers
 
-from core.llms.fake_llm.fake_llm import FakeLLM
 from core.llms.langchain.chat_prompts.answer_message_prompt import (
     CustomChatPromptFactory,
 )
@@ -26,7 +25,7 @@ class Container(containers.DeclarativeContainer):
     answer_message_service_llm = providers.Factory(
         GptLLM,
         chat_prompt=badbunny_chat_prompt,
-        history_formatter=LangChainHistoryFormatter,
+        history_formatter=LangChainHistoryFormatter(),
     )
     answer_message_service = providers.Factory(
         AnswerMessageService, llm=answer_message_service_llm

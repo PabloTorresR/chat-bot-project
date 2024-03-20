@@ -3,7 +3,6 @@ import os
 from typing import List, Optional
 from langchain_openai import ChatOpenAI
 from langchain.chains import LLMChain
-from pydantic import SecretStr
 from core.llms.history_formatter import HistoryFormatter
 from core.llms.llm import LLM
 from langchain.prompts.chat import ChatPromptTemplate
@@ -23,19 +22,17 @@ class GptLLM(LLM):
 
     async def chat(self, prompt: str, message_history: List[HistoryMessage]) -> str:
         memory = (
-            self.history_formatter.format(message_history)
+            self.history_formatter.format(message_history=message_history)
             if self.history_formatter and message_history
             else None
         )
-
-        api_key = SecretStr(os.environ.get("OPENAI_API_KEY", ""))
+        api_key = os.environ.get("OPENAI_API_KEY", "")
         llm = ChatOpenAI(
             temperature=0,
             api_key=api_key,  # type: ignore
             # TODO: cost calculator
             # callbacks=[CostCalcAsyncHandler("gpt-3.5-turbo", self.token_cost_process)],
         )
-
         chain = LLMChain(
             llm=llm,
             prompt=self.chat_prompt,

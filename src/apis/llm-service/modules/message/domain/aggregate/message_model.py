@@ -41,6 +41,7 @@ class Message:
         user_id: str,
         created_at: str,
         sender: str,
+        **kwargs,
     ) -> "Message":
         """
         Create a new message.
