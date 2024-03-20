@@ -1,6 +1,9 @@
+import os
+
 from typing import List, Optional
 from langchain_openai import ChatOpenAI
 from langchain.chains import LLMChain
+from pydantic import SecretStr
 from core.llms.history_formatter import HistoryFormatter
 from core.llms.llm import LLM
 from langchain.prompts.chat import ChatPromptTemplate
@@ -25,8 +28,10 @@ class GptLLM(LLM):
             else None
         )
 
+        api_key = SecretStr(os.environ.get("OPENAI_API_KEY", ""))
         llm = ChatOpenAI(
             temperature=0,
+            api_key=api_key,  # type: ignore
             # TODO: cost calculator
             # callbacks=[CostCalcAsyncHandler("gpt-3.5-turbo", self.token_cost_process)],
         )
