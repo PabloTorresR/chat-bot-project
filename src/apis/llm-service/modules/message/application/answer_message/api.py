@@ -14,11 +14,15 @@ async def answer_message(
     body: dict,
     service: AnswerMessageService = Depends(Provide[Container.answer_message_service]),
 ):
-
-    message = Message.from_primitives(**body.get("message", {}))
+    message = Message.from_primitives(
+        created_at=body.get("message", {}).get("createdAt"),
+        user_id=body.get("message", {}).get("userId"),
+        conversation_id=body.get("message", {}).get("conversationId"),
+        **body.get("message", {})
+    )
     message_history = [
-        HistoryMessage.from_primitives(**message)
-        for message in body.get("message_history", [])
+        HistoryMessage.from_primitives(created_at=message["createdAt"], **message)
+        for message in body.get("messageHistory", [])
     ]
 
     return await service.run(message, message_history)

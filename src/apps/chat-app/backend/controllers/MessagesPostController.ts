@@ -13,8 +13,10 @@ type HistoryMessage = {
 };
 
 type PostMessagesRequest = Request & {
-  message: { id: string; content: string; conversationId: string; createdAt: string };
-  messageHistory: HistoryMessage[];
+  body:{
+    message: { id: string; content: string; conversationId: string; createdAt: string };
+    messageHistory: HistoryMessage[];
+  };
 };
 
 type PostMessagesResponse = {
@@ -27,21 +29,15 @@ type PostMessagesResponse = {
 
 const HARDCODED_USER_ID = '2b54f894-78d1-45a7-bbe5-06238f8d5434';
 
-const FAKE_RESPONSE = {
-  id: '123',
-  content: 'Hello world',
-  userId: HARDCODED_USER_ID,
-  createdAt: new Date().toISOString(),
-};
 
 export class MessagesPostController implements Controller {
   constructor(private readonly commandBus: CommandBus) {}
 
   async run(req: PostMessagesRequest, res: Response<PostMessagesResponse>) {
+    const chatbotMessage = await this.sendMessage(req);
     await this.createMessage(req);
-    //NOTE: call the OpenAI service and get the response
 
-    res.status(httpStatus.OK).json({ ...FAKE_RESPONSE, conversationId: req.body.conversationId, id: uuidv4() });
+    res.status(httpStatus.OK).json({...req.body.message, content: chatbotMessage,  id: uuidv4(), sender: MessageSenderValues.BOT, createdAt: new Date().toISOString()});
   }
 
   private async createMessage(req: PostMessagesRequest) {
@@ -54,5 +50,22 @@ export class MessagesPostController implements Controller {
       sender: MessageSenderValues.USER,
     });
     await this.commandBus.dispatch(createMessageCommand);
+  }
+
+  private async sendMessage(req: PostMessagesRequest) {
+    const response = await fetch('http://localhost:8000/message/answer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req.body),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to send message');
+    }
+
+    const data = await response.json();
+    return data;
   }
 }
