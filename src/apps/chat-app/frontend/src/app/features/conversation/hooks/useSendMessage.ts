@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { postMessages } from '../api/messages';
 import { PostMessageDto } from '../types/dto';
+import { Message } from '../types/message';
 
 const useSendMessage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const sendMessage = async (body: PostMessageDto) => {
+  const sendMessage = async (body: PostMessageDto, callback: (response: Message) => void) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      await postMessages(body);
+      const response = await postMessages(body);
+      callback(response.data);
     } catch (error) {
       setError('Failed to send message');
     } finally {

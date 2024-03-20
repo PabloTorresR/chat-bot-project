@@ -38,12 +38,17 @@
   list-style-type: none;
   width: 240px;
   border-radius: 8px;
+  height: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:hover {
     background-color: $color-highlight-2;
   }
 
-  &.active {
-    background-color: #dcdcdc;
+  &.-active {
+    border: 1px solid $color-highlight-2;
   }
 }

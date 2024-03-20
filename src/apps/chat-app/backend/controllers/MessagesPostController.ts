@@ -12,9 +12,11 @@ type HistoryMessage = {
   sender: string;
 };
 
-type PostMessagesRequest = Request & {
-  message: { id: string; content: string; conversationId: string; createdAt: string };
-  messageHistory: HistoryMessage[];
+type MessagesPostRequest = Request & {
+  body: {
+    message: { id: string; content: string; conversationId: string; createdAt: string };
+    messageHistory: HistoryMessage[];
+  };
 };
 
 type PostMessagesResponse = {
@@ -32,19 +34,20 @@ const FAKE_RESPONSE = {
   content: 'Hello world',
   userId: HARDCODED_USER_ID,
   createdAt: new Date().toISOString(),
+  sender: MessageSenderValues.BOT,
 };
 
 export class MessagesPostController implements Controller {
   constructor(private readonly commandBus: CommandBus) {}
 
-  async run(req: PostMessagesRequest, res: Response<PostMessagesResponse>) {
+  async run(req: MessagesPostRequest, res: Response<PostMessagesResponse>) {
     await this.createMessage(req);
     //NOTE: call the OpenAI service and get the response
 
     res.status(httpStatus.OK).json({ ...FAKE_RESPONSE, conversationId: req.body.conversationId, id: uuidv4() });
   }
 
-  private async createMessage(req: PostMessagesRequest) {
+  private async createMessage(req: MessagesPostRequest) {
     const createMessageCommand = new CreateMessageCommand({
       id: req.body.message.id,
       content: req.body.message.content,

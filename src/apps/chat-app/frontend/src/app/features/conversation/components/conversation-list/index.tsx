@@ -2,11 +2,13 @@ import React, { useCallback } from 'react';
 import styles from './styles.module.scss';
 import newChatIcon from '/SVG/icn_squares_layers.svg';
 import useConversations from '../../hooks/useConversations';
+import classNames from 'classnames';
 
 const ConversationList = () => {
   const {
     userConversations,
-    actions: { setConversation, clearConversation },
+    conversation,
+    actions: { setConversation, createConversation },
   } = useConversations();
 
   const handleConversationClick = useCallback(
@@ -17,7 +19,7 @@ const ConversationList = () => {
   );
 
   const handleNewChatClick = useCallback(() => {
-    clearConversation();
+    createConversation();
   }, []);
 
   return (
@@ -26,13 +28,13 @@ const ConversationList = () => {
         <img src={newChatIcon} alt="icn" />
         <span>New chat</span>
       </button>
-      {userConversations?.map(conversation => (
+      {userConversations?.map(item => (
         <button
-          className={styles.conversationList__item}
-          key={conversation.id}
-          onClick={() => handleConversationClick(conversation.id)}
+          className={classNames(styles.conversationList__item, conversation?.id === item.id && styles['-active'])}
+          key={item.id}
+          onClick={() => handleConversationClick(item.id)}
         >
-          {conversation.title}
+          {item.title}
         </button>
       ))}
     </div>
