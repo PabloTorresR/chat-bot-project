@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import { Message } from '../../types/message';
 import { Conversation } from '../../types/conversation';
-import { MessageSender } from '../../enums/message-sender';
 
 type ConversationStore = {
   conversation?: Conversation | null;
