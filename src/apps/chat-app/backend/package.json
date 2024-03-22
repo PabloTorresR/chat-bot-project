@@ -1,5 +1,5 @@
 {
-    "name": "conversations-service",
+    "name": "chatapp-backend",
     "version": "1.0.0",
     "description": "api para gerenciamento de conversas",
     "main": "start.js",
@@ -12,6 +12,9 @@
     "author": "PTman",
     "license": "ISC",
     "dependencies": {
+      "chatapp-context":"*",
+      "shared-context":"*",
+      "dtos-lib":"*",
       "amqplib": "^0.10.3",
       "axios": "^1.6.5",
       "compression": "^1.7.4",

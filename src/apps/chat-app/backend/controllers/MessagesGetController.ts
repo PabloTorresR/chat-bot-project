@@ -4,13 +4,14 @@ import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';
 import { SearchMessagesByCriteriaQuery } from '../../../../Contexts/Chatapp/Messages/application/SearchByCriteria/SearchMessagesByCriteriaQuery';
 import { MessagesResponse } from '../../../../Contexts/Chatapp/Messages/application/MessagesResponse';
+import { GetMessagesResponse } from 'libs/dtos/chatapp/messages';
 
 type FilterType = { value: string; operator: string; field: string };
 
 export class MessagesGetController implements Controller {
   constructor(private readonly queryBus: QueryBus) {}
 
-  async run(_req: Request, res: Response) {
+  async run(_req: Request, res: Response<GetMessagesResponse>) {
     const { query: queryParams } = _req;
     const { filters, orderBy, order, limit, offset } = queryParams;
 

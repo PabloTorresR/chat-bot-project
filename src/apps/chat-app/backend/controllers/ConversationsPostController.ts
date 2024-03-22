@@ -3,16 +3,7 @@ import httpStatus from 'http-status';
 import { CreateConversationCommand } from '../../../../Contexts/Chatapp/Conversations/domain/CreateConversationCommand';
 import { CommandBus } from '../../../../Contexts/Shared/domain/CommandBus';
 import { Controller } from './Controller';
-
-type PostConversationsRequest = {
-  id: string;
-  title: string;
-};
-
-type PostConversationsResponse = {
-  id: string;
-  title: string;
-};
+import { PostConversationsRequest, PostConversationsResponse } from 'libs/dtos/chatapp/conversations';
 
 export class ConversationsPostController implements Controller {
   constructor(private readonly commandBus: CommandBus) {}

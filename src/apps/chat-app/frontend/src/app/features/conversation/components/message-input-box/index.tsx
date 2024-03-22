@@ -1,16 +1,14 @@
 import InputBox from '../../../../components/input-box';
 import messageBuilder from '../../services/message-builder';
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import useConversations from '../../hooks/useConversations';
 
 export const MessageInputBox = () => {
   const {
     conversation,
-    actions: { createConversation, sendUserMessage },
+    actions: { sendUserMessage },
     isSendMessageLoading: isLoading,
   } = useConversations();
-
-  const isConversationEmpty = useMemo(() => !conversation?.id, [conversation]);
 
   const handleSubmitClick = useCallback(
     async (value: string) => {
@@ -19,7 +17,7 @@ export const MessageInputBox = () => {
       }
       sendUserMessage(value, conversation?.id, messageBuilder.buildPostMessageDto);
     },
-    [sendUserMessage, createConversation, isConversationEmpty],
+    [conversation?.id, sendUserMessage],
   );
 
   return <InputBox onSubmitClick={handleSubmitClick} isLoading={isLoading} />;

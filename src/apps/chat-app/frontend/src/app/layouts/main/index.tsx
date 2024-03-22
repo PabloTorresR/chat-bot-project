@@ -1,4 +1,3 @@
-import React from 'react';
 import { MessageInputBox } from '../../features/conversation/components/message-input-box';
 import Conversation from '../../features/conversation/components/conversation';
 
