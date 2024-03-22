@@ -58,7 +58,7 @@ export class MessagesPostController implements Controller {
   }
 
   private async sendMessage(req: MessagesPostRequest) {
-    const response = await fetch('http://localhost:8000/message/answer', {
+    const response = await fetch('http://0.0.0.0:8000/message/answer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "proyecto para pasar el rato cuando hace frio en munich",
   "main": "index.js",
+  "workspaces": [
+    "src/apps/*/frontend",
+    "src/apps/*/backend",
+    "src/apis/*",
+    "src/libs/*",
+    "src/Contexts/*"
+  ],
   "scripts": {
     "test": "test",
-    "dev:chatapp:backend": "ts-node-dev --ignore-watch node_modules  ./src/apps/chat-app/backend/start.ts",
-    "dev:chatapp:frontend": "cd ./src/apps/chat-app/frontend && npm run dev",
-    "dev:llm-service": "cd ./src/apis/llm-service && poetry shell && uvicorn app:app --host=0.0.0.0",
+    "dev": "turbo run dev",
     "find-circular-deps": "madge . -c",
-    "lint": "prettier --write src/**/*.ts{,x}"
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "author": "PTman",
   "license": "ISC",
@@ -29,11 +34,8 @@
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
     "node-dependency-injection": "^2.6.11",
-    "react-hook-form": "^7.49.3",
-    "react-query": "^3.39.3",
     "uuid": "^9.0.1",
-    "uuid-validate": "^0.0.3",
-    "zustand": "^4.5.0"
+    "uuid-validate": "^0.0.3"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.4",
