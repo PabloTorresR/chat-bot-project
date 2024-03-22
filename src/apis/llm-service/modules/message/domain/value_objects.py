@@ -23,10 +23,16 @@ class MessageCreatedAt(BaseModel):
     @classmethod
     def create_from_string(cls, date_string: str) -> "MessageCreatedAt":
         try:
-            date = datetime.fromisoformat(date_string)
+            date = cls._parse_date_string(date_string)
             return cls(value=date)
         except ValueError:
             raise MessageCreatedAtIncorrectDateString("Invalid date string")
+
+    @staticmethod
+    def _parse_date_string(date_string: str) -> datetime:
+        if date_string.endswith("Z"):
+            date_string = date_string[:-1]
+        return datetime.fromisoformat(date_string)
 
     def __str__(self) -> str:
         return self.value.isoformat()

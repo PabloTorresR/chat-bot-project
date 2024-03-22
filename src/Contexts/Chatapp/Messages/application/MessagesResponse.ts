@@ -6,6 +6,7 @@ interface MessageResponse {
   conversationId: string;
   userId: string;
   createdAt: string;
+  sender: string;
 }
 
 export class MessagesResponse {
