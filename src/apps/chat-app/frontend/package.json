@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "type-check": "tsc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -24,6 +25,7 @@
     "use-context-selector": "^1.4.1",
     "vite-tsconfig-paths": "^4.2.0",
     "zustand": "^4.5.0"
+    
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

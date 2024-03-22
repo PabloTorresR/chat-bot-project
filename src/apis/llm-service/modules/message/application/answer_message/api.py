@@ -18,7 +18,7 @@ async def answer_message(
         created_at=body.get("message", {}).get("createdAt"),
         user_id=body.get("message", {}).get("userId"),
         conversation_id=body.get("message", {}).get("conversationId"),
-        **body.get("message", {})
+        **body.get("message", {}),
     )
     message_history = [
         HistoryMessage.from_primitives(created_at=message["createdAt"], **message)
