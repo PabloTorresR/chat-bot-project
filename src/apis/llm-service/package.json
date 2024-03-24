@@ -2,6 +2,6 @@
     "name": "llm-api",
 	"version": "1.0.0",
     "scripts":{
-        "dev": "uvicorn app:app --host=0.0.0.0"
+        "dev": "poetry run uvicorn app:app --host=0.0.0.0"
     }
 }
