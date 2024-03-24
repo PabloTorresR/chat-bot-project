@@ -1,10 +1,6 @@
-import { Request } from 'express';
-
-export type PostMessagesRequest = Request & {
-  body: {
-    message: Message;
-    messageHistory: HistoryMessage[];
-  };
+export type PostMessagesRequest = {
+  message: Message;
+  messageHistory: HistoryMessage[];
 };
 
 export interface PostMessagesResponse extends Message {}

@@ -4,8 +4,7 @@ import useConversationsQuery from '../queries/useConversationsQuery';
 import useMessagesQuery from '../queries/useMessagesQuery';
 import conversationService from '../services/conversation';
 import useSendMessage from './useSendMessage';
-import { Message } from '../types/message';
-import { PostMessageDto } from '../types/dto';
+import { HistoryMessage, Message } from '../types/message';
 
 const useConversations = () => {
   const conversationStore = useConversationStore(state => ({
@@ -47,15 +46,23 @@ const useConversations = () => {
   const sendUserMessage = (
     content: string,
     conversationId: string,
-    messageBuilder: (content: string, conversationId: string, conversationHistory?: Message[]) => PostMessageDto,
+    messageBuilder: (
+      content: string,
+      conversationId: string,
+      conversationHistory?: Message[],
+    ) => { message: Message; messageHistory: HistoryMessage[] },
   ) => {
     const { message, messageHistory } = messageBuilder(content, conversationId, conversationStore.messageHistory);
 
     conversationStore.addMessage(message);
-    sendMessage({ message, messageHistory }, (response: Message) => conversationStore.addMessage(response));
+    sendMessage({
+      body: { message, messageHistory },
+      callback: (response: Message) => conversationStore.addMessage(response),
+    });
   };
 
   return {
+    messages: conversationStore.messageHistory,
     userConversations,
     conversation: conversationStore.conversation,
     actions: { setConversation, createConversation, clearConversation, sendUserMessage },
