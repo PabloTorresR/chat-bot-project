@@ -6,8 +6,8 @@ import classNames from 'classnames';
 
 const ConversationList = () => {
   const {
-    userConversations,
-    conversation,
+    conversations,
+    currentConversation,
     actions: { setConversation, createConversation },
   } = useConversations();
 
@@ -20,7 +20,7 @@ const ConversationList = () => {
 
   const handleNewChatClick = useCallback(() => {
     createConversation();
-  }, []);
+  }, [createConversation]);
 
   return (
     <div className={styles.conversationList}>
@@ -28,9 +28,9 @@ const ConversationList = () => {
         <img src={newChatIcon} alt="icn" />
         <span>New chat</span>
       </button>
-      {userConversations?.map(item => (
+      {conversations?.map(item => (
         <button
-          className={classNames(styles.conversationList__item, conversation?.id === item.id && styles['-active'])}
+          className={classNames(styles.conversationList__item, currentConversation === item.id && styles['-active'])}
           key={item.id}
           onClick={() => handleConversationClick(item.id)}
         >

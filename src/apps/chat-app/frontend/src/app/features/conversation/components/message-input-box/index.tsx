@@ -5,19 +5,19 @@ import useConversations from '../../hooks/useConversations';
 
 export const MessageInputBox = () => {
   const {
-    conversation,
+    currentConversation,
     actions: { sendUserMessage },
     isSendMessageLoading: isLoading,
   } = useConversations();
 
   const handleSubmitClick = useCallback(
     async (value: string) => {
-      if (!conversation?.id) {
+      if (!currentConversation) {
         return;
       }
-      sendUserMessage(value, conversation?.id, messageBuilder.buildPostMessageDto);
+      sendUserMessage(value, currentConversation, messageBuilder.buildPostMessageDto);
     },
-    [conversation?.id, sendUserMessage],
+    [currentConversation, sendUserMessage],
   );
 
   return <InputBox onSubmitClick={handleSubmitClick} isLoading={isLoading} />;

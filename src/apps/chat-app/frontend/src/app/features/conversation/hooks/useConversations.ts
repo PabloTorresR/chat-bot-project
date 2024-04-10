@@ -1,47 +1,34 @@
-import { useEffect } from 'react';
 import useConversationStore from '../stores/conversation';
 import useConversationsQuery from '../queries/useConversationsQuery';
 import useMessagesQuery from '../queries/useMessagesQuery';
 import conversationService from '../services/conversation';
-import useSendMessage from './useSendMessage';
 import { HistoryMessage, Message } from '../types/message';
+import useSendMessageMutation from '../mutations/useSendMessageMutation';
 
 const useConversations = () => {
-  const conversationStore = useConversationStore(state => ({
-    conversation: state.conversation,
-    messageHistory: state.messages,
-    setConversation: state.setConversation,
-    setMessages: state.setMessages,
-    addMessage: state.addMessage,
+  const { selectedConversation, setSelectedConversation } = useConversationStore(state => ({
+    selectedConversation: state.conversation,
+    setSelectedConversation: state.setConversation,
   }));
 
-  const { data: userConversations, refetch: refetchConversations } = useConversationsQuery();
-  const { data: messages } = useMessagesQuery(conversationStore.conversation?.id);
-
-  const { sendMessage, isLoading } = useSendMessage();
-
-  useEffect(() => {
-    conversationStore.setMessages(messages ?? []);
-  }, [messages, conversationStore.setMessages]);
+  const { sendMessage, isLoading } = useSendMessageMutation(selectedConversation ?? '');
+  const { data: conversations, refetch: refetchConversations } = useConversationsQuery();
+  const { data: messages } = useMessagesQuery(selectedConversation ?? '');
 
   const setConversation = (conversationId: string) => {
-    const selectedConversation = userConversations?.find(conversation => conversation.id === conversationId);
-    conversationStore.setConversation(selectedConversation);
+    const selectedConversation = conversations?.find(conversation => conversation.id === conversationId);
+    setSelectedConversation(selectedConversation?.id ?? null);
   };
 
   const createConversation = async () => {
     const newConversation = conversationService.createConversation();
-    conversationStore.setConversation(newConversation);
-    conversationStore.setMessages([]);
+    setSelectedConversation(newConversation.id);
 
     await conversationService.postConversation(newConversation, () => refetchConversations());
     return newConversation;
   };
 
-  const clearConversation = () => {
-    conversationStore.setConversation(null);
-    conversationStore.setMessages([]);
-  };
+  const clearConversation = () => setSelectedConversation(null);
 
   const sendUserMessage = (
     content: string,
@@ -52,19 +39,15 @@ const useConversations = () => {
       conversationHistory?: Message[],
     ) => { message: Message; messageHistory: HistoryMessage[] },
   ) => {
-    const { message, messageHistory } = messageBuilder(content, conversationId, conversationStore.messageHistory);
+    const { message, messageHistory } = messageBuilder(content, conversationId, messages);
 
-    conversationStore.addMessage(message);
-    sendMessage({
-      body: { message, messageHistory },
-      callback: (response: Message) => conversationStore.addMessage(response),
-    });
+    sendMessage({ message, messageHistory });
   };
 
   return {
-    messages: conversationStore.messageHistory,
-    userConversations,
-    conversation: conversationStore.conversation,
+    messages,
+    conversations,
+    currentConversation: selectedConversation,
     actions: { setConversation, createConversation, clearConversation, sendUserMessage },
     isSendMessageLoading: isLoading,
   };
