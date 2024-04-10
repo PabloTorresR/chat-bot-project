@@ -28,15 +28,17 @@ const ConversationList = () => {
         <img src={newChatIcon} alt="icn" />
         <span>New chat</span>
       </button>
-      {conversations?.map(item => (
-        <button
-          className={classNames(styles.conversationList__item, currentConversation === item.id && styles['-active'])}
-          key={item.id}
-          onClick={() => handleConversationClick(item.id)}
-        >
-          {item.title}
-        </button>
-      ))}
+      <div className={styles.conversationList__list}>
+        {conversations?.map(item => (
+          <button
+            className={classNames(styles.conversationList__item, currentConversation === item.id && styles['-active'])}
+            key={item.id}
+            onClick={() => handleConversationClick(item.id)}
+          >
+            {item.title}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
