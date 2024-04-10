@@ -52,3 +52,9 @@
     border: 1px solid $color-highlight-2;
   }
 }
+
+.conversationList__list {
+  width: 100%;
+  overflow-y: auto;
+  max-height: ;
+}

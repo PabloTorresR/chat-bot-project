@@ -20,5 +20,5 @@ export const MessageInputBox = () => {
     [currentConversation, sendUserMessage],
   );
 
-  return <InputBox onSubmitClick={handleSubmitClick} isLoading={isLoading} />;
+  return currentConversation && <InputBox onSubmitClick={handleSubmitClick} isLoading={isLoading} />;
 };
