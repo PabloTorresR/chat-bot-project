@@ -1,6 +1,6 @@
 # State S3 Bucket
 resource "aws_s3_bucket" "terraform_state" {
-  bucket        = var.state_bucket_name
+  bucket        = "chatapp-tf-state"
   force_destroy = true
 }
 
