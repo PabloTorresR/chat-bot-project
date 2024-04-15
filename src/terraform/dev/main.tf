@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket         = "chatapp-tf-state"
-    key            = "terraform.tfstate"
+    key            = "dev/terraform.tfstate"
     region         = "eu-central-1"
     dynamodb_table = "terraform-state-locking"
     encrypt        = true
@@ -25,6 +25,11 @@ locals {
 }
 
 module "auth" {
-  source           = "./_modules/auth-module"
+  source           = "../_modules/auth-module"
+  environment_name = local.environment_name
+}
+
+module "database" {
+  source           = "../_modules/database-module"
   environment_name = local.environment_name
 }

@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket         = "chatapp-tf-state"
-    key            = "terraform.tfstate"
+    key            = "global/terraform.tfstate"
     region         = "eu-central-1"
     dynamodb_table = "terraform-state-locking"
     encrypt        = true
