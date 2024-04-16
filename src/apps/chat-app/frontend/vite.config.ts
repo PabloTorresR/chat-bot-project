@@ -8,13 +8,16 @@ export default defineConfig({
     port: 3800,
     proxy: {
       '/api': {
-        target: process.env.VITE_API_URL_DEV,
+        target: process.env.VITE_API_GATEWAY_URL,
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ''),
       },
     },
   },
   plugins: [react(), tsconfigPaths()],
+  define: {
+    global: {},
+  },
   resolve: {
     alias: {
       '@chat-app/styles': path.resolve(__dirname, './src/styles'),
