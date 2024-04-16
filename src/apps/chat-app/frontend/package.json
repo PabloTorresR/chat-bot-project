@@ -11,23 +11,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "dtos-lib":"*",
+    "@aws-amplify/api": "^5.0.23",
+    "@aws-amplify/auth": "^5.2.1",
+    "@aws-amplify/core": "^5.1.6",
     "@hookform/resolvers": "^3.3.4",
+    "@tanstack/react-query": "^5.29.0",
+    "@tanstack/react-query-devtools": "^5.29.0",
+    "aws-amplify": "^5.0.23",
     "classnames": "^2.3.2",
+    "dtos-lib": "*",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
-    "@tanstack/react-query": "^5.29.0",
-    "@tanstack/react-query-devtools": "^5.29.0",
     "react-router-dom": "^6.15.0",
     "react-slider": "^2.0.6",
     "react-use": "^17.4.0",
     "sass": "1.63.6",
     "use-context-selector": "^1.4.1",
     "vite-tsconfig-paths": "^4.2.0",
+    "yup": "^1.4.0",
     "zustand": "^4.5.0"
-    
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

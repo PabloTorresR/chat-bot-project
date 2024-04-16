@@ -4,6 +4,7 @@
     "paths": {
       // "@/*": ["./*"],
       "@chat-app/config/*": ["apps/chat-app/frontend/src/config/*"],
+      "@chat-app/config/": ["apps/chat-app/frontend/src/config"],
       "@chat-app/locales/*": ["apps/chat-app/frontend/src/locales/*"],
       "@chat-app/components/*": ["apps/chat-app/frontend/src/app/components/*"],
       "@chat-app/components/": ["apps/chat-app/frontend/src/app/components"],
@@ -26,6 +27,7 @@
       "@chat-app/types/*": ["apps/chat-app/frontend/src/app/types/*"],
       "@chat-app/types": ["apps/chat-app/frontend/src/app/types"],
       "@chat-app/utils/*": ["apps/chat-app/frontend/src/utils/*"],
+      "@chat-app/utils": ["apps/chat-app/frontend/src/utils"],
       "@chat-app/assets/*": ["apps/chat-app/frontend/src/assets/*"]
     }
   }

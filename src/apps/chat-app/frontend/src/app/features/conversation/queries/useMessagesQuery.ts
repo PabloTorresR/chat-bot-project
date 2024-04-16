@@ -15,7 +15,7 @@ const useMessagesQuery = (conversationId?: string, startDate?: Date, endDate?: D
         return;
       }
       const filters: FilterType[] = buildFilters(conversationId, formattedStartDate, formattedEndDate);
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL_PROD}${API_PATHS.messages}`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.messages}`, {
         params: {
           filters,
         },
