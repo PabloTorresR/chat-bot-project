@@ -6,16 +6,25 @@ import { HistoryMessage, Message } from '../types/message';
 import useSendMessageMutation from '../mutations/useSendMessageMutation';
 
 const useConversations = () => {
-  const { selectedConversation, setSelectedConversation } = useConversationStore(state => ({
-    selectedConversation: state.conversation,
-    setSelectedConversation: state.setConversation,
-  }));
+  const { selectedConversation, setSelectedConversation, isMessageLoading, setIsMessageLoading } = useConversationStore(
+    state => ({
+      selectedConversation: state.conversation,
+      setSelectedConversation: state.setConversation,
+      isMessageLoading: state.isMessageLoading,
+      setIsMessageLoading: state.setIsMessageLoading,
+    }),
+  );
 
-  const { sendMessage, isLoading } = useSendMessageMutation(selectedConversation ?? '');
+  const { sendMessage } = useSendMessageMutation({
+    conversationId: selectedConversation ?? '',
+    onMessageMessageSent: () => setIsMessageLoading(true),
+    onMessageMessageReceived: () => setIsMessageLoading(false),
+  });
   const { data: conversations, refetch: refetchConversations } = useConversationsQuery();
   const { data: messages } = useMessagesQuery(selectedConversation ?? '');
 
   const setConversation = (conversationId: string) => {
+    setIsMessageLoading(false);
     const selectedConversation = conversations?.find(conversation => conversation.id === conversationId);
     setSelectedConversation(selectedConversation?.id ?? null);
   };
@@ -49,7 +58,7 @@ const useConversations = () => {
     conversations,
     currentConversation: selectedConversation,
     actions: { setConversation, createConversation, clearConversation, sendUserMessage },
-    isSendMessageLoading: isLoading,
+    isSendMessageLoading: isMessageLoading,
   };
 };
 

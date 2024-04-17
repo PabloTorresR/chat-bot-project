@@ -6,7 +6,7 @@ import { useAuthManager } from '../hooks/auth-manager';
 
 const useContextData = () => {
   const { user, ...authManager } = useAuthManager();
-
+   console.log(user, authManager.isLoggedIn)
   return {
     authManager,
     user,

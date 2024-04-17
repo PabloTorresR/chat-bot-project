@@ -9,7 +9,6 @@ import SignIn from '@chat-app/features/user/components/sign-in.sign-up/component
 //NOTE: replace login for the parent that includes it and also signup
 export const AppRoutes = () => (
   <Routes>
-    <Route path={RouteName.LOGIN} element={<SignIn />}></Route>
     <Route
       path={RouteName.HOME}
       element={
@@ -18,6 +17,7 @@ export const AppRoutes = () => (
         </AuthRequiredRoute>
       }
     ></Route>
+    <Route path={RouteName.LOGIN} element={<SignIn />}></Route>
     {/* NOTE: NOT FOUND ROUTE */}
     {/* <Route path="*" element={<NotFoundRoute />} /> */}
   </Routes>
