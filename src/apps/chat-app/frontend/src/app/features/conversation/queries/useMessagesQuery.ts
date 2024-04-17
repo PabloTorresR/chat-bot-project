@@ -8,11 +8,12 @@ import { FilterType } from '../types/query';
 const useMessagesQuery = (conversationId?: string, startDate?: Date, endDate?: Date) => {
   const formattedStartDate = startDate ? formatDateToyyyyMMDD(startDate) : undefined;
   const formattedEndDate = endDate ? formatDateToyyyyMMDD(endDate) : undefined;
+
   return useQuery<Message[]>({
-    queryKey: ['messages', conversationId],
+    queryKey: conversationId ? ['messages', conversationId] : [],
     queryFn: async () => {
       if (!conversationId) {
-        return;
+        return [];
       }
       const filters: FilterType[] = buildFilters(conversationId, formattedStartDate, formattedEndDate);
       const { data } = await axios.get(`${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.messages}`, {

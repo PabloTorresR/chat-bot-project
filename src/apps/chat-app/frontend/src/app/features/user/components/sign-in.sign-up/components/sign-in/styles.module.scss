@@ -1,40 +1,51 @@
+@import '../../../../../../../styles/colors.scss';
 .floatingContainer {
+  height: 280px;
+  width: 340px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: #222;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .floatingContainer h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: $color-highlight-1;
 }
 
 .floatingContainer input {
   display: block;
-  width: 100%;
+  width: 300px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid $color-highlight-2;
   border-radius: 3px;
+  background-color: $color-dark;
+  color: $color-highlight-1;
 }
 
 .floatingContainer button {
   display: block;
-  width: 100%;
+  width: 300px;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: $color-highlight-3;
+  color: $color-highlight-1;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
 .floatingContainer button:hover {
-  background-color: #0056b3;
+  background-color: darken($color-highlight-3, 5%);
 }

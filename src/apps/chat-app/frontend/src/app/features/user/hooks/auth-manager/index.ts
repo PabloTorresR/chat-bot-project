@@ -77,6 +77,7 @@ export const useAuthManager = () => {
 
   useEffect(() => {
     Hub.listen('auth', async ({ payload }) => {
+      console.log('A new auth event has happened: ', payload);
       if (payload.event === 'signIn') {
         await retrieveUser();
         setIsLoggedIn(true);

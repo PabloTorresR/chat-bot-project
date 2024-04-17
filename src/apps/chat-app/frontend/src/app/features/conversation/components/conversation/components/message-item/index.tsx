@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { ReactNode, memo } from 'react';
 
 import styles from './styles.module.scss';
 import classnames from 'classnames';
@@ -7,7 +7,7 @@ import botAvatar from '/SVG/icn_robot_face.svg';
 import Avatar from '../../../../../../components/avatar';
 
 type Props = {
-  content: string;
+  content: ReactNode;
   messageSender: MessageSender;
   className?: string;
   isLeftSide?: boolean;

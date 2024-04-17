@@ -7,6 +7,7 @@ import { MessageSender } from '../../enums/message-sender';
 import { formatTimestamp } from '../../../../utils/time';
 import { useChatScroll } from '../../../../hooks/use-chat-scroll';
 import useConversations from '../../hooks/useConversations';
+import DotTyping from '@chat-app/components/dot-typing';
 
 const fakeAvatarUrl = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50';
 
@@ -34,7 +35,7 @@ const Conversation = () => {
           className={classNames(styles.conversation__message)}
           key={'loadingKey'}
           messageSender={MessageSender.BOT}
-          content={'...'}
+          content={<DotTyping />}
           isLeftSide
         />
       )}

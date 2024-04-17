@@ -23,6 +23,7 @@
 }
 
 #contentContainer {
+  height: 80vh;
   border: 1px solid $color-border;
   grid-column: 2;
   grid-row: 2;
@@ -34,8 +35,10 @@
   padding: 28px;
   margin: 20px;
 }
+
 #contentContainer__conversation {
   height: 80vh;
+
   width: 100%;
   border-left: 1px solid $color-border;
   display: grid;
