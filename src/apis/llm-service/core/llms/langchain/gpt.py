@@ -15,9 +15,11 @@ class GptLLM(LLM):
         self,
         chat_prompt: ChatPromptTemplate,
         history_formatter: Optional[HistoryFormatter] = None,
+        format_instructions: Optional[str] = "",
     ):
         super().__init__(history_formatter)
         self.chat_prompt = chat_prompt
+        self.format_instructions = format_instructions
         # TODO: cola de mensajes?
 
     async def chat(self, prompt: str, message_history: List[HistoryMessage]) -> str:
@@ -40,5 +42,11 @@ class GptLLM(LLM):
             verbose=True,
         )
 
-        result: str = await chain.arun({"text": prompt, "chat_history": memory})
+        result: str = await chain.arun(
+            {
+                "text": prompt,
+                "chat_history": memory,
+                "format_instructions": self.format_instructions,
+            }
+        )
         return result

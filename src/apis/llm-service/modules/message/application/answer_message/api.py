@@ -14,7 +14,6 @@ async def answer_message(
     body: dict,
     service: AnswerMessageService = Depends(Provide[Container.answer_message_service]),
 ):
-    print(body)
     message = Message.from_primitives(
         created_at=body.get("message", {}).get("createdAt"),
         user_id=body.get("message", {}).get("userId"),

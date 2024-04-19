@@ -8,8 +8,7 @@ import { formatTimestamp } from '../../../../utils/time';
 import { useChatScroll } from '../../../../hooks/use-chat-scroll';
 import useConversations from '../../hooks/useConversations';
 import DotTyping from '@chat-app/components/dot-typing';
-
-const fakeAvatarUrl = 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50';
+import USER_DEFAULT_AVATAR from '/SVG/icn_3d_person.svg';
 
 const Conversation = () => {
   const { messages, isSendMessageLoading } = useConversations();
@@ -27,7 +26,7 @@ const Conversation = () => {
           content={message.content}
           isLeftSide={message.sender !== MessageSender.USER}
           dateTime={formatTimestamp(message.createdAt)}
-          userAvatarUrl={message.sender === MessageSender.USER ? fakeAvatarUrl : undefined}
+          userAvatarUrl={message.sender === MessageSender.USER ? USER_DEFAULT_AVATAR : undefined}
         />
       ))}
       {isSendMessageLoading && (

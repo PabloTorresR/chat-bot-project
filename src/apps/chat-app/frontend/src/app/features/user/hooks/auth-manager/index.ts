@@ -35,13 +35,24 @@ export const useAuthManager = () => {
   );
 
   const signUp = useCallback(
-    async ({ email, password }: { email: string; password: string }) => {
+    async ({
+      email,
+      password,
+      preferred_username,
+    }: {
+      email: string;
+      password: string;
+      preferred_username: string;
+    }) => {
       const result = await Auth.signUp({
         username: email,
         password,
+        attributes: {
+          preferred_username,
+        },
       });
       set('email', email);
-
+      set('preferred_username', preferred_username);
       return result;
     },
     [set],
@@ -77,8 +88,8 @@ export const useAuthManager = () => {
 
   useEffect(() => {
     Hub.listen('auth', async ({ payload }) => {
-      console.log('A new auth event has happened: ', payload);
       if (payload.event === 'signIn') {
+        console.log('user signed in : payload', payload);
         await retrieveUser();
         setIsLoggedIn(true);
         return;
