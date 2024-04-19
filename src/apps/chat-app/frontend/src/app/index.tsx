@@ -3,16 +3,17 @@
 import { AppRoutes } from '@chat-app/routes';
 import { TopLevelProviders } from './top-level-providers';
 import configureAmplify from '../config/amplify';
+import { Suspense } from 'react';
+import { LoadingPage } from './components/loading-page';
 
 export const App = () => {
   configureAmplify();
 
   return (
     <TopLevelProviders>
-      {/* TODO: loading page  */}
-      {/* <Suspense fallback={<LoadingPage />}> */}
-      <AppRoutes />
-      {/* </Suspense> */}
+      <Suspense fallback={<LoadingPage />}>
+        <AppRoutes />
+      </Suspense>
     </TopLevelProviders>
   );
 };
