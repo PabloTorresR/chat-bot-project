@@ -4,6 +4,7 @@
         "build": {
             "outputs": ["dist/**"]
           },
+        "test":{},
         "type-check": {},
         "dev":{
           "dependsOn":["^setup-dev", "setup-dev"],

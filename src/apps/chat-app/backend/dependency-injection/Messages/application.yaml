@@ -10,7 +10,7 @@ services:
     arguments: ['@Chatapp.Messages.domain.MessageRepository']
 
   Chatapp.Messages.domain.MessageRepository:
-    class: ../../../../../Contexts/Chatapp/Messages/infrastructure/persistence/mongo/MongoMessageRepository
+    class: ../../../../../Contexts/Chatapp/Messages/infrastructure/persistence/dynamodb/DynamoDBMessageRepository
     arguments: ['@Chatapp.Shared.ConnectionManager']
 
   Chatapp.Messages.CreateMessageCommandHandler:

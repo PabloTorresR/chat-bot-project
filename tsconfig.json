@@ -27,7 +27,7 @@
     "__mocks__",
     "src",
     "*.config.js"
-, "tsconfig.json", "tsconfig.node.json", "tsconfig.extend.json"  ],
+, "tsconfig.json", "tsconfig.node.json", "tsconfig.extend.json", "jest.config.ts", "jest.config.ts"  ],
   "ts-node": {
     "compilerOptions": {
       "esModuleInterop": true,

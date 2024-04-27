@@ -29,7 +29,7 @@ export class Conversation extends AggregateRoot {
     return new Conversation(new ConversationId(plainData.id), new ConversationTitle(plainData.title));
   }
 
-  toPrimitives(): any {
+  toPrimitives() {
     return {
       id: this.id.value,
       title: this.title.value,

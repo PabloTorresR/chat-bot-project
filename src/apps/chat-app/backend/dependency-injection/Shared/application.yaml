@@ -16,11 +16,16 @@ services:
       class: ../../../../../Contexts/Chatapp/Shared/infrastructure/persistence/mongo/MongoConfigFactory
       method: 'createConfig'
 
+  Chatapp.Shared.DynamoDBConfig:
+    factory:
+      class: ../../../../../Contexts/Chatapp/Shared/infrastructure/persistence/dynamodb/DynamoDBConfigFactory
+      method: 'createConfig'
+
   Chatapp.Shared.ConnectionManager:
     factory:
-      class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      class: ../../../../../Contexts/Shared/infrastructure/persistence/dynamodb/DynamoDBClientFactory
       method: 'createClient'
-    arguments: ['chatapp', '@Chatapp.Shared.MongoConfig']
+    arguments: ['chatapp', '@Chatapp.Shared.DynamoDBConfig']
 
   Chatapp.Shared.domain.CommandBus:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus
