@@ -1,6 +1,6 @@
 import convict from 'convict';
 
-const moocConfig = convict({
+const chatappConfig = convict({
   env: {
     doc: 'The application environment.',
     format: ['production', 'development', 'staging', 'test'],
@@ -13,6 +13,21 @@ const moocConfig = convict({
       format: String,
       env: 'MONGO_URL',
       default: 'mongodb://localhost:27017/chatapp',
+    },
+  },
+  dynamodb: {
+    region: {
+      doc: 'AWS Region in which the DynamoDB table is located',
+      format: String,
+      env: 'DYNAMODB_REGION',
+      default: 'eu-central-1',
+    },
+
+    table: {
+      doc: 'DynamoDB table name',
+      format: String,
+      env: 'DYNAMODB_TABLE',
+      default: 'chatapp-dev',
     },
   },
   // typeorm: {
@@ -111,6 +126,6 @@ const moocConfig = convict({
   },
 });
 
-moocConfig.loadFile([__dirname + '/default.json', __dirname + '/' + moocConfig.get('env') + '.json']);
+chatappConfig.loadFile([__dirname + '/default.json', __dirname + '/' + chatappConfig.get('env') + '.json']);
 
-export default moocConfig;
+export default chatappConfig;

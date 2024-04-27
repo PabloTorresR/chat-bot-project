@@ -48,7 +48,7 @@ const SignIn = () => {
         setIsLoading(false);
       }
     },
-    [authSignIn, isLoading],
+    [setError, authSignIn, isLoading],
   );
 
   const handleGoToSignUp = useCallback(() => {
@@ -63,7 +63,7 @@ const SignIn = () => {
         {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
         <input type="password" placeholder="Password" {...register('password')} />
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
-        {errors.generalError && <p className={styles.errorMessage}>{errors.generalError.message}</p>}
+        {errors.generalError && <p className={styles.errorMessage}>{errors.generalError.message as string}</p>}
         <button className={styles.floatingContainer__submitButton} type="submit">
           Sign In
         </button>

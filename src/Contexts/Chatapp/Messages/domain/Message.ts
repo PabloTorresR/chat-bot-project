@@ -73,13 +73,13 @@ export class Message extends AggregateRoot {
     );
   }
 
-  toPrimitives(): any {
+  toPrimitives() {
     return {
       id: this.id.value,
       content: this.content.value,
       conversationId: this.conversationId.value,
       userId: this.userId.value,
-      createdAt: this.createdAt.value,
+      createdAt: this.createdAt.value.toDateString(),
       sender: this.sender.value,
     };
   }
