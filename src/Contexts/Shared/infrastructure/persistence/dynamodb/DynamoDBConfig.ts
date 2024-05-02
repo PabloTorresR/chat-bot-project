@@ -1,7 +1,10 @@
 interface DynamoDBConfig {
   region: string;
-  table: string;
-  credentials: object;
+  credentials: {
+    accessKeyId: string;
+    secretAccessKey: string;
+    sessionToken?: string;
+  };
 }
 
 export default DynamoDBConfig;

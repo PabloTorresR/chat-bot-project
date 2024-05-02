@@ -34,7 +34,7 @@ export class DynamoDBCriteriaConverter {
       expressionAttributeValues: criteria.hasFilters()
         ? this.generateExpressionAttributeValues(criteria.filters)
         : undefined,
-      limit: criteria.limit || 0,
+      limit: criteria.limit ?? 1000,
     };
   }
 

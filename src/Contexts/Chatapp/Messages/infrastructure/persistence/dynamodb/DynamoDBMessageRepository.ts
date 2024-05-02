@@ -13,19 +13,20 @@ interface MessageDocument extends Document {
   sender: string;
 }
 
-export class DynamoMessageRepository extends DynamoDBRepository<Message> implements MessageRepository {
+export class DynamoDBMessageRepository extends DynamoDBRepository<Message> implements MessageRepository {
   public save(message: Message): Promise<void> {
     return this.persist(message.id.value, message);
   }
 
   protected tableName(): string {
-    return 'messages-table-dev';
+    const env = this.getEnv();
+    return env === 'prod' ? 'messages-table' : `messages-table-${env}`;
   }
 
   public async searchAll(): Promise<Message[]> {
     const table = this.tableName();
     const client = this.getClient();
-    const result = await client.send(new ScanCommand({ TableName: table }));
+    const result = await (await client).send(new ScanCommand({ TableName: table }));
     const documents = result.Items;
 
     return (

@@ -4,18 +4,22 @@ import { formatDateToyyyyMMDD } from '../../../utils/time';
 import { Message } from '../types/message';
 import { API_PATHS } from '../constants/api';
 import { FilterType } from '../types/query';
+import { GET_MESSAGES_QUERY_PARAMS } from '../enums/query-params';
 
-const useMessagesQuery = (conversationId?: string, startDate?: Date, endDate?: Date) => {
+type GetMessagesQueryParams = { [key in GET_MESSAGES_QUERY_PARAMS]: string | null };
+
+const useMessagesQuery = (queryParams: GetMessagesQueryParams, startDate?: Date, endDate?: Date) => {
   const formattedStartDate = startDate ? formatDateToyyyyMMDD(startDate) : undefined;
   const formattedEndDate = endDate ? formatDateToyyyyMMDD(endDate) : undefined;
+  const queryKey = Object.keys(queryParams).map(key => queryParams[key]);
 
   return useQuery<Message[]>({
-    queryKey: conversationId ? ['messages', conversationId] : [],
+    queryKey: ['messages', ...queryKey],
     queryFn: async () => {
-      if (!conversationId) {
+      if (!queryParams.conversationId || !queryParams.userId) {
         return [];
       }
-      const filters: FilterType[] = buildFilters(conversationId, formattedStartDate, formattedEndDate);
+      const filters: FilterType[] = buildFilters(queryParams.conversationId, formattedStartDate, formattedEndDate);
       const { data } = await axios.get(`${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.messages}`, {
         params: {
           filters,

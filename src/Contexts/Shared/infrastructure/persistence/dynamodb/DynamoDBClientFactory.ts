@@ -4,11 +4,13 @@ import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 export class DynamoDBClientFactory {
   private static clients: { [key: string]: DynamoDBDocumentClient } = {};
 
-  static createClient(contextName: string, config: DynamoDBClientConfig): DynamoDBDocumentClient {
+  static async createClient(
+    contextName: string,
+    config: Promise<DynamoDBClientConfig>,
+  ): Promise<DynamoDBDocumentClient> {
     let client = DynamoDBClientFactory.getClient(contextName);
-
     if (!client) {
-      client = DynamoDBClientFactory.createAndConnectClient(config);
+      client = DynamoDBClientFactory.createAndConnectClient(await config);
 
       DynamoDBClientFactory.registerClient(client, contextName);
     }

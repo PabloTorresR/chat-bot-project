@@ -17,6 +17,7 @@ export class ConversationsPostController implements Controller {
     const createConversationCommand = new CreateConversationCommand({
       id: req.body.id,
       title: req.body.title,
+      userId: req.body.userId,
     });
 
     await this.commandBus.dispatch(createConversationCommand);

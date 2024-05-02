@@ -1,4 +1,6 @@
 import { ChatBackendApp } from './chat-backend-app';
+import dotenv from 'dotenv';
+dotenv.config();
 
 try {
   new ChatBackendApp().start();

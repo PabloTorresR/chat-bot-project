@@ -14,10 +14,12 @@ class ConversationService {
     }
   }
 
-  createConversation(): Conversation {
+  createConversation(userId: string): Conversation {
+    console.log('Creating conversation', userId);
     return {
       id: uuidv4(),
       title: DEFAULT_CONVERSATION_TITLE,
+      userId,
     };
   }
 }

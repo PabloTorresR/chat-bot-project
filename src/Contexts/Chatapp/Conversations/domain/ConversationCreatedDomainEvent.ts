@@ -2,32 +2,38 @@ import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 
 type CreateConversationDomainEventAttributes = {
   readonly title: string;
+  readonly userId: string;
 };
 
 export class ConversationCreatedDomainEvent extends DomainEvent {
   static readonly EVENT_NAME = 'conversation.created';
 
   readonly title: string;
+  readonly userId: string;
 
   constructor({
     aggregateId,
     title,
+    userId,
     eventId,
     occurredOn,
   }: {
     aggregateId: string;
     eventId?: string;
     title: string;
+    userId: string;
     occurredOn?: Date;
   }) {
     super({ eventName: ConversationCreatedDomainEvent.EVENT_NAME, aggregateId, eventId, occurredOn });
     this.title = title;
+    this.userId = userId;
   }
 
   toPrimitives(): CreateConversationDomainEventAttributes {
-    const { title } = this;
+    const { title, userId } = this;
     return {
       title,
+      userId,
     };
   }
 
@@ -41,6 +47,7 @@ export class ConversationCreatedDomainEvent extends DomainEvent {
     return new ConversationCreatedDomainEvent({
       aggregateId,
       title: attributes.title,
+      userId: attributes.userId,
       eventId,
       occurredOn,
     });

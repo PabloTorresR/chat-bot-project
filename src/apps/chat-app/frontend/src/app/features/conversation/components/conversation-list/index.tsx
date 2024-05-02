@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import newChatIcon from '/SVG/icn_squares_layers.svg';
 import useConversations from '../../hooks/useConversations';
 import classNames from 'classnames';
+import { useUserSelector } from '@chat-app/features/user/context/selectors/user';
 
 const ConversationList = () => {
   const {
@@ -10,6 +11,7 @@ const ConversationList = () => {
     currentConversation,
     actions: { setConversation, createConversation },
   } = useConversations();
+  const user = useUserSelector();
 
   const handleConversationClick = useCallback(
     (conversationId: string) => {
@@ -19,8 +21,8 @@ const ConversationList = () => {
   );
 
   const handleNewChatClick = useCallback(() => {
-    createConversation();
-  }, [createConversation]);
+    createConversation(user?.data.sub ?? '');
+  }, [createConversation, user?.data.sub]);
 
   return (
     <div className={styles.conversationList}>

@@ -8,7 +8,6 @@ import { MessageSenderValues } from '../../../../Contexts/Chatapp/Messages/domai
 import { PostMessagesRequest, PostMessagesResponse } from 'libs/dtos/chatapp/messages';
 import axios from 'axios';
 
-const HARDCODED_USER_ID = '2b54f894-78d1-45a7-bbe5-06238f8d5434';
 export class MessagesPostController implements Controller {
   constructor(private readonly commandBus: CommandBus) {}
 
@@ -30,7 +29,7 @@ export class MessagesPostController implements Controller {
       id: body.message.id,
       content: body.message.content,
       conversationId: body.message.conversationId,
-      userId: HARDCODED_USER_ID,
+      userId: body.message.userId,
       createdAt: body.message.createdAt,
       sender: MessageSenderValues.USER,
     });

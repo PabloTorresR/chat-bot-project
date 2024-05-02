@@ -15,6 +15,7 @@ export class CreateConversationCommandHandler implements CommandHandler<CreateCo
   async handle(command: CreateConversationCommand): Promise<void> {
     const id = new ConversationId(command.id);
     const title = new ConversationTitle(command.title);
-    await this.conversationCreator.run({ id, title });
+    const userId = new ConversationTitle(command.userId);
+    await this.conversationCreator.run({ id, title, userId });
   }
 }

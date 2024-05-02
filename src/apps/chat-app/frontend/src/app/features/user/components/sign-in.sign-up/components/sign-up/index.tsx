@@ -21,6 +21,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<SignUpFieldValues>({
     mode: 'onBlur',
@@ -38,19 +39,19 @@ const SignUp = () => {
       if (isLoading) {
         return;
       }
-
+      setIsLoading(true);
+      const creds = { email: _email, password: _password, preferred_username: _username };
       try {
-        setIsLoading(true);
-
-        const creds = { email: _email, password: _password, preferred_username: _username };
         const result = await authSignUp(creds);
         navigate(`${RoutePath.Route.CONFIRM_SIGN_UP}?${QueryParams.Auth.ID}=${result.userSub}`);
+      } catch (err: unknown) {
+        const error = err as Error;
+        setError('generalError', { message: error.message ?? 'An error occurred' });
       } finally {
         setIsLoading(false);
-        navigate(RoutePath.Route.SIGN_IN);
       }
     },
-    [navigate, authSignUp, isLoading],
+    [navigate, authSignUp, isLoading, setError],
   );
 
   const handleGoToSignIn = useCallback(() => {
@@ -67,6 +68,7 @@ const SignUp = () => {
         {errors.preferred_username && <p className={styles.errorMessage}>{errors.preferred_username.message}</p>}
         <input type="password" placeholder="Password" {...register('password')} />
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
+        {errors.generalError && <p className={styles.errorMessage}>{errors.generalError.message as string}</p>}
         <button className={styles.floatingContainer__submitButton} type="submit">
           Sign Up
         </button>

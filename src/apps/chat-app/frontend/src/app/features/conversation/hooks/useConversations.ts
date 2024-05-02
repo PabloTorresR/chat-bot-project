@@ -2,10 +2,13 @@ import useConversationStore from '../stores/conversation';
 import useConversationsQuery from '../queries/useConversationsQuery';
 import useMessagesQuery from '../queries/useMessagesQuery';
 import conversationService from '../services/conversation';
-import { HistoryMessage, Message } from '../types/message';
+import { Message } from '../types/message';
 import useSendMessageMutation from '../mutations/useSendMessageMutation';
+import { PostMessagesRequest } from 'libs/dtos/chatapp/messages';
+import { useUserSelector } from '@chat-app/features/user/context/selectors/user';
 
 const useConversations = () => {
+  const user = useUserSelector();
   const { selectedConversation, setSelectedConversation, isMessageLoading, setIsMessageLoading } = useConversationStore(
     state => ({
       selectedConversation: state.conversation,
@@ -20,8 +23,13 @@ const useConversations = () => {
     onMessageMessageSent: () => setIsMessageLoading(true),
     onMessageMessageReceived: () => setIsMessageLoading(false),
   });
-  const { data: conversations, refetch: refetchConversations } = useConversationsQuery();
-  const { data: messages } = useMessagesQuery(selectedConversation ?? '');
+  const { data: conversations, refetch: refetchConversations } = useConversationsQuery({
+    userId: user?.data.sub ?? '',
+  });
+  const { data: messages } = useMessagesQuery({
+    conversationId: selectedConversation ?? '',
+    userId: user?.data.sub ?? '',
+  });
 
   const setConversation = (conversationId: string) => {
     setIsMessageLoading(false);
@@ -29,8 +37,8 @@ const useConversations = () => {
     setSelectedConversation(selectedConversation?.id ?? null);
   };
 
-  const createConversation = async () => {
-    const newConversation = conversationService.createConversation();
+  const createConversation = async (userId: string) => {
+    const newConversation = conversationService.createConversation(userId);
     setSelectedConversation(newConversation.id);
 
     await conversationService.postConversation(newConversation, () => refetchConversations());
@@ -42,13 +50,15 @@ const useConversations = () => {
   const sendUserMessage = (
     content: string,
     conversationId: string,
+    userId: string,
     messageBuilder: (
       content: string,
       conversationId: string,
+      userId: string,
       conversationHistory?: Message[],
-    ) => { message: Message; messageHistory: HistoryMessage[] },
+    ) => PostMessagesRequest,
   ) => {
-    const { message, messageHistory } = messageBuilder(content, conversationId, messages);
+    const { message, messageHistory } = messageBuilder(content, conversationId, userId, messages);
 
     sendMessage({ message, messageHistory });
   };
