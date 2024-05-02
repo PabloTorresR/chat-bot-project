@@ -22,13 +22,6 @@ const chatappConfig = convict({
       env: 'DYNAMODB_REGION',
       default: 'eu-central-1',
     },
-
-    table: {
-      doc: 'DynamoDB table name',
-      format: String,
-      env: 'DYNAMODB_TABLE',
-      default: 'chatapp-dev',
-    },
   },
   // typeorm: {
   //   host: {

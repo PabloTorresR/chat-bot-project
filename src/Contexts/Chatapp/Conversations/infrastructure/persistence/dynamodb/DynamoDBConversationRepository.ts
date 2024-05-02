@@ -7,6 +7,7 @@ import { ScanCommand } from '@aws-sdk/client-dynamodb';
 interface ConversationDocument {
   _id: string;
   title: string;
+  userId: string;
 }
 
 export class DynamoDBConversationRepository extends DynamoDBRepository<Conversation> implements ConversationRepository {
@@ -15,18 +16,23 @@ export class DynamoDBConversationRepository extends DynamoDBRepository<Conversat
   }
 
   protected tableName(): string {
-    return 'conversations-table-dev';
+    const env = this.getEnv();
+    return env === 'prod' ? 'conversations-table' : `conversations-table-${env}`;
   }
 
   public async searchAll(): Promise<Conversation[]> {
     const table = this.tableName();
     const client = this.getClient();
-    const result = await client.send(new ScanCommand({ TableName: table }));
+    const result = await (await client).send(new ScanCommand({ TableName: table }));
     const documents = result.Items;
 
     return (
       documents?.map(document =>
-        Conversation.fromPrimitives({ title: document.title?.S ?? '', id: document._id?.S ?? '' }),
+        Conversation.fromPrimitives({
+          title: document.title?.S ?? '',
+          id: document._id?.S ?? '',
+          userId: document.userId?.S ?? '',
+        }),
       ) ?? ([] as Conversation[])
     );
   }
@@ -34,6 +40,8 @@ export class DynamoDBConversationRepository extends DynamoDBRepository<Conversat
   public async matching(criteria: Criteria): Promise<Conversation[]> {
     const documents = await this.searchByCriteria<ConversationDocument>(criteria);
 
-    return documents.map(document => Conversation.fromPrimitives({ title: document.title, id: document._id }));
+    return documents.map(document =>
+      Conversation.fromPrimitives({ title: document.title, id: document._id, userId: document.userId }),
+    );
   }
 }

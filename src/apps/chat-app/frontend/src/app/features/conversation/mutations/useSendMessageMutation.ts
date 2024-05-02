@@ -1,7 +1,8 @@
 import { postMessages } from '../api/messages';
-import { HistoryMessage, Message } from '../types/message';
+import { Message } from '../types/message';
 import { queryClient } from '../../../../config/react-query';
 import { useMutation } from '@tanstack/react-query';
+import { PostMessagesRequest } from 'libs/dtos/chatapp/messages';
 
 interface Props {
   conversationId: string;
@@ -9,10 +10,7 @@ interface Props {
   onMessageMessageReceived?: () => void;
 }
 
-interface SendMessageProps {
-  message: Message;
-  messageHistory: HistoryMessage[];
-}
+interface SendMessageProps extends PostMessagesRequest {}
 
 const useSendMessageMutation = ({ conversationId, onMessageMessageSent, onMessageMessageReceived }: Props) => {
   const sendMessageMutation = useMutation({

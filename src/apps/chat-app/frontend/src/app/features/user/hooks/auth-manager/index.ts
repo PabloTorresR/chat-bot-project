@@ -50,6 +50,9 @@ export const useAuthManager = () => {
         attributes: {
           preferred_username,
         },
+        autoSignIn: {
+          enabled: true,
+        },
       });
       set('email', email);
       set('preferred_username', preferred_username);
@@ -89,7 +92,6 @@ export const useAuthManager = () => {
   useEffect(() => {
     Hub.listen('auth', async ({ payload }) => {
       if (payload.event === 'signIn') {
-        console.log('user signed in : payload', payload);
         await retrieveUser();
         setIsLoggedIn(true);
         return;
@@ -98,6 +100,11 @@ export const useAuthManager = () => {
         setAll({});
         setIsLoggedIn(false);
         setIsLoading(false);
+        return;
+      }
+      if (payload.event === 'autoSignIn') {
+         setAll(payload.data?.attributes);
+        setIsLoggedIn(true);
       }
     });
   }, [retrieveUser, setAll]);

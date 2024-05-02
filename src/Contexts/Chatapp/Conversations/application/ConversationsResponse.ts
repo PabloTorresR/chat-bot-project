@@ -3,6 +3,7 @@ import { Conversation } from '../domain/Conversation';
 interface ConversationResponse {
   id: string;
   title: string;
+  userId: string;
 }
 
 export class ConversationsResponse {

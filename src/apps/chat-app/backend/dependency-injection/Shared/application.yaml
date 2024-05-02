@@ -61,7 +61,7 @@ services:
 
   Chatapp.Shared.DomainEventFailoverPublisher:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher
-    arguments: ['@Chatapp.Shared.ConnectionManager']
+    arguments: ['@Chatapp.Shared.ConnectionManager', '%env(NODE_ENV)%']
 
   Chatapp.Shared.RabbitMQConfig:
     factory:
