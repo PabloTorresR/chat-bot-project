@@ -79,7 +79,7 @@ export class Message extends AggregateRoot {
       content: this.content.value,
       conversationId: this.conversationId.value,
       userId: this.userId.value,
-      createdAt: this.createdAt.value.toDateString(),
+      createdAt: this.createdAt.toString(),
       sender: this.sender.value,
     };
   }

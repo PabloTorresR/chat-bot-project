@@ -2,7 +2,7 @@ import { Criteria } from '../../../../../Shared/domain/criteria/Criteria';
 import { MessageRepository } from '../../../domain/MessageRepository';
 import { Message } from '../../../domain/Message';
 import { DynamoDBRepository } from '../../../../../Shared/infrastructure/persistence/dynamodb/DynamoDBRepository';
-import { ScanCommand } from '@aws-sdk/client-dynamodb';
+import { ScanCommand } from '@aws-sdk/lib-dynamodb';
 
 interface MessageDocument extends Document {
   _id: string;
@@ -28,16 +28,15 @@ export class DynamoDBMessageRepository extends DynamoDBRepository<Message> imple
     const client = this.getClient();
     const result = await (await client).send(new ScanCommand({ TableName: table }));
     const documents = result.Items;
-
     return (
       documents?.map(document =>
         Message.fromPrimitives({
-          id: document._id?.S ?? '',
-          content: document.content?.S ?? '',
-          conversationId: document.conversationId?.S ?? '',
-          userId: document.userId?.S ?? '',
-          createdAt: document.createdAt?.S ?? '',
-          sender: document.sender?.S ?? '',
+          id: document._id,
+          content: document.content,
+          conversationId: document.conversationId,
+          userId: document.userId,
+          createdAt: document.createdAt,
+          sender: document.sender,
         }),
       ) ?? ([] as Message[])
     );

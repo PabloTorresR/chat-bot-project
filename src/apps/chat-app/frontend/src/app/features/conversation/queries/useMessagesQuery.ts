@@ -19,7 +19,12 @@ const useMessagesQuery = (queryParams: GetMessagesQueryParams, startDate?: Date,
       if (!queryParams.conversationId || !queryParams.userId) {
         return [];
       }
-      const filters: FilterType[] = buildFilters(queryParams.conversationId, formattedStartDate, formattedEndDate);
+      const filters: FilterType[] = buildFilters(
+        queryParams.conversationId,
+        queryParams.userId,
+        formattedStartDate,
+        formattedEndDate,
+      );
       const { data } = await axios.get(`${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.messages}`, {
         params: {
           filters,
@@ -30,8 +35,16 @@ const useMessagesQuery = (queryParams: GetMessagesQueryParams, startDate?: Date,
   });
 };
 
-const buildFilters = (conversationId: string, formattedStartDate?: string, formattedEndDate?: string) => {
-  const filters: FilterType[] = [{ value: conversationId, operator: '=', field: 'conversationId' }];
+const buildFilters = (
+  conversationId: string,
+  userId: string,
+  formattedStartDate?: string,
+  formattedEndDate?: string,
+) => {
+  const filters: FilterType[] = [
+    { value: conversationId, operator: '=', field: 'conversationId' },
+    { value: userId, operator: '=', field: 'userId' },
+  ];
   if (formattedStartDate) {
     filters.push({ value: formattedStartDate, operator: '>=', field: 'createdAt' });
   }
