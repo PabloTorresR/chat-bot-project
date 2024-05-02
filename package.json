@@ -22,7 +22,6 @@
   "dependencies": {
     "@aws-sdk/credential-providers": "^3.556.0",
     "@aws-sdk/lib-dynamodb": "^3.556.0",
-    "@esbuild/darwin-arm64": "^0.20.2",
     "amqplib": "^0.10.3",
     "axios": "^1.6.5",
     "compression": "^1.7.4",

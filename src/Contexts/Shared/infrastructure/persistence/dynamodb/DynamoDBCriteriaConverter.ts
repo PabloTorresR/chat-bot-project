@@ -2,11 +2,11 @@ import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
 import { Filter } from '../../../../Shared/domain/criteria/Filter';
 import { Operator } from '../../../../Shared/domain/criteria/FilterOperator';
 import { Filters } from '../../../../Shared/domain/criteria/Filters';
-import { ScanInput } from '@aws-sdk/client-dynamodb';
+import { ScanCommandInput } from '@aws-sdk/lib-dynamodb';
 
 interface DynamoDBQuery {
-  filterExpression: ScanInput['FilterExpression'];
-  expressionAttributeValues: ScanInput['ExpressionAttributeValues'];
+  filterExpression: ScanCommandInput['FilterExpression'];
+  expressionAttributeValues: ScanCommandInput['ExpressionAttributeValues'];
   limit: number;
 }
 
@@ -38,7 +38,7 @@ export class DynamoDBCriteriaConverter {
     };
   }
 
-  protected generateFilterExpression(filters: Filters): ScanInput['FilterExpression'] {
+  protected generateFilterExpression(filters: Filters): ScanCommandInput['FilterExpression'] {
     const expressions: string[] = [];
 
     filters.filters.forEach(filter => {
@@ -55,11 +55,11 @@ export class DynamoDBCriteriaConverter {
     return expressions.join(' AND ');
   }
 
-  protected generateExpressionAttributeValues(filters: Filters): ScanInput['ExpressionAttributeValues'] {
-    const attributeValues: ScanInput['ExpressionAttributeValues'] = {};
+  protected generateExpressionAttributeValues(filters: Filters): ScanCommandInput['ExpressionAttributeValues'] {
+    const attributeValues: ScanCommandInput['ExpressionAttributeValues'] = {};
 
     filters.filters.forEach(filter => {
-      attributeValues[`:${filter.field.value}`] = { S: filter.value.value };
+      attributeValues[`:${filter.field.value}`] = filter.value.value;
     });
 
     return attributeValues;
