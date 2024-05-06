@@ -13,12 +13,12 @@ export class MessagesGetController implements Controller {
 
   async run(_req: Request, res: Response<GetMessagesResponse>) {
     const { query: queryParams } = _req;
-    const { filters, orderBy, order, limit, offset } = queryParams;
+    const { filters, orderBy, orderType, limit, offset } = queryParams;
 
     const query = new SearchMessagesByCriteriaQuery(
       this.parseFilters(filters as Array<FilterType>),
       orderBy as string,
-      order as string,
+      orderType as string,
       limit ? Number(limit) : undefined,
       offset ? Number(offset) : undefined,
     );

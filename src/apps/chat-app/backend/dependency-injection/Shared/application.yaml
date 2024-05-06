@@ -28,11 +28,11 @@ services:
     arguments: ['chatapp', '@Chatapp.Shared.DynamoDBConfig']
 
   Chatapp.Shared.application.MessageAnswerUseCase:
-    class: ../../../../../Contexts/ChatApp/Messages/application/Answer/MessageAnswerUseCase
+    class: ../../../../../Contexts/Chatapp/Messages/application/Answer/MessageAnswerUseCase
     arguments: ['@Chatapp.Shared.domain.CommandBus', '@Chatapp.Shared.domain.MessageAnswerGenerator']
 
   Chatapp.Shared.domain.MessageAnswerGenerator:
-    class: ../../../../../Contexts/ChatApp/Messages/infrastructure/services/LlmServiceMessageAnswerGenerator
+    class: ../../../../../Contexts/Chatapp/Messages/infrastructure/services/LlmServiceMessageAnswerGenerator
     arguments: ['%env(LLM_SERVICE_ENDPOINT)%']
 
   Chatapp.Shared.domain.CommandBus:

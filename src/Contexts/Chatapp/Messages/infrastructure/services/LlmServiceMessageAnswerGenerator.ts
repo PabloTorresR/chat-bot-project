@@ -15,7 +15,7 @@ export class LlmServiceMessageAnswerGenerator implements MessageAnswerGenerator 
       throw new Error('LLM_SERVICE_URL is not defined');
     }
     try {
-      return await axios.post(url, body);
+      return (await axios.post(url, body)).data;
     } catch (e) {
       throw new Error(`Failed to send message to, ${url} with body, ${(body.message, body.messageHistory)}`);
     }

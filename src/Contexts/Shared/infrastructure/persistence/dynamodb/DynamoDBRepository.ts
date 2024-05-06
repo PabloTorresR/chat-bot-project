@@ -6,12 +6,12 @@ import { DynamoDBCriteriaConverter } from './DynamoDBCriteriaConverter';
 export abstract class DynamoDBRepository<T extends AggregateRoot> {
   private criteriaConverter: DynamoDBCriteriaConverter;
 
-  constructor(private _client: Promise<DynamoDBDocumentClient>) {
+  constructor(private _client: Promise<DynamoDBDocumentClient>, private NODE_ENV: string) {
     this.criteriaConverter = new DynamoDBCriteriaConverter();
   }
 
   protected getEnv(): string {
-    return process.env.NODE_ENV || '';
+    return this.NODE_ENV ?? '';
   }
 
   protected abstract tableName(): string;

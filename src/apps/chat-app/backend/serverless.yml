@@ -1,0 +1,14 @@
+service: chat-app-backend
+
+provider:
+  name: aws
+  runtime: nodejs20.12
+  stage: dev
+  region: eu-central-1
+
+functions:
+  app:
+    handler: index.app
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
