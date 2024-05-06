@@ -6,12 +6,15 @@
     "scripts": {
         "test": "jest --passWithNoTests",
         "dev": "ts-node-dev --ignore-watch node_modules start.ts",
-        "setup-dev": "docker compose up -d mongo rabbitmq"
+        "setup-dev": "docker compose up -d mongo rabbitmq",
+        "generate-eventbridge_sqs-terraform_files": "ts-node ./scripts/generate-eventbridge_sqs-terraform_files.ts"
+
     },
     "author": "PTman",
     "license": "ISC",
     "dependencies": {
         "@aws-sdk/client-dynamodb": "^3.556.0",
+        "@aws-sdk/client-eventbridge": "^3.569.0",
         "amqplib": "^0.10.3",
         "aws-sdk": "^2.1603.0",
         "axios": "^1.6.5",

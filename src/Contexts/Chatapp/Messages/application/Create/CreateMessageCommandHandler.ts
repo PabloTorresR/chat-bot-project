@@ -7,7 +7,8 @@ import { CreateMessageCommand } from '../../domain/CreateMessageCommand';
 import { ConversationId } from '../../../../../Contexts/Chatapp/Shared/domain/ConversationId';
 import { UserId } from '../../../../../Contexts/Chatapp/Shared/domain/UserId';
 import { MessageCreatedAt } from '../../domain/MessageCreatedAt';
-import { MessageSender, MessageSenderValues } from '../../domain/MessageSender';
+import { MessageSender } from '../../domain/MessageSender';
+import { MessageSenderValues } from '../../domain/MessageSenderValues';
 
 export class CreateMessageCommandHandler implements CommandHandler<CreateMessageCommand> {
   constructor(private messageCreator: MessageCreator) {}

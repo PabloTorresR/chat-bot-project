@@ -35,4 +35,4 @@ export type DomainEventClass = {
   }): DomainEvent;
 };
 
-type DomainEventAttributes = any;
+export type DomainEventAttributes = any;

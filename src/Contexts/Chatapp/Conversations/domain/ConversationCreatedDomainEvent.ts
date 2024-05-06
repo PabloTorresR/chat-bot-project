@@ -1,6 +1,7 @@
 import { DomainEvent } from '../../../Shared/domain/DomainEvent';
+export type DomainEventAttributes = { [key: string]: unknown };
 
-type CreateConversationDomainEventAttributes = {
+export type CreateConversationDomainEventAttributes = {
   readonly title: string;
   readonly userId: string;
 };

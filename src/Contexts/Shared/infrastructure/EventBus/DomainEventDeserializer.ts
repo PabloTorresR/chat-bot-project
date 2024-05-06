@@ -4,7 +4,7 @@ import { DomainEventSubscribers } from './DomainEventSubscribers';
 type DomainEventJSON = {
   type: string;
   aggregateId: string;
-  attributes: string;
+  attributes: { [key: string]: unknown };
   id: string;
   occurred_on: string;
 };

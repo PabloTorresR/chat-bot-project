@@ -51,7 +51,7 @@ export class RabbitMQEventBus implements EventBus {
 
         await this.connection.publish({ exchange: this.exchange, routingKey, content, options });
       } catch (error: any) {
-        await this.failoverPublisher.publish(event);
+        await this.failoverPublisher.publish(event.eventId, DomainEventJsonSerializer.serialize(event));
       }
     }
   }
