@@ -8,7 +8,6 @@
         "dev": "ts-node-dev --ignore-watch node_modules start.ts",
         "setup-dev": "docker compose up -d mongo rabbitmq",
         "generate-eventbridge_sqs-terraform_files": "ts-node ./scripts/generate-eventbridge_sqs-terraform_files.ts"
-
     },
     "author": "PTman",
     "license": "ISC",
@@ -33,6 +32,7 @@
         "mongodb": "^6.3.0",
         "mongoose": "^8.1.1",
         "node-dependency-injection": "^2.6.11",
+        "serverless-http": "^3.2.0",
         "shared-context": "*",
         "uuid": "^9.0.1",
         "uuid-validate": "^0.0.3"

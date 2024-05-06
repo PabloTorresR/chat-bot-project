@@ -11,7 +11,7 @@ services:
 
   Chatapp.Messages.domain.MessageRepository:
     class: ../../../../../Contexts/Chatapp/Messages/infrastructure/persistence/dynamodb/DynamoDBMessageRepository
-    arguments: ['@Chatapp.Shared.ConnectionManager']
+    arguments: ['@Chatapp.Shared.ConnectionManager', '%env(NODE_ENV)%']
 
   Chatapp.Messages.CreateMessageCommandHandler:
     class: ../../../../../Contexts/Chatapp/Messages/application/Create/CreateMessageCommandHandler

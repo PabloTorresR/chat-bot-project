@@ -3,6 +3,7 @@ import { MessageAnswerGenerator } from '../../domain/MessageAnswerGenerator';
 import { CreateMessageCommand } from '../../domain/CreateMessageCommand';
 import { PostMessagesRequest, PostMessagesResponse } from 'libs/dtos/chatapp/messages';
 import { v4 as uuidv4 } from 'uuid';
+import { MessageSenderValues } from '../../domain/MessageSenderValues';
 
 export class MessageAnswerUseCase {
   constructor(
@@ -29,7 +30,7 @@ export class MessageAnswerUseCase {
       conversationId: userMessage.conversationId,
       userId: userMessage.userId,
       createdAt: new Date().toISOString(),
-      sender: 'bot',
+      sender: MessageSenderValues.BOT,
     });
     await this.commandBus.dispatch(createMessageCommand);
     return createMessageCommand;

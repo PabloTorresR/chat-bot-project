@@ -13,12 +13,12 @@ export class ConversationsGetController implements Controller {
 
   async run(_req: Request, res: Response<GetConversationsResponse>) {
     const { query: queryParams } = _req;
-    const { filters, orderBy, order, limit, offset } = queryParams;
+    const { filters, orderBy, orderType, limit, offset } = queryParams;
 
     const query = new SearchConversationsByCriteriaQuery(
       this.parseFilters(filters as Array<FilterType>),
       orderBy as string,
-      order as string,
+      orderType as string,
       limit ? Number(limit) : undefined,
       offset ? Number(offset) : undefined,
     );

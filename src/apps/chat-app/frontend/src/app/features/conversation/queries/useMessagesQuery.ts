@@ -34,7 +34,7 @@ const useMessagesQuery = ({ queryParams, startDate, endDate }: Props) => {
           filters,
         },
       });
-      return data ?? [];
+      return orderByDate(data) ?? [];
     },
   });
 };
@@ -57,6 +57,10 @@ const buildFilters = (
   }
 
   return filters;
+};
+
+const orderByDate = (messages: Message[]) => {
+  return messages.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
 };
 
 export default useMessagesQuery;
