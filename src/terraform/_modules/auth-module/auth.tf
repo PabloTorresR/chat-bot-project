@@ -10,10 +10,11 @@ resource "aws_cognito_user_pool" "user_pool" {
   }
 
   password_policy {
-    minimum_length    = 8
-    require_lowercase = true
-    require_uppercase = true
-    require_numbers   = true
+    minimum_length                   = 8
+    require_lowercase                = true
+    require_uppercase                = true
+    require_numbers                  = true
+    temporary_password_validity_days = 7
   }
 
   email_configuration {
@@ -50,4 +51,9 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
     "ALLOW_USER_PASSWORD_AUTH",
     "ALLOW_USER_SRP_AUTH"
   ]
+  token_validity_units {
+    access_token  = "minutes"
+    id_token      = "minutes"
+    refresh_token = "days"
+  }
 }

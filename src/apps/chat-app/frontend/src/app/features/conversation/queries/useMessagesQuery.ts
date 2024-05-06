@@ -6,9 +6,13 @@ import { API_PATHS } from '../constants/api';
 import { FilterType } from '../types/query';
 import { GET_MESSAGES_QUERY_PARAMS } from '../enums/query-params';
 
-type GetMessagesQueryParams = { [key in GET_MESSAGES_QUERY_PARAMS]: string | null };
+interface Props {
+  queryParams: { [key in GET_MESSAGES_QUERY_PARAMS]: string | null };
+  startDate?: Date;
+  endDate?: Date;
+}
 
-const useMessagesQuery = (queryParams: GetMessagesQueryParams, startDate?: Date, endDate?: Date) => {
+const useMessagesQuery = ({ queryParams, startDate, endDate }: Props) => {
   const formattedStartDate = startDate ? formatDateToyyyyMMDD(startDate) : undefined;
   const formattedEndDate = endDate ? formatDateToyyyyMMDD(endDate) : undefined;
   const queryKey = Object.keys(queryParams).map(key => queryParams[key]);

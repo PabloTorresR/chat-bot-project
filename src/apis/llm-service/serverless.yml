@@ -1,0 +1,45 @@
+service: llm-service
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: eu-central-1
+  profile: 975050254610_AdministratorAccess
+  environment:
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+  architecture: arm64
+
+functions:
+  api:
+    handler: app.handler
+    name: llm-service
+    events:
+      - httpApi: '*'
+    package:
+        patterns:
+        - 'src/**'
+        - '!requirements.txt'
+        - '!package.json'
+        - '!package-lock.json'
+        - '!.serverless/**'
+        - '!venv/**'
+        - '!env/**'
+        - '!envwin/**'
+        - '!node_modules/**'
+
+plugins:
+  - serverless-python-requirements
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    dockerImage: public.ecr.aws/sam/build-python3.11:latest-arm64
+    dockerRunCmdExtraArgs: [ '--platform', 'linux/arm64/v8' ]
+    # NOTE: this two lines prevent some caching problems with serverless-python-requirements, uncomment in case of getting errors
+    # useStaticCache: false
+    # useDownloadCache: false

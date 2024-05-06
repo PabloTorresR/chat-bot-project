@@ -3,20 +3,22 @@ import { Message } from '../types/message';
 import { queryClient } from '../../../../config/react-query';
 import { useMutation } from '@tanstack/react-query';
 import { PostMessagesRequest } from 'libs/dtos/chatapp/messages';
+import { GET_MESSAGES_QUERY_PARAMS } from '../enums/query-params';
 
 interface Props {
-  conversationId: string;
   onMessageMessageSent?: () => void;
   onMessageMessageReceived?: () => void;
+  queryParams: { [key in GET_MESSAGES_QUERY_PARAMS]: string | null };
 }
 
 interface SendMessageProps extends PostMessagesRequest {}
 
-const useSendMessageMutation = ({ conversationId, onMessageMessageSent, onMessageMessageReceived }: Props) => {
+const useSendMessageMutation = ({ queryParams, onMessageMessageSent, onMessageMessageReceived }: Props) => {
+  const queryKey = Object.keys(queryParams).map(key => queryParams[key]);
   const sendMessageMutation = useMutation({
     mutationFn: postMessages,
     onMutate: requestMessage => {
-      queryClient.setQueryData(['messages', conversationId], (prev: Message[]) => {
+      queryClient.setQueryData(['messages', ...queryKey], (prev: Message[]) => {
         if (!requestMessage) {
           return prev;
         }
@@ -24,7 +26,7 @@ const useSendMessageMutation = ({ conversationId, onMessageMessageSent, onMessag
       });
     },
     onSuccess: responseMessage =>
-      queryClient.setQueryData(['messages', conversationId], (prev: Message[]) => {
+      queryClient.setQueryData(['messages', ...queryKey], (prev: Message[]) => {
         return [...(prev ?? []), responseMessage.data];
       }),
   });
