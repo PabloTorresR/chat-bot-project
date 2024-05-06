@@ -5,7 +5,8 @@ import { MessageContent } from './MessageContent';
 import { MessageCreatedDomainEvent } from './MessageCreatedDomainEvent';
 import { UserId } from '../../../../Contexts/Chatapp/Shared/domain/UserId';
 import { MessageCreatedAt } from './MessageCreatedAt';
-import { MessageSender, MessageSenderValues } from './MessageSender';
+import { MessageSender } from './MessageSender';
+import { MessageSenderValues } from './MessageSenderValues';
 
 export class Message extends AggregateRoot {
   readonly id: MessageId;

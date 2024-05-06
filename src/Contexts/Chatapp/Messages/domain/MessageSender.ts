@@ -1,9 +1,5 @@
 import { EnumValueObject } from '../../../Shared/domain/value-object/EnumValueObject';
-
-export enum MessageSenderValues {
-  BOT = 'bot',
-  USER = 'user',
-}
+import { MessageSenderValues } from './MessageSenderValues';
 
 export class MessageSender extends EnumValueObject<MessageSenderValues> {
   constructor(value: MessageSenderValues) {

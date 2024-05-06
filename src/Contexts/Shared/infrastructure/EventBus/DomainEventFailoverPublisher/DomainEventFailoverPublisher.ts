@@ -1,6 +1,5 @@
 import { DomainEvent } from '../../../domain/DomainEvent';
 import { DomainEventDeserializer } from '../DomainEventDeserializer';
-import { DomainEventJsonSerializer } from '../DomainEventJsonSerializer';
 import { DynamoDBClient, PutItemCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
 
 export class DomainEventFailoverPublisher {
@@ -19,13 +18,12 @@ export class DomainEventFailoverPublisher {
     return process.env.NODE_ENV || '';
   }
 
-  async publish(event: DomainEvent): Promise<void> {
-    const eventSerialized = DomainEventJsonSerializer.serialize(event);
+  async publish(eventId, serializedEvent): Promise<void> {
     const params = {
       TableName: this.tableName,
       Item: {
-        eventId: { S: event.eventId },
-        event: { S: eventSerialized },
+        eventId: { S: eventId },
+        event: { S: serializedEvent },
       },
     };
 
@@ -35,7 +33,7 @@ export class DomainEventFailoverPublisher {
   async consume(): Promise<Array<DomainEvent>> {
     const params = {
       TableName: this.tableName,
-      Limit: 200,
+      Limit: 10,
     };
 
     const { Items } = await (await this.client).send(new ScanCommand(params));

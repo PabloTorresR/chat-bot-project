@@ -7,8 +7,9 @@ import { MessageId } from './../../../../../Contexts/Chatapp/Shared/domain/Messa
 import { MessageContent } from './../../../../../Contexts/Chatapp/Messages/domain/MessageContent';
 import { ConversationId } from './../../../../../Contexts/Chatapp/Shared/domain/ConversationId';
 import { UserId } from './../../../../../Contexts/Chatapp/Shared/domain/UserId';
-import { MessageSender, MessageSenderValues } from './../../../../../Contexts/Chatapp/Messages/domain/MessageSender';
+import { MessageSender } from './../../../../../Contexts/Chatapp/Messages/domain/MessageSender';
 import { MessageCreatedAt } from './../../../../../Contexts/Chatapp/Messages/domain/MessageCreatedAt';
+import { MessageSenderValues } from './../../../../../Contexts/Chatapp/Messages/domain/MessageSenderValues';
 
 const randomMessage = (): Message => {
   const id = new MessageId(Uuid.random().value);
