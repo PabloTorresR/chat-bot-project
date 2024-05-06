@@ -19,16 +19,20 @@ const useConversations = () => {
   );
 
   const { sendMessage } = useSendMessageMutation({
-    conversationId: selectedConversation ?? '',
+    queryParams: { conversationId: selectedConversation ?? '', userId: user?.data.sub ?? '' },
     onMessageMessageSent: () => setIsMessageLoading(true),
     onMessageMessageReceived: () => setIsMessageLoading(false),
   });
   const { data: conversations, refetch: refetchConversations } = useConversationsQuery({
-    userId: user?.data.sub ?? '',
+    queryParams: {
+      userId: user?.data.sub ?? '',
+    },
   });
   const { data: messages } = useMessagesQuery({
-    conversationId: selectedConversation ?? '',
-    userId: user?.data.sub ?? '',
+    queryParams: {
+      conversationId: selectedConversation ?? '',
+      userId: user?.data.sub ?? '',
+    },
   });
 
   const setConversation = (conversationId: string) => {

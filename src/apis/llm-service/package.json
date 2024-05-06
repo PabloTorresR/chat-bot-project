@@ -1,7 +1,13 @@
 {
     "name": "llm-api",
-	"version": "1.0.0",
-    "scripts":{
-        "dev": "poetry run uvicorn app:app --host=0.0.0.0"
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "poetry run uvicorn app:app --host=0.0.0.0",
+        "serverless-offline": "yarn sls offline --httpPort 8001"
+    },
+    "devDependencies": {
+        "serverless-dotenv-plugin": "^4.0.2",
+        "serverless-offline": "^13.5.0",
+        "serverless-python-requirements": "^6.1.0"
     }
 }

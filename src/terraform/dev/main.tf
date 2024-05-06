@@ -33,3 +33,9 @@ module "database" {
   source           = "../_modules/database-module"
   environment_name = local.environment_name
 }
+
+module "security" {
+  source           = "../_modules/security-module"
+  environment_name = local.environment_name
+  region           = var.region
+}

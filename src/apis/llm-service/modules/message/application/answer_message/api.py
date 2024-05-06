@@ -26,3 +26,8 @@ async def answer_message(
     ]
 
     return await service.run(message, message_history)
+
+
+@router.get(path="/", name="Status")
+async def status():
+    return {"status": "ok"}

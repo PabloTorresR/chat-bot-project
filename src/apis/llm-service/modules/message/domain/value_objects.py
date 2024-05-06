@@ -5,7 +5,6 @@ from core.pydantic import ConStr
 from datetime import datetime
 from pydantic import BaseModel
 from enum import Enum
-from pydantic import BaseModel
 
 
 class MessageContent(ConStr):

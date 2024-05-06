@@ -2,7 +2,7 @@
 name = "llm-service"
 version = "0.1.0"
 description = ""
-authors = ["Pablo Torres <pablo.torres@check24.de>"]
+authors = ["Pablo Torres"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -15,6 +15,7 @@ langchain = "^0.1.11"
 langchain-openai = "^0.0.8"
 pydantic = "^2.6.4"
 pydantic-settings = "^2.2.1"
+pydantic-core = "^2.18.2"
 
 
 
