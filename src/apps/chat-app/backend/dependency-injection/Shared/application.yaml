@@ -33,7 +33,7 @@ services:
 
   Chatapp.Shared.domain.MessageAnswerGenerator:
     class: ../../../../../Contexts/Chatapp/Messages/infrastructure/services/LlmServiceMessageAnswerGenerator
-    arguments: ['%env(LLM_SERVICE_ENDPOINT)%']
+    arguments: ['%env(LLM_SERVICE_URL)%']
 
   Chatapp.Shared.domain.CommandBus:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus

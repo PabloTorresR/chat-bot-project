@@ -1,10 +1,9 @@
-import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { formatDateToyyyyMMDD } from '../../../utils/time';
 import { Message } from '../types/message';
-import { API_PATHS } from '../constants/api';
 import { FilterType } from '../types/query';
 import { GET_MESSAGES_QUERY_PARAMS } from '../enums/query-params';
+import { getMessages } from '../api/messages';
 
 interface Props {
   queryParams: { [key in GET_MESSAGES_QUERY_PARAMS]: string | null };
@@ -29,12 +28,12 @@ const useMessagesQuery = ({ queryParams, startDate, endDate }: Props) => {
         formattedStartDate,
         formattedEndDate,
       );
-      const { data } = await axios.get(`${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.messages}`, {
+      const { data } = await getMessages({
         params: {
           filters,
         },
       });
-      return orderByDate(data) ?? [];
+      return orderByDate(data as Message[]) ?? [];
     },
   });
 };

@@ -10,7 +10,9 @@ class MessageBuilder {
   };
 
   private _getConversationHistory = (conversationHistory?: Message[]): HistoryMessage[] => {
-    return conversationHistory?.map(({ content, createdAt, sender }) => ({ content, createdAt, sender })) ?? [];
+    return (
+      conversationHistory?.map(({ content, createdAt, sender }) => ({ content, createdAt, sender })) ?? []
+    ).reverse();
   };
 
   public buildPostMessageDto = (

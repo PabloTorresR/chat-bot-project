@@ -11,4 +11,5 @@ const CONVERSATIONS_SERVICE = `${import.meta.env.VITE_API_GATEWAY_URL}${API_PATH
 export const postConversations = (body: PostConversationsRequest) =>
   axios.post<PostConversationsResponse>(`${CONVERSATIONS_SERVICE}`, body);
 
-export const getConversations = () => axios.get<GetConversationsResponse>(`${CONVERSATIONS_SERVICE}`);
+export const getConversations = queryParams =>
+  axios.get<GetConversationsResponse>(`${CONVERSATIONS_SERVICE}`, queryParams);

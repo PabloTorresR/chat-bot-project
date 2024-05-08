@@ -8,4 +8,4 @@ const MESSAGES_SERVICE = `${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.mes
 export const postMessages = (body: PostMessagesRequest) =>
   axios.post<PostMessagesResponse>(`${MESSAGES_SERVICE}`, body);
 
-export const getMessages = () => axios.get<GetMessagesResponse>(`${MESSAGES_SERVICE}`);
+export const getMessages = queryParams => axios.get<GetMessagesResponse>(`${MESSAGES_SERVICE}`, queryParams);
