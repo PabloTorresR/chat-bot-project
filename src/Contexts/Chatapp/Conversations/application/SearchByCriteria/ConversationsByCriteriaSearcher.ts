@@ -9,7 +9,6 @@ export class ConversationsByCriteriaSearcher {
 
   async run(filters: Filters, order: Order, limit?: number, offset?: number): Promise<ConversationsResponse> {
     const criteria = new Criteria(filters, order, limit, offset);
-
     const conversations = await this.repository.matching(criteria);
 
     return new ConversationsResponse(conversations);

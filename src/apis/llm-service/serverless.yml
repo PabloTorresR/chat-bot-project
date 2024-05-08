@@ -41,5 +41,5 @@ custom:
     dockerImage: public.ecr.aws/sam/build-python3.11:latest-arm64
     dockerRunCmdExtraArgs: [ '--platform', 'linux/arm64/v8' ]
     # NOTE: this two lines prevent some caching problems with serverless-python-requirements, uncomment in case of getting errors
-    # useStaticCache: false
-    # useDownloadCache: false
+    useStaticCache: false
+    useDownloadCache: false

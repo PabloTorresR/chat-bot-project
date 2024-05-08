@@ -4,12 +4,12 @@ import { MessageContentLengthExceeded } from './MessageContentLengthExceeded';
 export class MessageContent extends StringValueObject {
   constructor(value: string) {
     super(value);
-    this.ensureLengthIsLessThan300Characters(value);
+    this.ensureLengthIsLessThan3000Characters(value);
   }
 
-  private ensureLengthIsLessThan300Characters(value: string): void {
-    if (value.length > 300) {
-      throw new MessageContentLengthExceeded(`The Message content <${value}> has more than 300 characters`);
+  private ensureLengthIsLessThan3000Characters(value: string): void {
+    if (value.length > 3000) {
+      throw new MessageContentLengthExceeded(`The Message content <${value}> has more than 3000 characters`);
     }
   }
 }

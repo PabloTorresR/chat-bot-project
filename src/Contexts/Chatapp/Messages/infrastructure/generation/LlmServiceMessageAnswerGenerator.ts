@@ -10,10 +10,10 @@ export class LlmServiceMessageAnswerGenerator implements MessageAnswerGenerator 
   }
 
   async generate(body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
-    const url = this.getAnswerMessageurl();
-    if (!url) {
+    if (!this.LLM_SERVICE_URL) {
       throw new Error('LLM_SERVICE_URL is not defined');
     }
+    const url = this.getAnswerMessageurl();
     try {
       return (await axios.post(url, body)).data;
     } catch (e) {
