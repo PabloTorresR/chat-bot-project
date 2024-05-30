@@ -23,6 +23,14 @@ const chatappConfig = convict({
       default: 'eu-central-1',
     },
   },
+  awsEventBridge: {
+    region: {
+      doc: 'AWS Region in which the EventBridge is located',
+      format: String,
+      env: 'EVENTBRIDGE_REGION',
+      default: 'eu-central-1',
+    },
+  },
   // typeorm: {
   //   host: {
   //     doc: 'The database host',

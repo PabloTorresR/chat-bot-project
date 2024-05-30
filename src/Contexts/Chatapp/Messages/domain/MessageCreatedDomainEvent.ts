@@ -8,7 +8,7 @@ type CreateMessageDomainEventAttributes = {
   readonly sender: string;
 };
 export class MessageCreatedDomainEvent extends DomainEvent {
-  static readonly EVENT_NAME = 'message.created';
+  static readonly EVENT_NAME = 'chatapp.message.created';
 
   readonly content: string;
   readonly conversationId: string;

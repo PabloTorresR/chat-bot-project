@@ -1,18 +1,18 @@
 import { EventBridgeClient, PutEventsCommand } from '@aws-sdk/client-eventbridge';
-import { EventBus } from '../../../../Shared/domain/EventBus';
+import { EventBus } from '../../../domain/EventBus';
 import { DomainEventFailoverPublisher } from '../DomainEventFailoverPublisher/DomainEventFailoverPublisher';
-import { DomainEvent } from '../../../../Shared/domain/DomainEvent';
+import { DomainEvent } from '../../../domain/DomainEvent';
 import { DomainEventJsonSerializer } from '../DomainEventJsonSerializer';
 
 export class AwsEventBridgeEventBus implements EventBus {
   private readonly client = new EventBridgeClient({
-    region: 'us-east-1',
+    region: this.region,
   });
 
-  private readonly eventBusName = 'codely.domain_events';
-  private readonly projectName = 'codely';
+  private readonly eventBusName = 'chatapp.domain_events';
+  private readonly projectName = 'chatapp';
 
-  constructor(private readonly failover: DomainEventFailoverPublisher) {}
+  constructor(private readonly failover: DomainEventFailoverPublisher, private readonly region: string) {}
 
   async publish(events: DomainEvent[]): Promise<void> {
     const promises = events.map(async event => {
