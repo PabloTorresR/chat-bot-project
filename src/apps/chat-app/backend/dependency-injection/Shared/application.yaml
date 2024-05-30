@@ -45,16 +45,36 @@ services:
 
   Chatapp.Shared.domain.EventBus:
     factory:
-      class: ../../../../../Contexts/Chatapp/Shared/infrastructure/RabbitMQ/RabbitMQEventBusFactory
+      class: ../../../../../Contexts/Chatapp/Shared/infrastructure/AwsEventBridge/AwsEventBridgeEventBusFactory
       method: 'create'
     arguments:
       [
         '@Chatapp.Shared.DomainEventFailoverPublisher',
-        '@Chatapp.Shared.RabbitMQConnection',
-        '@Chatapp.Shared.RabbitMQqueueFormatter',
-        '@Chatapp.Shared.RabbitMQConfig',
+        '@Chatapp.Shared.AwsEventBridgeConfig',
       ]
 
+  Chatapp.Shared.DomainEventFailoverPublisher:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher
+    arguments: ['@Chatapp.Shared.ConnectionManager', '%env(NODE_ENV)%']
+
+  Chatapp.Shared.AwsEventBridgeConfig:
+    factory:
+      class: ../../../../../Contexts/Chatapp/Shared/infrastructure/AwsEventBridge/AwsEventBridgeConfigFactory
+      method: 'createConfig'
+
+## RabbitMQ Config for being used as EventBus
+
+  # Chatapp.Shared.domain.EventBus:
+  #   factory:
+  #     class: ../../../../../Contexts/Chatapp/Shared/infrastructure/RabbitMQ/AwsEventBridgeEventBus
+  #     method: 'create'
+  #   arguments:
+  #     [
+  #       '@Chatapp.Shared.DomainEventFailoverPublisher',
+  #       '@Chatapp.Shared.RabbitMQConnection',
+  #       '@Chatapp.Shared.RabbitMQqueueFormatter',
+  #       '@Chatapp.Shared.RabbitMQConfig',
+  #     ]
   Chatapp.Shared.RabbitMQQueueFormatter:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter
     arguments: ['chatapp']
@@ -67,9 +87,6 @@ services:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter
     arguments: ['chatapp']
 
-  Chatapp.Shared.DomainEventFailoverPublisher:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher
-    arguments: ['@Chatapp.Shared.ConnectionManager', '%env(NODE_ENV)%']
 
   Chatapp.Shared.RabbitMQConfig:
     factory:
