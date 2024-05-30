@@ -39,3 +39,7 @@ module "security" {
   environment_name = local.environment_name
   region           = var.region
 }
+module "event_sourcing" {
+  source           = "../_modules/event-sourcing-module/"
+  environment_name = local.environment_name
+}

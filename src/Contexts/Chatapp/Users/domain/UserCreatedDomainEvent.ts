@@ -6,7 +6,7 @@ type CreateUserDomainEventAttributes = {
 };
 
 export class UserCreatedDomainEvent extends DomainEvent {
-  static readonly EVENT_NAME = 'user.created';
+  static readonly EVENT_NAME = 'chatapp.user.created';
 
   readonly name: string;
   readonly email: string;

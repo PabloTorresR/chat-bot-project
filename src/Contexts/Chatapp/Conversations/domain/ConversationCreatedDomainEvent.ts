@@ -7,7 +7,7 @@ export type CreateConversationDomainEventAttributes = {
 };
 
 export class ConversationCreatedDomainEvent extends DomainEvent {
-  static readonly EVENT_NAME = 'conversation.created';
+  static readonly EVENT_NAME = 'chatapp.conversation.created';
 
   readonly title: string;
   readonly userId: string;

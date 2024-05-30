@@ -21,6 +21,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@chat-app/styles': path.resolve(__dirname, './src/styles'),
+      '@chat-app/assets': path.resolve(__dirname, './src/assets'),
       '@chat-app': path.resolve(__dirname, './src/app'),
       '@': path.resolve(__dirname, './src'),
     },

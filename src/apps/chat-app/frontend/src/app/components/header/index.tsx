@@ -4,7 +4,7 @@ import { UserBadge } from '@chat-app/features/user/components/user-badge';
 
 const Header = memo(() => (
   <header className={styles.header}>
-    <h1>Chatero</h1>
+    <h1>Palabro</h1>
     <UserBadge />
   </header>
 ));
