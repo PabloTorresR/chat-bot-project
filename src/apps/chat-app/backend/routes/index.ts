@@ -1,17 +1,18 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, Express } from 'express';
 import { sync } from 'glob';
 import { ValidationError, validationResult } from 'express-validator';
 import httpStatus from 'http-status';
 import { normalizePath } from '../utils/path';
-
+import conversationsRoute from './conversations.route';
+import messagesRoute from './messages.route';
+import statusRoute from './status.route';
 export function registerRoutes(router: Router) {
-  const routes = sync(normalizePath(__dirname) + '/**/*.route.*');
-  console.log('Registering route:', routes)
+  // const routes = sync(normalizePath(__dirname) + '/**/*.route.*');
+  const routes = [conversationsRoute, messagesRoute, statusRoute]
   routes.map(route => register(route, router));
 }
 
-function register(routePath: string, router: Router) {
-  const route = require(routePath);
+function register(route, router: Router) {
   route.register(router);
 }
 

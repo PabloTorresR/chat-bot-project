@@ -5,7 +5,7 @@ import { MessagesGetController } from '../controllers/MessagesGetController';
 import { body } from 'express-validator';
 import { validateReqSchema } from '.';
 
-export const register = (app: Express) => {
+const register = (app: Express) => {
   const reqSchema = [
     body('message.id').exists().isString(),
     body('message.content').exists().isString(),
@@ -25,3 +25,5 @@ export const register = (app: Express) => {
   );
   app.get('/messages', messagesGetController.run.bind(messagesGetController));
 };
+
+export default { register };

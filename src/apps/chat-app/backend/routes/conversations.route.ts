@@ -3,7 +3,7 @@ import container from '../dependency-injection';
 import { ConversationsPostController } from '../controllers/ConversationsPostController';
 import { ConversationsGetController } from '../controllers/ConversationsGetController';
 
-export const register = (app: Express) => {
+const register = (app: Express) => {
   const conversationsPostController: ConversationsPostController = container.get(
     'Apps.Chatapp.Backend.controllers.ConversationsPostController',
   );
@@ -13,3 +13,5 @@ export const register = (app: Express) => {
   app.post('/conversations', conversationsPostController.run.bind(conversationsPostController));
   app.get('/conversations', conversationsGetController.run.bind(conversationsGetController));
 };
+
+export default { register };
