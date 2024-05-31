@@ -4,7 +4,7 @@ import useMessagesQuery from '../queries/useMessagesQuery';
 import conversationService from '../services/conversation';
 import { Message } from '../types/message';
 import useSendMessageMutation from '../mutations/useSendMessageMutation';
-import { PostMessagesRequest } from 'libs/dtos/chatapp/messages';
+import { PostMessagesRequest } from 'dtos-lib/chatapp/messages';
 import { useUserSelector } from '@chat-app/features/user/context/selectors/user';
 
 const useConversations = () => {

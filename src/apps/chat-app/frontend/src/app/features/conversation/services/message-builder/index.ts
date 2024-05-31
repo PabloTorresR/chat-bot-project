@@ -2,7 +2,7 @@ import { MessageSender } from '../../enums/message-sender';
 import { HistoryMessage, Message } from '../../types/message';
 import { v4 as uuidv4 } from 'uuid';
 import { getNowTimestamp } from '../../../../utils/time';
-import { PostMessagesRequest } from 'libs/dtos/chatapp/messages';
+import { PostMessagesRequest } from 'dtos-lib/chatapp/messages';
 
 class MessageBuilder {
   private _getTimestamp = (): string => {

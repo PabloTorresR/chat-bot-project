@@ -1,5 +1,5 @@
-import AwsEventBridgeConfig from 'Contexts/Shared/infrastructure/EventBus/AwsEventBridge/AwsEventBridgeConfig';
-import { DomainEventFailoverPublisher } from '../../../..//Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher';
+import AwsEventBridgeConfig from '../../../../Shared/infrastructure/EventBus/AwsEventBridge/AwsEventBridgeConfig';
+import { DomainEventFailoverPublisher } from '../../../../Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher';
 import { AwsEventBridgeEventBus } from '../../../../Shared/infrastructure/EventBus/AwsEventBridge/AwsEventBridgeEventBus';
 
 export class AwsEventBridgeEventBusFactory {

@@ -1,4 +1,4 @@
-import { PostAnswerMessageRequest, PostAnswerMessageResponse } from 'libs/dtos/llm-service/messages';
+import { PostAnswerMessageRequest, PostAnswerMessageResponse } from 'dtos-lib/llm-service/messages';
 import { MessageAnswerGenerator } from '../../domain/MessageAnswerGenerator';
 import axios from 'axios';
 

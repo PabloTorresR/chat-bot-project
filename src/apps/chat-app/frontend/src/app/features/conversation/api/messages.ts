@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_PATHS } from '../constants/api';
-import { PostMessagesResponse, PostMessagesRequest, GetMessagesResponse } from 'libs/dtos/chatapp/messages';
+import { PostMessagesResponse, PostMessagesRequest, GetMessagesResponse } from 'dtos-lib/chatapp/messages';
 
 const MESSAGES_SERVICE = `${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.messages}`;
 

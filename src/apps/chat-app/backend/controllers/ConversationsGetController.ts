@@ -4,7 +4,7 @@ import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';
 import { SearchConversationsByCriteriaQuery } from '../../../../Contexts/Chatapp/Conversations/application/SearchByCriteria/SearchConversationsByCriteriaQuery';
 import { ConversationsResponse } from '../../../../Contexts/Chatapp/Conversations/application/ConversationsResponse';
-import { GetConversationsResponse } from 'libs/dtos/chatapp/conversations';
+import { GetConversationsResponse } from 'dtos-lib/chatapp/conversations';
 
 type FilterType = { value: string; operator: string; field: string };
 

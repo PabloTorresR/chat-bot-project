@@ -4,7 +4,7 @@ import {
   GetConversationsResponse,
   PostConversationsRequest,
   PostConversationsResponse,
-} from 'libs/dtos/chatapp/conversations';
+} from 'dtos-lib/chatapp/conversations';
 
 const CONVERSATIONS_SERVICE = `${import.meta.env.VITE_API_GATEWAY_URL}${API_PATHS.conversations}`;
 //NOTE: add our http client here with interceptor or whatever we need

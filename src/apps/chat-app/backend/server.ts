@@ -9,6 +9,7 @@ import httpStatus from 'http-status';
 import { registerRoutes } from './routes';
 import CorsMiddleware from './middleware/cors';
 import { ALLOWED_ORIGINS } from './constants/allowed-origins';
+import { createServer } from 'aws-serverless-express'
 
 export class Server {
   private express: express.Express;
@@ -30,7 +31,6 @@ export class Server {
     const router = Router();
     router.use(errorHandler());
     this.express.use(router);
-
     registerRoutes(router);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -69,5 +69,9 @@ export class Server {
 
       return resolve();
     });
+  }
+
+  getServer() {
+    return createServer(this.express);
   }
 }

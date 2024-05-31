@@ -1,14 +1,50 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: chatapp
 service: chat-app-backend
+
+useDotenv: true
 
 provider:
   name: aws
-  runtime: nodejs20.12
+  runtime: nodejs20.x
   stage: dev
   region: eu-central-1
+  profile: 975050254610_AdministratorAccess
+  environment:
+    NODE_ENV: ${env:NODE_ENV}
+    LLM_SERVICE_URL: ${env:LLM_SERVICE_URL}
 
 functions:
   app:
-    handler: index.app
+    handler: start.handler
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - httpApi: "*"
+    package:
+      patterns:
+        - "**"
+        - "!node_modules/**"
+        - "!package.json"
+        - "!package-lock.json"
+        - "!.serverless/**"
+        - "!venv/**"
+        - "!env/**"
+
+custom:
+  serverless-offline:
+    httpPort: 5001
+  bundle:
+    linting: false
+    ignorePackages:
+      - aws-sdk
+      - serverless-offline
+    copyFiles:
+      - from: "public/*"
+        to: "./"
+
+build:
+  esbuild: false
+
+plugins:
+  - serverless-bundle
+  - serverless-offline
+  - serverless-plugin-monorepo

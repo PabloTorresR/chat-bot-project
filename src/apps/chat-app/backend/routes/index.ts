@@ -6,6 +6,7 @@ import { normalizePath } from '../utils/path';
 
 export function registerRoutes(router: Router) {
   const routes = sync(normalizePath(__dirname) + '/**/*.route.*');
+  console.log('Registering route:', routes)
   routes.map(route => register(route, router));
 }
 
