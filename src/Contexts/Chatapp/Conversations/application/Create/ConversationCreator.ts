@@ -3,7 +3,7 @@ import { ConversationId } from '../../../Shared/domain/ConversationId';
 import { Conversation } from '../../domain/Conversation';
 import { ConversationTitle } from '../../domain/ConversationTitle';
 import { ConversationRepository } from '../../domain/ConversationRepository';
-import { UserId } from 'Contexts/Chatapp/Shared/domain/UserId';
+import { UserId } from '../../../Shared/domain/UserId';
 
 export class ConversationCreator {
   constructor(private repository: ConversationRepository, private eventBus: EventBus) {}

@@ -2,7 +2,7 @@ import { postMessages } from '../api/messages';
 import { Message } from '../types/message';
 import { queryClient } from '../../../../config/react-query';
 import { useMutation } from '@tanstack/react-query';
-import { PostMessagesRequest } from 'libs/dtos/chatapp/messages';
+import { PostMessagesRequest } from 'dtos-lib/chatapp/messages';
 import { GET_MESSAGES_QUERY_PARAMS } from '../enums/query-params';
 
 interface Props {

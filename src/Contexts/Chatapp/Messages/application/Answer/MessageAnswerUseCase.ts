@@ -1,7 +1,7 @@
 import { CommandBus } from '../../../../Shared/domain/CommandBus';
 import { MessageAnswerGenerator } from '../../domain/MessageAnswerGenerator';
 import { CreateMessageCommand } from '../../domain/CreateMessageCommand';
-import { PostMessagesRequest, PostMessagesResponse } from 'libs/dtos/chatapp/messages';
+import { PostMessagesRequest, PostMessagesResponse } from 'dtos-lib/chatapp/messages';
 import { v4 as uuidv4 } from 'uuid';
 import { MessageSenderValues } from '../../domain/MessageSenderValues';
 

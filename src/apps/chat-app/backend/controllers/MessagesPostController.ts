@@ -1,8 +1,8 @@
 import { Response, Request } from 'express';
 import httpStatus from 'http-status';
 import { Controller } from './Controller';
-import { PostMessagesRequest, PostMessagesResponse } from 'libs/dtos/chatapp/messages';
-import { MessageAnswerUseCase } from 'Contexts/Chatapp/Messages/application/Answer/MessageAnswerUseCase';
+import { PostMessagesRequest, PostMessagesResponse } from 'dtos-lib/chatapp/messages';
+import { MessageAnswerUseCase } from '../../../../Contexts/Chatapp/Messages/application/Answer/MessageAnswerUseCase';
 
 export class MessagesPostController implements Controller {
   constructor(private readonly messageAnswerUseCase: MessageAnswerUseCase) {}

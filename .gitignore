@@ -60,3 +60,5 @@ terraform.rc
 # ignore serverless framework files
 .serverless/
 .requirements
+
+.webpack
