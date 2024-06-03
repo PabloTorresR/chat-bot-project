@@ -6,10 +6,9 @@
     "scripts": {
         "build": "esbuild start.ts --bundle --platform=node --target=node20 --outdir=dist",
         "test": "jest --passWithNoTests",
-        "dev local": "ts-node-dev --ignore-watch node_modules start.ts",
-        "dev": "sls offline",
-        "setup-dev": "docker compose up -d mongo rabbitmq",
-        "serverless-offline": "yarn sls offline --httpPort 5002",
+        "dev:local": "ts-node-dev --ignore-watch node_modules start.ts",
+        "dev:sls": "sls offline",
+        "setup-dev:local": "docker compose up -d mongo rabbitmq",
         "generate-eventbridge_sqs-terraform_files": "ts-node ./scripts/generate-eventbridge_sqs-terraform_files.ts"
     },
     "author": "PTman",
@@ -26,6 +25,7 @@
         "compression": "^1.7.4",
         "convict": "^6.2.4",
         "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
         "dtos-lib": "*",
         "express": "^4.18.2",
         "express-promise-router": "^4.1.1",

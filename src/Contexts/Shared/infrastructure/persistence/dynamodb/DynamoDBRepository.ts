@@ -11,7 +11,7 @@ export abstract class DynamoDBRepository<T extends AggregateRoot> {
   }
 
   protected getEnv(): string {
-    return this.NODE_ENV ?? '';
+    return process.env.NODE_ENV ?? '';
   }
 
   protected abstract tableName(): string;

@@ -13,7 +13,8 @@
   ],
   "scripts": {
     "test": "turbo run test",
-    "dev": "turbo run dev",
+    "dev:local": "turbo run dev dev:local",
+    "dev:sls": "turbo run dev dev:sls",
     "find-circular-deps": "madge . -c",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },

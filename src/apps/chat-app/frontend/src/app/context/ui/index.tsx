@@ -1,13 +1,14 @@
+import useIsExpanded from '@chat-app/hooks/is-expanded';
 import { WithChildren } from '@chat-app/types/with-children';
-import React, { useState } from 'react';
+import React from 'react';
 import { createContext } from 'use-context-selector';
 
 const useContextData = () => {
-  const [state, setState] = useState();
+  const { isExpanded: isSidebarExpanded, toggle: toggleIsSidebarExpanded } = useIsExpanded(true);
   return {
-    state: {
-      value: state,
-      actions: { setState },
+    isSidebarExpanded: {
+      value: isSidebarExpanded,
+      actions: { toggleIsSidebarExpanded },
     },
   };
 };

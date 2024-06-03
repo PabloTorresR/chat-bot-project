@@ -4,17 +4,26 @@ import MessageItem from './components/message-item';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
 import { MessageSender } from '../../enums/message-sender';
-import { formatTimestamp } from '../../../../utils/time';
+import { formatTimestamp, getNowTimestamp } from '../../../../utils/time';
 import { useChatScroll } from '../../../../hooks/use-chat-scroll';
 import useConversations from '../../hooks/useConversations';
 import DotTyping from '@chat-app/components/dot-typing';
 import USER_DEFAULT_AVATAR from '/SVG/icn_3d_person.svg';
+import { DefaultMessages } from '../../constants/default-messages';
 
 const Conversation = () => {
   const { messages, isSendMessageLoading } = useConversations();
   const chatRef = useChatScroll(messages);
   return (
     <div className={styles.conversation} ref={chatRef}>
+      <MessageItem
+        className={classNames(styles.conversation__message)}
+        key={'first-message-key'}
+        messageSender={MessageSender.BOT}
+        content={DefaultMessages.FIRST_BOT_MESSAGE}
+        isLeftSide
+        dateTime={formatTimestamp(getNowTimestamp())}
+      />
       {messages?.map(message => (
         <MessageItem
           className={classNames(
