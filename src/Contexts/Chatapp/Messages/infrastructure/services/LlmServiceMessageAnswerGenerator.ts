@@ -6,13 +6,14 @@ export class LlmServiceMessageAnswerGenerator implements MessageAnswerGenerator 
   constructor(private readonly LLM_SERVICE_URL: string) {}
 
   private getAnswerMessageurl(): string {
-    return `${this.LLM_SERVICE_URL}/message/answer`;
+    const url = process.env.LLM_SERVICE_URL;
+    return `${url}/message/answer`;
   }
 
   async generate(body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
-    if (!this.LLM_SERVICE_URL) {
-      throw new Error('LLM_SERVICE_URL is not defined');
-    }
+    // if (!this.LLM_SERVICE_URL) {
+    //   throw new Error('LLM_SERVICE_URL is not defined');
+    // }
     const url = this.getAnswerMessageurl();
     try {
       return (await axios.post(url, body)).data;

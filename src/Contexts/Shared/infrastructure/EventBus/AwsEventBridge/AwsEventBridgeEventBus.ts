@@ -34,8 +34,6 @@ export class AwsEventBridgeEventBus implements EventBus {
 
   private async publishRaw(eventId: string, eventName: string, serializedEvent: string) {
     try {
-      console.log('PUBLISHING');
-
       return await this.client.send(
         new PutEventsCommand({
           Entries: [

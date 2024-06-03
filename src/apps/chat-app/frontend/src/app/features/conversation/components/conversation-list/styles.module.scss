@@ -8,6 +8,12 @@
   align-items: center;
   gap: 32px;
   height: 100%;
+  background-color: rgba(255, 255, 255, 0.028);
+  backdrop-filter: blur(5px);
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  padding: 16px;
+  padding-bottom: 0;
 
   &__newChat {
     width: 240px;

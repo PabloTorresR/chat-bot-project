@@ -1,18 +1,31 @@
 {
-    "$schema": "https://turbo.build/schema.json",
-    "pipeline": {
-        "build": {
-            "outputs": ["dist/**"]
-          },
-        "test":{},
-        "type-check": {},
-        "dev":{
-          "dependsOn":["^setup-dev", "setup-dev"],
-          "cache": false,
-          "persistent": true
-        },
-        "setup-dev":{
-          "cache": false
-        }
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "test": {},
+    "type-check": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:sls": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:local": {
+      "dependsOn": [
+        "^setup-dev:local",
+        "setup-dev:local"
+      ],
+      "cache": false,
+      "persistent": true
+    },
+    "setup-dev:local": {
+      "cache": false
     }
   }
+}
