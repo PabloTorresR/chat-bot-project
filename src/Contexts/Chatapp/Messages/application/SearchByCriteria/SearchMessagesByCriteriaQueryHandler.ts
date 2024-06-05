@@ -9,7 +9,7 @@ import { SearchMessagesByCriteriaQuery } from './SearchMessagesByCriteriaQuery';
 export class SearchMessagesByCriteriaQueryHandler
   implements QueryHandler<SearchMessagesByCriteriaQuery, MessagesResponse>
 {
-  constructor(private searcher: MessagesByCriteriaSearcher) {}
+  constructor(private messagesSearcher: MessagesByCriteriaSearcher) {}
 
   subscribedTo(): Query {
     return SearchMessagesByCriteriaQuery;
@@ -18,6 +18,6 @@ export class SearchMessagesByCriteriaQueryHandler
   handle(query: SearchMessagesByCriteriaQuery): Promise<MessagesResponse> {
     const filters = Filters.fromValues(query.filters);
     const order = Order.fromValues(query.orderBy, query.orderType);
-    return this.searcher.run(filters, order, query.limit, query.offset);
+    return this.messagesSearcher.run(filters, order, query.limit, query.offset);
   }
 }

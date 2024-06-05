@@ -23,7 +23,7 @@ export class DynamoDBConversationRepository extends DynamoDBRepository<Conversat
   public async searchAll(): Promise<Conversation[]> {
     const table = this.tableName();
     const client = this.getClient();
-    const result = await (await client).send(new ScanCommand({ TableName: table }));
+    const result = await client.send(new ScanCommand({ TableName: table }));
     const documents = result.Items;
 
     return (

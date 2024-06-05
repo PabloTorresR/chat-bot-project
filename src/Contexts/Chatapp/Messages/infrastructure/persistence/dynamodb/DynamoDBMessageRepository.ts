@@ -26,7 +26,7 @@ export class DynamoDBMessageRepository extends DynamoDBRepository<Message> imple
   public async searchAll(): Promise<Message[]> {
     const table = this.tableName();
     const client = this.getClient();
-    const result = await (await client).send(new ScanCommand({ TableName: table }));
+    const result = await client.send(new ScanCommand({ TableName: table }));
     const documents = result.Items;
     return (
       documents?.map(document =>

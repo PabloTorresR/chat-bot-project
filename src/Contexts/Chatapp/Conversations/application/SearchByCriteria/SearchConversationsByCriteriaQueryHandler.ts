@@ -9,7 +9,7 @@ import { SearchConversationsByCriteriaQuery } from './SearchConversationsByCrite
 export class SearchConversationsByCriteriaQueryHandler
   implements QueryHandler<SearchConversationsByCriteriaQuery, ConversationsResponse>
 {
-  constructor(private searcher: ConversationsByCriteriaSearcher) {}
+  constructor(private conversationsSearcher: ConversationsByCriteriaSearcher) {}
 
   subscribedTo(): Query {
     return SearchConversationsByCriteriaQuery;
@@ -19,6 +19,6 @@ export class SearchConversationsByCriteriaQueryHandler
     const filters = Filters.fromValues(query.filters);
     const order = Order.fromValues(query.orderBy, query.orderType);
 
-    return this.searcher.run(filters, order, query.limit, query.offset);
+    return this.conversationsSearcher.run(filters, order, query.limit, query.offset);
   }
 }

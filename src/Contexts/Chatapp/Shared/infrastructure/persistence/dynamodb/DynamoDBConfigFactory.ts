@@ -3,12 +3,23 @@ import DynamoDBConfig from '../../../../../Shared/infrastructure/persistence/dyn
 import config from '../../config';
 
 export class DynamoDBConfigFactory {
-  protected static async getCredentials() {
-    return fromEnv()();
+  private static credentials: {
+    accessKeyId: string;
+    secretAccessKey: string;
+    sessionToken?: string;
+  } = {
+    accessKeyId: '',
+    secretAccessKey: '',
+    sessionToken: '',
+  };
+
+  static async getCredentials() {
+    console.log('Getting credentials');
+    this.credentials = await fromEnv()();
   }
 
   static async createConfig(): Promise<DynamoDBConfig> {
-    const credentials = await this.getCredentials();
-    return { ...config.get('dynamodb'), credentials };
+    console.log('Creating config');
+    return { ...config.get('dynamodb'), credentials: this.credentials };
   }
 }

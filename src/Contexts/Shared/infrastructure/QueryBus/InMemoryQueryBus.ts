@@ -4,10 +4,10 @@ import { QueryBus } from '../../domain/QueryBus';
 import { QueryHandlers } from './QueryHandlers';
 
 export class InMemoryQueryBus implements QueryBus {
-  constructor(private queryHandlersInformation: QueryHandlers) {}
+  constructor(private queryHandlers: QueryHandlers) {}
 
   async ask<R extends Response>(query: Query): Promise<R> {
-    const handler = this.queryHandlersInformation.get(query);
+    const handler = this.queryHandlers.get(query);
 
     return (await handler.handle(query)) as Promise<R>;
   }

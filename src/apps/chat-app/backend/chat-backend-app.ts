@@ -1,3 +1,4 @@
+import container from './dependency-injection-awilix';
 import { Server } from './server';
 
 export class ChatBackendApp {
@@ -5,8 +6,8 @@ export class ChatBackendApp {
 
   async start() {
     const port = process.env.PORT || '5001';
+    await container.resolve('dynamoDBConfig').getCredentials();
     this.server = new Server(port);
-
     return this.server.listen();
   }
 

@@ -6,7 +6,7 @@ import { DynamoDBCriteriaConverter } from './DynamoDBCriteriaConverter';
 export abstract class DynamoDBRepository<T extends AggregateRoot> {
   private criteriaConverter: DynamoDBCriteriaConverter;
 
-  constructor(private _client: Promise<DynamoDBDocumentClient>, private NODE_ENV: string) {
+  constructor(private _client: DynamoDBDocumentClient, private NODE_ENV: string) {
     this.criteriaConverter = new DynamoDBCriteriaConverter();
   }
 
@@ -24,7 +24,7 @@ export abstract class DynamoDBRepository<T extends AggregateRoot> {
         ...aggregateRoot.toPrimitives(),
       },
     };
-    await (await this._client).send(new PutCommand(params));
+    await this._client.send(new PutCommand(params));
   }
 
   protected async searchByCriteria<D>(criteria: Criteria): Promise<D[]> {
@@ -35,12 +35,12 @@ export abstract class DynamoDBRepository<T extends AggregateRoot> {
       ExpressionAttributeValues: query.expressionAttributeValues,
       Limit: query.limit,
     };
-    const result = await (await this._client).send(new ScanCommand(params));
+    const result = await this._client.send(new ScanCommand(params));
 
     return result.Items as D[];
   }
 
-  protected async getClient(): Promise<DynamoDBDocumentClient> {
-    return await this._client;
+  protected getClient(): DynamoDBDocumentClient {
+    return this._client;
   }
 }
