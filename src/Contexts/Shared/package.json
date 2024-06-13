@@ -1,6 +1,11 @@
 {
     "name": "shared-context",
     "scripts": {
-        "test": "jest --config=../../../jest.config.ts"
+        "test": "jest --config=../../../jest.config.ts",
+        "build": "tsc"
+    },
+    "type": "commonjs",
+    "dependencies": {
+        "@nestjs/common": "^10.0.0"
     }
 }

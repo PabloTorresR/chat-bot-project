@@ -5,8 +5,7 @@ import { Controller } from './Controller';
 import { SearchMessagesByCriteriaQuery } from '../../../../Contexts/Chatapp/Messages/application/SearchByCriteria/SearchMessagesByCriteriaQuery';
 import { MessagesResponse } from '../../../../Contexts/Chatapp/Messages/application/MessagesResponse';
 import { GetMessagesResponse } from 'dtos-lib/chatapp/messages';
-
-type FilterType = { value: string; operator: string; field: string };
+import { FilterType } from 'dtos-lib/chatapp/filters';
 
 export class MessagesGetController implements Controller {
   constructor(private readonly queryBus: QueryBus) {}

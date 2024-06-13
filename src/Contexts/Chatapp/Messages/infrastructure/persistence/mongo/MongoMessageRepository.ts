@@ -1,5 +1,5 @@
-import { MongoRepository } from '../../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
-import { Criteria } from '../../../../../Shared/domain/criteria/Criteria';
+import { MongoRepository } from 'shared-context/infrastructure/persistence/mongo/MongoRepository';
+import { Criteria } from 'shared-context/domain/criteria/Criteria';
 import { MessageRepository } from '../../../domain/MessageRepository';
 import { Message } from '../../../domain/Message';
 

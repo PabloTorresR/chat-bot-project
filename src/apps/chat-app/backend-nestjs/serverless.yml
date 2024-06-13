@@ -1,0 +1,59 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: chatapp
+service: chat-app-backend
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: dev
+  region: eu-central-1
+  profile: 975050254610_AdministratorAccess
+  timeout: 30
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource: "*"
+  memorySize: 1024
+  environment:
+    NODE_ENV: ${env:NODE_ENV}
+    LLM_SERVICE_URL: ${env:LLM_SERVICE_URL}
+
+functions:
+  app:
+    handler: src/main.handler
+    events:
+      - httpApi: "*"
+    package:
+      patterns:
+        - "**"
+        - "!node_modules/**"
+        - "!package.json"
+        - "!package-lock.json"
+        - "!.serverless/**"
+        - "!venv/**"
+        - "!env/**"
+        - "!**/*.spec.**"
+        - "!**/*.e2e-spec.**"
+
+custom:
+  serverless-offline:
+    httpPort: 5001
+  webpack:
+    webpackConfig: "webpack.config.js" # Name of webpack configuration file
+    includeModules: true # Node modules configuration for packaging
+    packager: "npm" # Packager that will be used to package your external modules
+
+build:
+  esbuild: false
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-monorepo
+  - serverless-webpack

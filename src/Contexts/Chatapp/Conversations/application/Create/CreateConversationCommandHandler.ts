@@ -1,6 +1,6 @@
-import { CommandHandler } from '../../../../Shared/domain/CommandHandler';
+import { CommandHandler } from 'shared-context/domain/CommandHandler';
 import { ConversationCreator } from './ConversationCreator';
-import { Command } from '../../../../Shared/domain/Command';
+import { Command } from 'shared-context/domain/Command';
 import { ConversationId } from '../../../Shared/domain/ConversationId';
 import { ConversationTitle } from '../../domain/ConversationTitle';
 import { CreateConversationCommand } from '../../domain/CreateConversationCommand';

@@ -1,7 +1,7 @@
-import { Filters } from '../../../../Shared/domain/criteria/Filters';
-import { Order } from '../../../../Shared/domain/criteria/Order';
-import { Query } from '../../../../Shared/domain/Query';
-import { QueryHandler } from '../../../../Shared/domain/QueryHandler';
+import { Filters } from 'shared-context/domain/criteria/Filters';
+import { Order } from 'shared-context/domain/criteria/Order';
+import { Query } from 'shared-context/domain/Query';
+import { QueryHandler } from 'shared-context/domain/QueryHandler';
 import { MessagesResponse } from '../MessagesResponse';
 import { MessagesByCriteriaSearcher } from './MessagesByCriteriaSearcher';
 import { SearchMessagesByCriteriaQuery } from './SearchMessagesByCriteriaQuery';

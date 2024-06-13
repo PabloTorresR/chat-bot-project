@@ -1,4 +1,4 @@
-import { EventBus } from '../../../../Shared/domain/EventBus';
+import { EventBus } from 'shared-context/domain/EventBus';
 import { ConversationId } from '../../../Shared/domain/ConversationId';
 import { Conversation } from '../../domain/Conversation';
 import { ConversationTitle } from '../../domain/ConversationTitle';

@@ -1,9 +1,11 @@
-import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
-import { Filters } from '../../../../Shared/domain/criteria/Filters';
-import { Order } from '../../../../Shared/domain/criteria/Order';
+import { Injectable } from '@nestjs/common';
+import { Criteria } from 'shared-context/domain/criteria/Criteria';
+import { Filters } from 'shared-context/domain/criteria/Filters';
+import { Order } from 'shared-context/domain/criteria/Order';
 import { ConversationRepository } from '../../domain/ConversationRepository';
 import { ConversationsResponse } from '../ConversationsResponse';
 
+@Injectable()
 export class ConversationsByCriteriaSearcher {
   constructor(private repository: ConversationRepository) {}
 

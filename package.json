@@ -6,6 +6,7 @@
   "workspaces": [
     "src/apps/*/frontend",
     "src/apps/*/backend",
+    "src/apps/*/backend-nestjs",
     "src/apis/*",
     "src/libs/*",
     "src/Contexts/*",
@@ -23,6 +24,7 @@
   "dependencies": {
     "@aws-sdk/credential-providers": "^3.556.0",
     "@aws-sdk/lib-dynamodb": "^3.556.0",
+    "@nestjs/cqrs": "^10.2.7",
     "amqplib": "^0.10.3",
     "axios": "^1.6.5",
     "compression": "^1.7.4",
@@ -67,6 +69,7 @@
     "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0",
     "turbo": "^1.13.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "fs-extra": "^11.2.0"
   }
 }

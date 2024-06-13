@@ -1,7 +1,8 @@
-import { Criteria } from '../../../../../Shared/domain/criteria/Criteria';
+import { Injectable } from '@nestjs/common';
+import { Criteria } from 'shared-context/domain/criteria/Criteria';
 import { ConversationRepository } from '../../../domain/ConversationRepository';
 import { Conversation } from '../../../domain/Conversation';
-import { DynamoDBRepository } from '../../../../../Shared/infrastructure/persistence/dynamodb/DynamoDBRepository';
+import { DynamoDBRepository } from 'shared-context/infrastructure/persistence/dynamodb/DynamoDBRepository';
 import { ScanCommand } from '@aws-sdk/client-dynamodb';
 
 interface ConversationDocument {
@@ -10,6 +11,7 @@ interface ConversationDocument {
   userId: string;
 }
 
+@Injectable()
 export class DynamoDBConversationRepository extends DynamoDBRepository<Conversation> implements ConversationRepository {
   public save(conversation: Conversation): Promise<void> {
     return this.persist(conversation.id.value, conversation);
@@ -17,13 +19,14 @@ export class DynamoDBConversationRepository extends DynamoDBRepository<Conversat
 
   protected tableName(): string {
     const env = this.getEnv();
+    console.log({ env });
     return env === 'prod' ? 'conversations-table' : `conversations-table-${env}`;
   }
 
   public async searchAll(): Promise<Conversation[]> {
     const table = this.tableName();
     const client = this.getClient();
-    const result = await (await client).send(new ScanCommand({ TableName: table }));
+    const result = await client.send(new ScanCommand({ TableName: table }));
     const documents = result.Items;
 
     return (

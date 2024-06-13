@@ -14,7 +14,10 @@
     },
     "dev:sls": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": [
+        "^build"
+      ]
     },
     "dev:local": {
       "dependsOn": [

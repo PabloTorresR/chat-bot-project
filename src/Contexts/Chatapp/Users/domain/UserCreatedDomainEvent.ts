@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../../Shared/domain/DomainEvent';
+import { DomainEvent } from 'shared-context/domain/DomainEvent';
 
 type CreateUserDomainEventAttributes = {
   readonly name: string;

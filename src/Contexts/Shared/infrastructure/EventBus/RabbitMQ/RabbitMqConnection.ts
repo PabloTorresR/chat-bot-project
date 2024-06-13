@@ -1,11 +1,11 @@
-import amqplib, { ConsumeMessage } from 'amqplib';
+import { ConsumeMessage, Connection, ConfirmChannel, connect } from 'amqplib';
 import { ConnectionSettings } from './ConnectionSettings';
 import { RabbitMQExchangeNameFormatter } from './RabbitMQExchangeNameFormatter';
 
 export class RabbitMqConnection {
   private connectionSettings: ConnectionSettings;
-  private channel?: amqplib.ConfirmChannel;
-  private connection?: amqplib.Connection;
+  private channel?: ConfirmChannel;
+  private connection?: Connection;
 
   constructor(params: { connectionSettings: ConnectionSettings }) {
     this.connectionSettings = params.connectionSettings;
@@ -26,7 +26,7 @@ export class RabbitMqConnection {
     routingKeys: string[];
     deadLetterExchange?: string;
     deadLetterQueue?: string;
-    messageTtl?: Number;
+    messageTtl?: number;
   }) {
     const durable = true;
     const exclusive = false;
@@ -50,7 +50,7 @@ export class RabbitMqConnection {
     routingKeys: string[];
     deadLetterExchange?: string;
     deadLetterQueue?: string;
-    messageTtl?: Number;
+    messageTtl?: number;
   }) {
     let args: any = {};
     if (params.deadLetterExchange) {
@@ -75,7 +75,7 @@ export class RabbitMqConnection {
     const { username, password, vhost } = this.connectionSettings;
     const protocol = secure ? 'amqps' : 'amqp';
 
-    const connection = await amqplib.connect({
+    const connection = await connect({
       protocol,
       hostname,
       port,
@@ -91,7 +91,7 @@ export class RabbitMqConnection {
     return connection;
   }
 
-  private async amqpChannel(): Promise<amqplib.ConfirmChannel> {
+  private async amqpChannel(): Promise<ConfirmChannel> {
     const channel = await this.connection!.createConfirmChannel();
     await channel.prefetch(1);
 

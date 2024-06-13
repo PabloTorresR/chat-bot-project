@@ -1,8 +1,8 @@
 import { ConversationCreatedDomainEvent } from './ConversationCreatedDomainEvent';
 import { ConversationId } from '../../Shared/domain/ConversationId';
 import { ConversationTitle } from './ConversationTitle';
-import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
-import { UserId } from '../../..//Chatapp/Shared/domain/UserId';
+import { AggregateRoot } from 'shared-context/domain/AggregateRoot';
+import { UserId } from '../../Shared/domain/UserId';
 
 export class Conversation extends AggregateRoot {
   readonly id: ConversationId;
