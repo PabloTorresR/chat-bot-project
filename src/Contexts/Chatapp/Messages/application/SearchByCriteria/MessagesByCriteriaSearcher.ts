@@ -1,6 +1,6 @@
-import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
-import { Filters } from '../../../../Shared/domain/criteria/Filters';
-import { Order } from '../../../../Shared/domain/criteria/Order';
+import { Criteria } from 'shared-context/domain/criteria/Criteria';
+import { Filters } from 'shared-context/domain/criteria/Filters';
+import { Order } from 'shared-context/domain/criteria/Order';
 import { MessageRepository } from '../../domain/MessageRepository';
 import { MessagesResponse } from '../MessagesResponse';
 

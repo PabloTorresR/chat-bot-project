@@ -1,6 +1,12 @@
 {
-    "name": "chatapp-context",
-    "scripts": {
-        "test": "jest --config=../../../jest.config.ts"
-    }
+  "name": "chatapp-context",
+  "scripts": {
+    "test": "jest --config=../../../jest.config.ts",
+    "build": "tsc"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "shared-context": "*",
+    "@nestjs/common": "^10.0.0"
+  }
 }

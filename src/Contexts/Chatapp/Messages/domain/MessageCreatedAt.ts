@@ -1,4 +1,4 @@
-import { DateValueObject } from '../../../Shared/domain/value-object/DateValueObject';
+import { DateValueObject } from 'shared-context/domain/value-object/DateValueObject';
 import { MessageCreatedAtIncorrectDateString } from './MessageCreatedAtIncorrectDateString';
 
 export class MessageCreatedAt extends DateValueObject {

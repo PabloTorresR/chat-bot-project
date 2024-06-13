@@ -1,11 +1,12 @@
-import { MongoRepository } from '../../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
-import { Criteria } from '../../../../../Shared/domain/criteria/Criteria';
+import { MongoRepository } from 'shared-context/infrastructure/persistence/mongo/MongoRepository';
+import { Criteria } from 'shared-context/domain/criteria/Criteria';
 import { ConversationRepository } from '../../../domain/ConversationRepository';
 import { Conversation } from '../../../domain/Conversation';
 
 interface ConversationDocument extends Document {
   _id: string;
   title: string;
+  userId: string;
 }
 
 export class MongoConversationRepository extends MongoRepository<Conversation> implements ConversationRepository {
@@ -24,12 +25,16 @@ export class MongoConversationRepository extends MongoRepository<Conversation> i
     const collection = await this.collection();
     const documents = await collection.find<ConversationDocument>({}, {}).toArray();
 
-    return documents.map(document => Conversation.fromPrimitives({ title: document.title, id: document._id }));
+    return documents.map(document =>
+      Conversation.fromPrimitives({ title: document.title, id: document._id, userId: document.userId }),
+    );
   }
 
   public async matching(criteria: Criteria): Promise<Conversation[]> {
     const documents = await this.searchByCriteria<ConversationDocument>(criteria);
 
-    return documents.map(document => Conversation.fromPrimitives({ title: document.title, id: document._id }));
+    return documents.map(document =>
+      Conversation.fromPrimitives({ title: document.title, id: document._id, userId: document.userId }),
+    );
   }
 }

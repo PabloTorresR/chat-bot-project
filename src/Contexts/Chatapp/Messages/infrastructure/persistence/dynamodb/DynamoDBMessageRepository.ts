@@ -1,8 +1,9 @@
-import { Criteria } from '../../../../../Shared/domain/criteria/Criteria';
+import { Criteria } from 'shared-context/domain/criteria/Criteria';
 import { MessageRepository } from '../../../domain/MessageRepository';
 import { Message } from '../../../domain/Message';
-import { DynamoDBRepository } from '../../../../../Shared/infrastructure/persistence/dynamodb/DynamoDBRepository';
+import { DynamoDBRepository } from 'shared-context/infrastructure/persistence/dynamodb/DynamoDBRepository';
 import { ScanCommand } from '@aws-sdk/lib-dynamodb';
+import { Injectable } from '@nestjs/common';
 
 interface MessageDocument extends Document {
   _id: string;
@@ -12,7 +13,7 @@ interface MessageDocument extends Document {
   createdAt: string;
   sender: string;
 }
-
+@Injectable()
 export class DynamoDBMessageRepository extends DynamoDBRepository<Message> implements MessageRepository {
   public save(message: Message): Promise<void> {
     return this.persist(message.id.value, message);

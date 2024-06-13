@@ -1,5 +1,5 @@
-import { UserId } from 'Contexts/Chatapp/Shared/domain/UserId';
-import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { UserId } from '../../Shared/domain/UserId';
+import { AggregateRoot } from 'shared-context/domain/AggregateRoot';
 import { UserCreatedDomainEvent } from './UserCreatedDomainEvent';
 export class User extends AggregateRoot {
   readonly id: UserId;

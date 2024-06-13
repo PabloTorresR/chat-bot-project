@@ -1,10 +1,10 @@
-import { ConversationId } from '../../../../../Contexts/Chatapp/Shared/domain/ConversationId';
-import { EventBus } from '../../../../Shared/domain/EventBus';
+import { ConversationId } from '../../../Shared/domain/ConversationId';
+import { EventBus } from 'shared-context/domain/EventBus';
 import { MessageId } from '../../../Shared/domain/MessageId';
 import { Message } from '../../domain/Message';
 import { MessageContent } from '../../domain/MessageContent';
 import { MessageRepository } from '../../domain/MessageRepository';
-import { UserId } from '../../../../../Contexts/Chatapp/Shared/domain/UserId';
+import { UserId } from '../../../Shared/domain/UserId';
 import { MessageCreatedAt } from '../../domain/MessageCreatedAt';
 import { MessageSender } from '../../domain/MessageSender';
 

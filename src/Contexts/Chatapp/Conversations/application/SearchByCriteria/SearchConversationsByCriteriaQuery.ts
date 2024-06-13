@@ -1,4 +1,4 @@
-import { Query } from '../../../../Shared/domain/Query';
+import { Query } from 'shared-context/domain/Query';
 
 export class SearchConversationsByCriteriaQuery implements Query {
   readonly filters: Array<Map<string, string>>;

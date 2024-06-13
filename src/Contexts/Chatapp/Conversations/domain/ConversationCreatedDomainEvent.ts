@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../../Shared/domain/DomainEvent';
+import { DomainEvent } from 'shared-context/domain/DomainEvent';
 export type DomainEventAttributes = { [key: string]: unknown };
 
 export type CreateConversationDomainEventAttributes = {

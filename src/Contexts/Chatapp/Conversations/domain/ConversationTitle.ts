@@ -1,4 +1,4 @@
-import { StringValueObject } from '../../../Shared/domain/value-object/StringValueObject';
+import { StringValueObject } from 'shared-context/domain/value-object/StringValueObject';
 import { ConversationTitleLengthExceeded } from './ConversationTitleLengthExceeded';
 
 export class ConversationTitle extends StringValueObject {

@@ -1,20 +1,18 @@
+import { Injectable } from '@nestjs/common';
 import { DynamoDB, DynamoDBClientConfig } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 
+@Injectable()
 export class DynamoDBClientFactory {
   private static clients: { [key: string]: DynamoDBDocumentClient } = {};
 
-  static async createClient(
-    contextName: string,
-    config: Promise<DynamoDBClientConfig>,
-  ): Promise<DynamoDBDocumentClient> {
+  static createClient(contextName: string, config: DynamoDBClientConfig): DynamoDBDocumentClient {
     let client = DynamoDBClientFactory.getClient(contextName);
     if (!client) {
-      client = DynamoDBClientFactory.createAndConnectClient(await config);
+      client = DynamoDBClientFactory.createAndConnectClient(config);
 
       DynamoDBClientFactory.registerClient(client, contextName);
     }
-
     return client;
   }
 

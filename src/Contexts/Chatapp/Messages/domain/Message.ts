@@ -1,9 +1,9 @@
-import { ConversationId } from '../../../../Contexts/Chatapp/Shared/domain/ConversationId';
-import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { ConversationId } from '../../Shared/domain/ConversationId';
+import { AggregateRoot } from 'shared-context/domain/AggregateRoot';
 import { MessageId } from '../../Shared/domain/MessageId';
 import { MessageContent } from './MessageContent';
 import { MessageCreatedDomainEvent } from './MessageCreatedDomainEvent';
-import { UserId } from '../../../../Contexts/Chatapp/Shared/domain/UserId';
+import { UserId } from '../../Shared/domain/UserId';
 import { MessageCreatedAt } from './MessageCreatedAt';
 import { MessageSender } from './MessageSender';
 import { MessageSenderValues } from './MessageSenderValues';

@@ -127,6 +127,6 @@ const chatappConfig = convict({
   },
 });
 
-chatappConfig.loadFile([__dirname + '/default.json', __dirname + '/' + chatappConfig.get('env') + '.json']);
+// chatappConfig.loadFile([__dirname + '/default.json', __dirname + '/' + chatappConfig.get('env') + '.json']);
 
 export default chatappConfig;

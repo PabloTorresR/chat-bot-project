@@ -1,4 +1,4 @@
-import { CommandBus } from '../../../../Shared/domain/CommandBus';
+import { CommandBus } from 'shared-context/domain/CommandBus';
 import { MessageAnswerGenerator } from '../../domain/MessageAnswerGenerator';
 import { CreateMessageCommand } from '../../domain/CreateMessageCommand';
 import { PostMessagesRequest, PostMessagesResponse } from 'dtos-lib/chatapp/messages';

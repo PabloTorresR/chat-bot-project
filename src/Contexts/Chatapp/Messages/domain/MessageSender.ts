@@ -1,4 +1,4 @@
-import { EnumValueObject } from '../../../Shared/domain/value-object/EnumValueObject';
+import { EnumValueObject } from 'shared-context/domain/value-object/EnumValueObject';
 import { MessageSenderValues } from './MessageSenderValues';
 
 export class MessageSender extends EnumValueObject<MessageSenderValues> {

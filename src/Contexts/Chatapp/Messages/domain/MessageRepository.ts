@@ -1,4 +1,4 @@
-import { Criteria } from '../../../Shared/domain/criteria/Criteria';
+import { Criteria } from 'shared-context/domain/criteria/Criteria';
 import { Message } from './Message';
 
 export interface MessageRepository {

@@ -1,7 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { fromEnv } from '@aws-sdk/credential-providers';
-import DynamoDBConfig from '../../../../../Shared/infrastructure/persistence/dynamodb/DynamoDBConfig';
+import DynamoDBConfig from 'shared-context/infrastructure/persistence/dynamodb/DynamoDBConfig';
 import config from '../../config';
 
+@Injectable()
 export class DynamoDBConfigFactory {
   protected static async getCredentials() {
     return fromEnv()();

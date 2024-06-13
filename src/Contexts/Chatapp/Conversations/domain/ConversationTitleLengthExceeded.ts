@@ -1,3 +1,3 @@
-import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError';
+import { InvalidArgumentError } from 'shared-context/domain/value-object/InvalidArgumentError';
 
 export class ConversationTitleLengthExceeded extends InvalidArgumentError {}

@@ -1,4 +1,4 @@
-import AwsEventBridgeConfig from '../../../../Shared/infrastructure/EventBus/AwsEventBridge/AwsEventBridgeConfig';
+import AwsEventBridgeConfig from 'shared-context/infrastructure/EventBus/AwsEventBridge/AwsEventBridgeConfig';
 import config from '../config';
 
 export class AwsEventBridgeConfigFactory {
