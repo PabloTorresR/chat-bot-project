@@ -2,7 +2,7 @@
     "name": "llm-api",
     "version": "1.0.0",
     "scripts": {
-        "dev:local": "poetry run uvicorn app:app --host=0.0.0.0",
+        "dev:local": "poetry run uvicorn app:app --host=0.0.0.0 --reload",
         "dev:sls": "yarn sls offline --httpPort 8001"
     },
     "devDependencies": {

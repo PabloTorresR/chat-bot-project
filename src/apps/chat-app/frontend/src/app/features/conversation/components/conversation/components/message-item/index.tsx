@@ -3,7 +3,6 @@ import React, { ReactNode, memo } from 'react';
 import styles from './styles.module.scss';
 import classnames from 'classnames';
 import { MessageSender } from '../../../../enums/message-sender';
-import REGEATON_ILLUSTRATION from '@chat-app/assets/illustrations/reggeaton_singer_white.svg';
 import Avatar from '../../../../../../components/avatar';
 
 type Props = {
@@ -12,15 +11,15 @@ type Props = {
   className?: string;
   isLeftSide?: boolean;
   dateTime?: string;
-  userAvatarUrl?: string;
+  avatar?: string;
 };
 
 const AVATAR_SIZE = 36;
 
-const MessageItem = memo(({ content, messageSender, className, isLeftSide, dateTime, userAvatarUrl }: Props) => {
+const MessageItem = memo(({ content, messageSender, className, isLeftSide, dateTime, avatar }: Props) => {
   const avatarImage = {
-    [MessageSender.BOT]: <img src={REGEATON_ILLUSTRATION} alt="Avatar" className={styles.message__avatar} />,
-    [MessageSender.USER]: <Avatar imageUrl={userAvatarUrl ?? ''} size={AVATAR_SIZE} />,
+    [MessageSender.BOT]: <img src={avatar} alt="Avatar" className={styles.message__avatar} />,
+    [MessageSender.USER]: <Avatar imageUrl={avatar ?? ''} size={AVATAR_SIZE} />,
   };
 
   return (

@@ -25,7 +25,7 @@ class GptLLM(LLM):
     async def chat(self, prompt: str, message_history: List[HistoryMessage]) -> str:
         memory = (
             self.history_formatter.format(message_history=message_history)
-            if self.history_formatter and message_history
+            if self.history_formatter
             else None
         )
         api_key = os.environ.get("OPENAI_API_KEY", "")

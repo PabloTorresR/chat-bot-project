@@ -14,7 +14,7 @@ class AnswerMessageService:
         message_history: List[HistoryMessage],
     ) -> str:
         sorted_history = sorted(
-            message_history, key=lambda x: x.created_at.value, reverse=True
+            message_history, key=lambda x: x.created_at.value, reverse=False
         )
         response_content = await self.llm.chat(message.content, sorted_history)
         return response_content

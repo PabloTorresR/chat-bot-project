@@ -1,5 +1,4 @@
 service: llm-service
-frameworkVersion: '3'
 
 useDotenv: true
 
@@ -11,24 +10,28 @@ provider:
   environment:
     OPENAI_API_KEY: ${env:OPENAI_API_KEY}
   architecture: arm64
+  iamRoleStatements:
+    - Effect: Allow
+      Action: lambda:InvokeFunction
+      Resource: ${env:API_GATEWAY_ARN}
 
 functions:
   api:
     handler: app.handler
     name: llm-service
     events:
-      - httpApi: '*'
+      - httpApi: "*"
     package:
-        patterns:
-        - 'src/**'
-        - '!requirements.txt'
-        - '!package.json'
-        - '!package-lock.json'
-        - '!.serverless/**'
-        - '!venv/**'
-        - '!env/**'
-        - '!envwin/**'
-        - '!node_modules/**'
+      patterns:
+        - "src/**"
+        - "!requirements.txt"
+        - "!package.json"
+        - "!package-lock.json"
+        - "!.serverless/**"
+        - "!venv/**"
+        - "!env/**"
+        - "!envwin/**"
+        - "!node_modules/**"
 
 plugins:
   - serverless-python-requirements
@@ -39,7 +42,8 @@ custom:
   pythonRequirements:
     dockerizePip: true
     dockerImage: public.ecr.aws/sam/build-python3.11:latest-arm64
-    dockerRunCmdExtraArgs: [ '--platform', 'linux/arm64/v8' ]
+    dockerRunCmdExtraArgs: ["--platform", "linux/arm64/v8"]
     # NOTE: this two lines prevent some caching problems with serverless-python-requirements, uncomment in case of getting errors
     useStaticCache: false
     useDownloadCache: false
+  #Don't build with podman!!!

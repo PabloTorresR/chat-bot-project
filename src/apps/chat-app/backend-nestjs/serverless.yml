@@ -30,6 +30,10 @@ functions:
     handler: src/main.handler
     events:
       - httpApi: "*"
+        authorizer:
+          name: authorizer
+          arn: ${env:COGNITO_USER_POOL_ID}
+
     package:
       patterns:
         - "**"

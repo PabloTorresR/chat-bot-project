@@ -9,11 +9,16 @@ import { useChatScroll } from '../../../../hooks/use-chat-scroll';
 import useConversations from '../../hooks/useConversations';
 import DotTyping from '@chat-app/components/dot-typing';
 import USER_DEFAULT_AVATAR from '/SVG/icn_3d_person.svg';
+import REGEATON_AVATAR from '/illustrations/reggeaton_singer_white.svg';
 import { DefaultMessages } from '../../constants/default-messages';
+
+const userAvatarUrl = USER_DEFAULT_AVATAR
+const botAvatarUrl = REGEATON_AVATAR
 
 const Conversation = () => {
   const { messages, isSendMessageLoading } = useConversations();
   const chatRef = useChatScroll(messages);
+
   return (
     <div className={styles.conversation} ref={chatRef}>
       <MessageItem
@@ -23,6 +28,7 @@ const Conversation = () => {
         content={DefaultMessages.FIRST_BOT_MESSAGE}
         isLeftSide
         dateTime={formatTimestamp(getNowTimestamp())}
+        avatar={botAvatarUrl}
       />
       {messages?.map(message => (
         <MessageItem
@@ -35,7 +41,7 @@ const Conversation = () => {
           content={message.content}
           isLeftSide={message.sender !== MessageSender.USER}
           dateTime={formatTimestamp(message.createdAt)}
-          userAvatarUrl={message.sender === MessageSender.USER ? USER_DEFAULT_AVATAR : undefined}
+          avatar={message.sender === MessageSender.USER ? userAvatarUrl : botAvatarUrl}
         />
       ))}
       {isSendMessageLoading && (
@@ -44,6 +50,7 @@ const Conversation = () => {
           key={'loadingKey'}
           messageSender={MessageSender.BOT}
           content={<DotTyping />}
+          avatar={botAvatarUrl}
           isLeftSide
         />
       )}

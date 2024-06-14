@@ -18,6 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
+    "paths": {
+      "chatapp-context/*": [
+        "node_modules/chatapp-context/*"
+      ],
+    }
   },
   "exclude": [
     "node_modules",
