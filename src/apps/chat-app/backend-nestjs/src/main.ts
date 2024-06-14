@@ -15,7 +15,7 @@ async function bootstrap() {
     credentials: true,
   });
   //NOTE: uncomment for local development
-  await app.listen(5001);
+  // await app.listen(5001);
   await app.init();
 
   const expressApp = app.getHttpAdapter().getInstance();

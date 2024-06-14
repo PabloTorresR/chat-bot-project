@@ -18,3 +18,8 @@ variable "app_name" {
   default     = "chat-app"
 }
 
+variable "conversations_service_uri" {
+  description = "URI of the conversation service"
+  type        = string
+  default     = "https://jcd7a6pzqg.execute-api.eu-central-1.amazonaws.com/"
+}

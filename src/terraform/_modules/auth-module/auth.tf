@@ -57,3 +57,7 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
     refresh_token = "days"
   }
 }
+
+output "user_pool_arn" {
+  value = aws_cognito_user_pool.user_pool.arn
+}

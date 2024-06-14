@@ -19,6 +19,9 @@ from core.llms.langchain.templates.system.regueatton_system_template import (
 # )
 from modules.message.application.answer_message.impl import AnswerMessageService
 from modules.message.infrastructure.dtos import VocabularyWordDTO
+from core.llms.langchain.default_messages.regueatton_first_message import (
+    default_message,
+)
 
 
 class Container(containers.DeclarativeContainer):
@@ -27,11 +30,12 @@ class Container(containers.DeclarativeContainer):
         template=reggaeton_system_template,
         human_template=human_template,
     )
+    default_message = default_message
     # parser = PydanticOutputParser(pydantic_object=VocabularyWordDTO)
     answer_message_service_llm = providers.Factory(
         GptLLM,
         chat_prompt=chat_prompt,
-        history_formatter=LangChainHistoryFormatter(),
+        history_formatter=LangChainHistoryFormatter(default_message),
         # format_instructions=parser.get_format_instructions(),
     )
     answer_message_service = providers.Factory(
