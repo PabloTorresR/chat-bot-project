@@ -1,29 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
-
-export default defineConfig({
-  server: {
-    port: 3800,
-    proxy: {
-      '/api': {
-        target: process.env.VITE_API_GATEWAY_URL,
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''),
+export default defineConfig(({ mode }) => {
+  const config = {
+    server: {
+      port: 3800,
+      proxy: {
+        '/api': {
+          target: process.env.VITE_API_GATEWAY_URL,
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, ''),
+        },
       },
     },
-  },
-  plugins: [react(), tsconfigPaths()],
-  define: {
-    global: {},
-  },
-  resolve: {
-    alias: {
-      '@chat-app/styles': path.resolve(__dirname, './src/styles'),
-      '@chat-app/assets': path.resolve(__dirname, './src/assets'),
-      '@chat-app': path.resolve(__dirname, './src/app'),
-      '@': path.resolve(__dirname, './src'),
+    plugins: [react(), tsconfigPaths()],
+    define: {} as any,
+    resolve: {
+      alias: {
+        '@chat-app/styles': path.resolve(__dirname, './src/styles'),
+        '@chat-app/assets': path.resolve(__dirname, './src/assets'),
+        '@chat-app': path.resolve(__dirname, './src/app'),
+        '@': path.resolve(__dirname, './src'),
+      },
     },
-  },
+  };
+
+  if (mode === "development") {
+    config.define.global = {};
+  }
+
+  return config;
 });
