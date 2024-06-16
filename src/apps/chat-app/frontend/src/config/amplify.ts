@@ -14,12 +14,6 @@ const configureAmplify = () =>
       redirectSignOut: deleteTrailingSlash(import.meta.env.VITE_APP_BASE_URL ?? ''),
       responseType: 'code',
     },
-    cookieStorage: {
-      domain: import.meta.env.VITE_REACT_APP_AUTH_COOKIE_DOMAIN,
-      path: '/',
-      expires: 7,
-      secure: true,
-    },
   });
 
 export default configureAmplify;

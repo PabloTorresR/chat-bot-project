@@ -1,3 +1,4 @@
+@import "../../../styles/colors.scss";
 .loadingPage__container {
   z-index: 1000;
   display: flex;
@@ -35,8 +36,8 @@
       width: 64px;
       height: 64px;
       margin: 8px;
-      border: 8px solid #d01b67;
-      border-color: #d01b67 transparent transparent;
+      border: 8px solid $color-highlight-3;
+      border-color: $color-highlight-3 transparent transparent;
       border-radius: 50%;
       animation: spinnerAnimation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     }

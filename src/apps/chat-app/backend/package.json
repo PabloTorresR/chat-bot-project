@@ -3,14 +3,7 @@
     "version": "1.0.0",
     "description": "api para gerenciamento de conversas",
     "main": "./start.ts",
-    "scripts": {
-        "build": "esbuild start.ts --bundle --platform=node --target=node20 --outdir=dist",
-        "test": "jest --passWithNoTests",
-        "dev:local": "ts-node-dev --ignore-watch node_modules start.ts",
-        "dev:sls": "sls offline",
-        "setup-dev:local": "docker compose up -d mongo rabbitmq",
-        "generate-eventbridge_sqs-terraform_files": "ts-node ./scripts/generate-eventbridge_sqs-terraform_files.ts"
-    },
+    "scripts": {},
     "author": "PTman",
     "license": "ISC",
     "dependencies": {
