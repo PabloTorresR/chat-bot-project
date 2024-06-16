@@ -12,6 +12,7 @@ export const postMessages = (body: PostMessagesRequest) =>
 export const getMessages = queryParams =>
   axios.get<GetMessagesResponse>(`${MESSAGES_SERVICE}`, {
     ...queryParams,
+    //NOTE: we need to serialize the query params to be able to send them to AWS API GATEWAY
     paramsSerializer: params => {
       return QueryString.stringify(params);
     },
