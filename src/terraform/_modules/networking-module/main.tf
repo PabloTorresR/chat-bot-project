@@ -43,3 +43,13 @@ resource "aws_api_gateway_deployment" "deployment" {
   stage_name  = var.environment_name
 }
 
+module "apigateway-cors" {
+  source  = "mewa/apigateway-cors/aws"
+  version = "2.0.1"
+  # insert the 3 required variables here
+  api      = aws_api_gateway_rest_api.api_gateway.id
+  resource = aws_api_gateway_resource.conversation_service_resource.id
+
+  methods = ["GET", "POST"]
+  origin  = "https://palabro.com"
+}
