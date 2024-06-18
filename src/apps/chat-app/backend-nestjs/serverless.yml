@@ -29,10 +29,14 @@ functions:
   app:
     handler: src/main.handler
     events:
-      - httpApi: "*"
-        authorizer:
-          name: authorizer
-          arn: ${env:COGNITO_USER_POOL_ID}
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+          authorizer:
+            type: COGNITO_USER_POOLS
+            name: authorizer
+            arn: ${env:COGNITO_USER_POOL_ARN}
 
     package:
       patterns:
@@ -45,6 +49,16 @@ functions:
         - "!env/**"
         - "!**/*.spec.**"
         - "!**/*.e2e-spec.**"
+cors:
+  origin: "*"
+  headers:
+    - Content-Type
+    - X-Amz-Date
+    - Authorization
+    - X-Api-Key
+    - X-Amz-Security-Token
+    - X-Amz-User-Agent
+  allowCredentials: false
 
 custom:
   serverless-offline:

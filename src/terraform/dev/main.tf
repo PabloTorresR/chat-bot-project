@@ -43,11 +43,3 @@ module "event_sourcing" {
   source           = "../_modules/event-sourcing-module/"
   environment_name = local.environment_name
 }
-
-module "networking" {
-  source                   = "../_modules/networking-module"
-  environment_name         = local.environment_name
-  region                   = var.region
-  user_pool_arn            = module.auth.user_pool_arn
-  conversation_service_uri = var.conversations_service_uri
-}

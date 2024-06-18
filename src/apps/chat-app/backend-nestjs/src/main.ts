@@ -8,22 +8,23 @@ let server: Handler;
 async function bootstrap() {
   const app = await NestFactory.create({ module: AppModule, enableCors: true });
   app.enableCors({
-    origin: 'http://localhost:3800',
+    origin: '*',
+    allowedHeaders: 'Authorization, Content-Type, Accept, Origin',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
-    credentials: true,
   });
   //NOTE: uncomment for local development
   // await app.listen(5001);
   await app.init();
-
   const expressApp = app.getHttpAdapter().getInstance();
   return serverlessExpress({ app: expressApp });
 }
 bootstrap();
 
 export const handler: Handler = async (event: any, context: Context, callback: Callback) => {
+  console.log('NestJS app initialized');
+
   server = server ?? (await bootstrap());
   return server(event, context, callback);
 };

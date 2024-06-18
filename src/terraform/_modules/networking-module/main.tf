@@ -51,5 +51,6 @@ module "apigateway-cors" {
   resource = aws_api_gateway_resource.conversation_service_resource.id
 
   methods = ["GET", "POST"]
-  origin  = "https://palabro.com"
+  origin  = "*"
+  headers = ["Authorization", "Content-Type", "Accept", "Origin"]
 }

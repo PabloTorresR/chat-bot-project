@@ -47,7 +47,8 @@
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "serverless-webpack": "^5.11.0",
-    "shared-context": "*"
+    "shared-context": "*",
+    "tsconfig-paths-webpack-plugin": "^4.1.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
