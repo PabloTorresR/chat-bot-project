@@ -20,9 +20,12 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
       Resource: "*"
+    - Effect: Allow
+      Action: 
+        - execute-api:Invoke
+      Resource: ${env:LLM_SERVICE_API_GATEWAY_ARN}
   memorySize: 1024
   environment:
-    NODE_ENV: ${env:NODE_ENV}
     LLM_SERVICE_URL: ${env:LLM_SERVICE_URL}
   apiGateway:
     usagePlan:
