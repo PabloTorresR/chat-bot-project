@@ -19,7 +19,6 @@ export class DynamoDBConversationRepository extends DynamoDBRepository<Conversat
 
   protected tableName(): string {
     const env = this.getEnv();
-    console.log({ env });
     return env === 'prod' ? 'conversations-table' : `conversations-table-${env}`;
   }
 

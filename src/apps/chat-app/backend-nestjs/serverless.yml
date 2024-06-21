@@ -24,6 +24,15 @@ provider:
   environment:
     NODE_ENV: ${env:NODE_ENV}
     LLM_SERVICE_URL: ${env:LLM_SERVICE_URL}
+  apiGateway:
+    usagePlan:
+      quota:
+        limit: 5000
+        offset: 2
+        period: MONTH
+      throttle:
+        burstLimit: 20
+        rateLimit: 10
 
 functions:
   app:
@@ -50,7 +59,7 @@ functions:
         - "!**/*.spec.**"
         - "!**/*.e2e-spec.**"
 cors:
-  origin: "*"
+  origin: ${env:APP_PRODUCTION_URL}
   headers:
     - Content-Type
     - X-Amz-Date

@@ -1,7 +1,8 @@
 import { Callback, Context, Handler } from 'aws-lambda';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 import serverlessExpress from '@codegenie/serverless-express';
+import { ValidationPipe } from '@nestjs/common';
 
 let server: Handler;
 
@@ -14,8 +15,9 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 204,
   });
+  app.useGlobalPipes(new ValidationPipe());
   //NOTE: uncomment for local development
-  // await app.listen(5001);
+  await app.listen(5001);
   await app.init();
   const expressApp = app.getHttpAdapter().getInstance();
   return serverlessExpress({ app: expressApp });
@@ -23,8 +25,6 @@ async function bootstrap() {
 bootstrap();
 
 export const handler: Handler = async (event: any, context: Context, callback: Callback) => {
-  console.log('NestJS app initialized');
-
   server = server ?? (await bootstrap());
   return server(event, context, callback);
 };

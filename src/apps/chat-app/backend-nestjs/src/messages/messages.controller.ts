@@ -1,17 +1,17 @@
 import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { MessagesService } from './messages.service';
-import { PostMessagesRequest } from 'dtos-lib/chatapp/messages';
-import { QueryParams } from 'dtos-lib/chatapp/filters';
+import { MessageGetDto } from './dto/message.get.dto';
+import { MessageCreateDto } from './dto/message.create.dto';
 
 @Controller('messages')
 export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
   @Get()
-  findAll(@Query() query: QueryParams) {
+  findAll(@Query() query: MessageGetDto) {
     return this.messagesService.findAll(query);
   }
   @Post()
-  newUserMessage(@Body() body: PostMessagesRequest) {
+  newUserMessage(@Body() body: MessageCreateDto) {
     return this.messagesService.newUserMessage(body);
   }
 }

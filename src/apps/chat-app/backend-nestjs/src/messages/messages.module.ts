@@ -1,6 +1,7 @@
 import { SearchMessagesByCriteriaQueryHandler } from 'chatapp-context/Messages/application/SearchByCriteria/SearchMessagesByCriteriaQueryHandler.nest';
 import { CreateMessageCommandHandler } from 'chatapp-context/Messages/application/Create/CreateMessageCommandHandler.nest';
 import { LlmServiceMessageAnswerGenerator } from 'chatapp-context/Messages/infrastructure/services/LlmServiceMessageAnswerGenerator';
+import { LlmServiceMessageAnswerGenerator as LlmServiceMessageAnswerGeneratorDev } from 'chatapp-context/Messages/infrastructure/services/LlmServiceMessageAnswerGenerator.dev';
 import { MessageCreator } from 'chatapp-context/Messages/application/Create/MessageCreator.nest';
 import { Module } from '@nestjs/common';
 import { MessagesService } from './messages.service';
@@ -24,7 +25,7 @@ const queryHandlers = [SearchMessagesByCriteriaQueryHandler];
     MessagesByCriteriaSearcher,
     {
       provide: 'MessageAnswerGenerator',
-      useClass: LlmServiceMessageAnswerGenerator,
+      useClass: process.env.LLM_ENV === 'dev' ? LlmServiceMessageAnswerGeneratorDev : LlmServiceMessageAnswerGenerator,
     },
   ],
 })

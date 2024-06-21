@@ -10,10 +10,6 @@ provider:
   environment:
     OPENAI_API_KEY: ${env:OPENAI_API_KEY}
   architecture: arm64
-  iamRoleStatements:
-    - Effect: Allow
-      Action: lambda:InvokeFunction
-      Resource: ${env:API_GATEWAY_ARN}
 
 functions:
   api:
