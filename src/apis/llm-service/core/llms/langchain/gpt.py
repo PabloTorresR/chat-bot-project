@@ -4,6 +4,7 @@ from typing import List, Optional
 from langchain_openai import ChatOpenAI
 from langchain.chains import LLMChain
 from core.llms.history_formatter import HistoryFormatter
+from core.llms.langchain.config import OPEN_AI_CONFIG
 from core.llms.llm import LLM
 from langchain.prompts.chat import ChatPromptTemplate
 
@@ -16,10 +17,12 @@ class GptLLM(LLM):
         chat_prompt: ChatPromptTemplate,
         history_formatter: Optional[HistoryFormatter] = None,
         format_instructions: Optional[str] = "",
+        config: dict = OPEN_AI_CONFIG,
     ):
         super().__init__(history_formatter)
         self.chat_prompt = chat_prompt
         self.format_instructions = format_instructions
+        self.config = config
         # TODO: cola de mensajes?
 
     async def chat(self, prompt: str, message_history: List[HistoryMessage]) -> str:
@@ -28,10 +31,10 @@ class GptLLM(LLM):
             if self.history_formatter
             else None
         )
-        api_key = os.environ.get("OPENAI_API_KEY", "")
         llm = ChatOpenAI(
-            temperature=0,
-            api_key=api_key,  # type: ignore
+            model=self.config["model"],
+            temperature=self.config["temperature"],
+            api_key=self.config["api_key"],  # type: ignore
             # TODO: cost calculator
             # callbacks=[CostCalcAsyncHandler("gpt-3.5-turbo", self.token_cost_process)],
         )
@@ -39,7 +42,7 @@ class GptLLM(LLM):
             llm=llm,
             prompt=self.chat_prompt,
             memory=memory,
-            verbose=True,
+            verbose=False,
         )
 
         result: str = await chain.arun(

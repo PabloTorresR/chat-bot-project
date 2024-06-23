@@ -17,7 +17,7 @@ async function bootstrap() {
   });
   app.useGlobalPipes(new ValidationPipe());
   //NOTE: uncomment for local development
-  if (process.env.NODE_ENV === 'dev') {
+  if (process.env.DEPLOYMENT_MODE === 'local') {
     await app.listen(5001);
   }
   await app.init();
