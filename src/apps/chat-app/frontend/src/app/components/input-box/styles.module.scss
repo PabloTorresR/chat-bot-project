@@ -1,5 +1,4 @@
 @import '../../../styles/colors.scss';
-@import '../../../styles/fonts.scss';
 
 .inputBox {
   height: 156px;
@@ -30,7 +29,6 @@
 
     &::placeholder {
       color: #999;
-      font-family: $eina-font;
     }
     &:focus {
       border-color: $color-highlight-1;

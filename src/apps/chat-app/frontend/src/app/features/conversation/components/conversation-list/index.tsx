@@ -30,6 +30,7 @@ const ConversationList = () => {
         <img src={newChatIcon} alt="icn" />
         <span>New chat</span>
       </button>
+      <Spinner
       <div className={styles.conversationList__list}>
         {conversations?.map(item => (
           <button
