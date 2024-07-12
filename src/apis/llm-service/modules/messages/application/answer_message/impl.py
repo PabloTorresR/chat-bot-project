@@ -1,7 +1,7 @@
 from typing import List
 from core.llms.llm import LLM
-from modules.message.domain.aggregate.message_history_model import HistoryMessage
-from modules.message.domain.aggregate.message_model import Message
+from modules.messages.domain.aggregate.message_history_model import HistoryMessage
+from modules.messages.domain.aggregate.message_model import Message
 
 
 class AnswerMessageService:

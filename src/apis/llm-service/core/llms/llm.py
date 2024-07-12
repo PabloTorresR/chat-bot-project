@@ -4,7 +4,7 @@ from abc import ABC
 from typing import List, Optional
 
 from core.llms.history_formatter import HistoryFormatter
-from modules.message.domain.aggregate.message_history_model import HistoryMessage
+from modules.messages.domain.aggregate.message_history_model import HistoryMessage
 
 
 class LLM(ABC):

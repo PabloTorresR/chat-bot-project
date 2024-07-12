@@ -8,7 +8,7 @@ from core.llms.langchain.config import OPEN_AI_CONFIG
 from core.llms.llm import LLM
 from langchain.prompts.chat import ChatPromptTemplate
 
-from modules.message.domain.aggregate.message_history_model import HistoryMessage
+from modules.messages.domain.aggregate.message_history_model import HistoryMessage
 
 
 class GptLLM(LLM):

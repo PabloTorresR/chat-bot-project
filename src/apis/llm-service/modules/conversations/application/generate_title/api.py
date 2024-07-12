@@ -2,17 +2,19 @@ from dependency_injector.wiring import Provide, inject
 from fastapi import Depends
 from container import Container
 
-from modules.message.application import router
-from modules.message.application.answer_message.impl import AnswerMessageService
-from modules.message.domain.aggregate.message_model import Message
-from modules.message.domain.aggregate.message_history_model import HistoryMessage
+from modules.conversations.application.generate_title.impl import GenerateTitleService
+from modules.conversations.application import router
+from modules.messages.domain.aggregate.message_model import Message
+from modules.messages.domain.aggregate.message_history_model import HistoryMessage
 
 
-@router.post(path="/answer", name="Answer Message")
+@router.post(path="/generate-title", name="Generate Title for Conversation")
 @inject
-async def answer_message(
+async def generate_title(
     body: dict,
-    service: AnswerMessageService = Depends(Provide[Container.answer_message_service]),
+    service: GenerateTitleService = Depends(
+        Provide[Container.generate_conversation_title_service]
+    ),
 ):
     message = Message.from_primitives(
         created_at=body.get("message", {}).get("createdAt"),

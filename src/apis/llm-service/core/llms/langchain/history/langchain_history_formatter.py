@@ -2,8 +2,8 @@ from typing import List, Optional
 from langchain.memory import ConversationBufferMemory
 
 from core.llms.history_formatter import HistoryFormatter
-from modules.message.domain.aggregate.message_history_model import HistoryMessage
-from modules.message.domain.value_objects import (
+from modules.messages.domain.aggregate.message_history_model import HistoryMessage
+from modules.messages.domain.value_objects import (
     MessageSenderValues,
 )
 

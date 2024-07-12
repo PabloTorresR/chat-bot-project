@@ -1,15 +1,18 @@
 from dependency_injector import containers, providers
 
-from core.llms.langchain.chat_prompts.answer_message_prompt import (
+from core.llms.langchain.chat_prompts.prompt_factory import (
     CustomChatPromptFactory,
 )
 from core.llms.langchain.gpt import GptLLM
 from core.llms.langchain.history.langchain_history_formatter import (
     LangChainHistoryFormatter,
 )
-from core.llms.langchain.templates.human.message_human_template import human_template
+from core.llms.langchain.templates.human.messages_human_template import human_template
 
 from langchain.output_parsers import PydanticOutputParser
+from core.llms.langchain.templates.system.conversation_title_system_template import (
+    template as conversation_title_system_template,
+)
 from core.llms.langchain.templates.system.regueatton_system_template import (
     template as reggaeton_system_template,
 )
@@ -17,14 +20,17 @@ from core.llms.langchain.templates.system.regueatton_system_template import (
 # from core.llms.langchain.templates.system.vocabulary_system_template import (
 #     vocabulary_system_template,
 # )
-from modules.message.application.answer_message.impl import AnswerMessageService
-from modules.message.infrastructure.dtos import VocabularyWordDTO
+from modules.conversations.application.generate_title.impl import GenerateTitleService
+from modules.messages.application.answer_message.impl import AnswerMessageService
+from modules.messages.infrastructure.dtos import VocabularyWordDTO
 from core.llms.langchain.default_messages.regueatton_first_message import (
     default_message,
 )
 
 
 class Container(containers.DeclarativeContainer):
+
+    # Answer Message
     chat_prompt = providers.Factory(
         CustomChatPromptFactory.create,
         template=reggaeton_system_template,
@@ -40,4 +46,20 @@ class Container(containers.DeclarativeContainer):
     )
     answer_message_service = providers.Factory(
         AnswerMessageService, llm=answer_message_service_llm
+    )
+
+    # Generate Title
+    generate_conversation_title_prompt = providers.Factory(
+        CustomChatPromptFactory.create,
+        template=conversation_title_system_template,
+        human_template=human_template,
+    )
+    generate_conversation_title_service_llm = providers.Factory(
+        GptLLM,
+        chat_prompt=generate_conversation_title_prompt,
+        history_formatter=LangChainHistoryFormatter(),
+        # format_instructions=parser.get_format_instructions(),
+    )
+    generate_conversation_title_service = providers.Factory(
+        GenerateTitleService, llm=generate_conversation_title_service_llm
     )
