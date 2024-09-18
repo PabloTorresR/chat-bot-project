@@ -1,0 +1,60 @@
+@import '../../../../../styles/main';
+
+.cardsCollectionRarities {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  height: 100%;
+  @include backgroundPane($color-highlight-1, 30%);
+  overflow-x: auto;
+  width: 220px;
+}
+
+.cardsCollectionRarities__button {
+  color: $color-text;
+  margin: 4px;
+  padding: 8px 8px;
+  border-radius: 2px;
+  border: 2px solid transparent; //avoids the button to move when isActive
+  font-weight: 600;
+  &.-Common {
+    color: $color-white;
+    &.-isActive {
+      background-color: $color-white;
+      @include glowingBorder($color-white, 0.5);
+      color: $color-dark;
+    }
+  }
+  &.-Uncommon {
+    color: $color-highlight-4;
+    &.-isActive {
+      background-color: $color-highlight-4;
+      @include glowingBorder($color-highlight-4, 0.5);
+      color: $color-white;
+    }
+  }
+  &.-Rare {
+    color: $color-highlight-2;
+    &.-isActive {
+      background-color: $color-highlight-2;
+      @include glowingBorder($color-highlight-2, 0.5);
+      color: $color-white;
+    }
+  }
+  &.-Exotic {
+    color: $color-highlight-1;
+    &.-isActive {
+      background-color: $color-highlight-1;
+      @include glowingBorder($color-highlight-1, 0.5);
+      color: $color-white;
+    }
+  }
+  &.-Legendary {
+    color: $color-highlight-3;
+    &.-isActive {
+      background-color: $color-highlight-3;
+      @include glowingBorder($color-highlight-3, 0.5);
+      color: $color-white;
+    }
+  }
+}

@@ -1,7 +1,7 @@
-@import '../../../styles/colors.scss';
+@import '../../../styles/main';
 
 .inputBox {
-  height: 156px;
+  height: 120px;
   width: 100%;
   max-width: 700px;
   display: flex;
@@ -17,24 +17,28 @@
     height: 100%;
     width: 100%;
     outline: none;
-    font-size: 12px;
-    border-radius: 4px;
+    font-size: 14px;
     color: $color-text;
-    border: 1px solid $color-border;
+    border: 0;
     transition: all 0.3s ease-in-out;
     padding: 12px;
     resize: none;
-    background-color: rgba(255, 255, 255, 0.028);
-    backdrop-filter: blur(5px);
+    @include backgroundPane($color-highlight-1, 30%);
+    backdrop-filter: blur(4px);
+    border-left: 5px solid $color-highlight-4;
 
     &::placeholder {
-      color: #999;
+      color: #b3b3b3;
     }
     &:focus {
-      border-color: $color-highlight-1;
+      border-left: 7px solid $color-highlight-4;
       box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
     }
   }
+}
+.inputBox__button {
+  @include glowingBorder($color-highlight-2, 0.2);
+  @include gradientColor($color-highlight-2);
 }
 
 // @media (max-width: 1200px) {

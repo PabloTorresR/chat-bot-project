@@ -1,32 +1,63 @@
-@import '../../../../../../../styles/colors';
+@import '../../../../../../../styles/main';
 
 .messageItem {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin-bottom: 10px;
-  max-width: 480px;
+  max-width: 580px;
+
   &.-isLeftSide {
     flex-direction: row-reverse;
+
     .message {
       align-items: flex-start;
+      padding: 16px;
+      @include gradientColor($color-highlight-1);
+      margin-left: 24px;
 
-      // background-color: $color-highlight-1;
+      &::before {
+        right: 100%;
+        left: auto;
+        border-color: transparent $color-highlight-1 transparent transparent;
+      }
+      &__dateTime {
+        left: 0;
+      }
     }
+  }
+  &__dots {
+    margin: 0 20px;
   }
 }
 .message {
-  // background-color: $color-highlight-3;
-  padding: 10px;
-  border-radius: 10px;
+  @include gradientColor($color-highlight-2);
+  margin-right: 24px;
+  padding: 16px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 10px;
+  position: relative;
+  @include shadow1d;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    margin-top: -5px;
+    left: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent $color-highlight-2;
+  }
 
   &__avatar {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     margin-right: 10px;
     margin-bottom: 8px;
+    @include glowing3dShadowDrop($color-highlight-4);
   }
 
   &__text {
@@ -34,12 +65,14 @@
     color: $color-text;
     word-wrap: break-word;
     text-align: justify;
-    white-space: pre-wrap;
     line-height: 22px;
   }
 
   &__dateTime {
     font-size: 12px;
-    color: #999;
+    color: darken($color-text, 10%);
+    position: absolute;
+    bottom: -26px;
+    right: 0;
   }
 }

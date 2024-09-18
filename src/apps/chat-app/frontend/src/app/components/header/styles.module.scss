@@ -1,8 +1,13 @@
-@import '../../../styles/colors.scss';
+@import '../../../styles/main';
 .header {
-  .header__logo > img {
-    width: 140px;
-    margin-top: 20px;
+  .header__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > img {
+      width: 140px;
+      margin-top: 20px;
+    }
   }
   width: 100vw;
   height: 100%;

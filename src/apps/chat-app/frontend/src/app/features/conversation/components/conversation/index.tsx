@@ -7,13 +7,13 @@ import { MessageSender } from '../../enums/message-sender';
 import { formatTimestamp, getNowTimestamp } from '../../../../utils/time';
 import { useChatScroll } from '../../../../hooks/use-chat-scroll';
 import useConversations from '../../hooks/useConversations';
-import DotTyping from '@chat-app/components/dot-typing';
-import USER_DEFAULT_AVATAR from '/SVG/icn_3d_person.svg';
-import REGEATON_AVATAR from '/illustrations/reggeaton_singer_white.svg';
+import USER_DEFAULT_AVATAR from '/SVG/icn_person.svg';
+import ANJA_ILLUSTRATION from '/assets/illustrations/anja_4.png';
+
 import { DefaultMessages } from '../../constants/default-messages';
 
-const userAvatarUrl = USER_DEFAULT_AVATAR
-const botAvatarUrl = REGEATON_AVATAR
+const userAvatarUrl = USER_DEFAULT_AVATAR;
+const botAvatarUrl = ANJA_ILLUSTRATION;
 
 const Conversation = () => {
   const { messages, isSendMessageLoading } = useConversations();
@@ -25,7 +25,7 @@ const Conversation = () => {
         className={classNames(styles.conversation__message)}
         key={'first-message-key'}
         messageSender={MessageSender.BOT}
-        content={DefaultMessages.FIRST_BOT_MESSAGE}
+        content={DefaultMessages.FIRST_BOT_MESSAGE_ANJA}
         isLeftSide
         dateTime={formatTimestamp(getNowTimestamp())}
         avatar={botAvatarUrl}
@@ -49,9 +49,10 @@ const Conversation = () => {
           className={classNames(styles.conversation__message)}
           key={'loadingKey'}
           messageSender={MessageSender.BOT}
-          content={<DotTyping />}
+          content={''}
           avatar={botAvatarUrl}
           isLeftSide
+          isLoading
         />
       )}
     </div>

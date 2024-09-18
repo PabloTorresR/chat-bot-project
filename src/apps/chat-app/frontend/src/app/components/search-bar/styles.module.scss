@@ -1,0 +1,46 @@
+@import '../../../styles/main';
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2px;
+  @include backgroundPane($color-highlight-1, 30%);
+  height: 40px;
+  border-left: 4px solid $color-highlight-1;
+  width: 20vw;
+}
+
+.searchBar button {
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $gradient-1-2;
+  width: 40px;
+  height: 100%;
+}
+
+.searchBar input {
+  background-color: transparent;
+  border: none;
+  color: $color-text;
+  font-size: 14px;
+  outline: none;
+  margin-left: 16px;
+  width: 100%;
+  &::placeholder {
+    color: #999;
+  }
+  &:focus {
+    .searchBar {
+      border-left: 8px solid $color-highlight-1;
+    }
+  }
+}
+
+.searchBar img {
+  width: 24px;
+  height: 24px;
+}

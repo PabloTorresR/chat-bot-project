@@ -1,4 +1,4 @@
-import { API_PATHS } from '../constants/api';
+import { API_PATHS } from '../../../constants/api';
 import {
   GetConversationsResponse,
   PostConversationsRequest,
@@ -20,3 +20,6 @@ export const getConversations = queryParams =>
       return QueryString.stringify(params);
     },
   });
+
+export const deleteConversationById = (conversationId: string) =>
+  httpClient.delete(`${CONVERSATIONS_SERVICE}/${conversationId}`);

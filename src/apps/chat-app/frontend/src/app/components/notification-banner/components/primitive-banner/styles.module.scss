@@ -1,0 +1,104 @@
+@import '../../../../../styles/main';
+.notificationBanner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 42px;
+  animation: bannerAnimation 350ms linear forwards;
+
+  &.-shouldHide {
+    animation: bannerHide 350ms linear forwards;
+  }
+  &.-hidden {
+    display: none;
+  }
+
+  &.-error {
+    background-color: $color-highlight-1;
+  }
+  &.-confirmation {
+    background-color: $color-highlight-4;
+  }
+  &.-info {
+    color: $color-text;
+    background-color: $color-highlight-2;
+  }
+  &.-warning {
+    background-color: $color-highlight-3;
+  }
+
+  .notificationBanner__textContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .notificationBanner__buttonsContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .notificationBanner__content {
+    margin-left: 8px;
+    color: $color-text;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+
+    > button {
+      color: $color-text;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 18px;
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+  }
+
+  .notificationBanner__text {
+    color: $color-text;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
+
+  .notificationBanner__button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    margin-right: 8px;
+    text-decoration: underline;
+  }
+
+  .notificationBanner__closeButton {
+    display: flex;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+}
+
+@keyframes bannerAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bannerHide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -18,10 +18,16 @@ const InputBox = ({ onSubmitClick }: Props) => {
     reset();
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSubmit(onSubmit)();
+    }
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.inputBox}>
-      <textarea {...register('message')} placeholder={PLACEHOLDER} />
-      <Button label="Submit" type="submit">
+      <textarea {...register('message')} placeholder={PLACEHOLDER} onKeyDown={handleKeyDown} />
+      <Button label="Submit" type="submit" classNames={styles.inputBox__button}>
         Submit
       </Button>
     </form>

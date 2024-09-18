@@ -1,4 +1,4 @@
-import { API_PATHS } from '../constants/api';
+import { API_PATHS } from '../../../constants/api';
 import { PostMessagesResponse, PostMessagesRequest, GetMessagesResponse } from 'dtos-lib/chatapp/messages';
 import QueryString from 'qs';
 import { httpClient } from 'app/config/axios';

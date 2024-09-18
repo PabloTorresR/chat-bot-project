@@ -1,0 +1,194 @@
+@import '../../../../../styles/main';
+
+.flashcard {
+  background-color: #333;
+  border: none;
+  color: $color-white;
+  height: 420px;
+  width: 320px;
+  position: relative;
+  border-radius: 4px;
+  background-image: url('/assets/illustrations/common-flashcard.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  @include glowingBorder($color-white);
+  background-position: center bottom;
+  cursor: pointer;
+}
+
+.flashcard__content {
+  padding: 20px;
+  padding-bottom: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+  height: 70%;
+}
+
+.flashcard__example {
+  margin-top: 10px;
+}
+
+.flashcard__popularExample {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.flashcard__word {
+  font-weight: bold;
+  font-size: 18px;
+  background-color: $color-white;
+  color: $color-text;
+  position: absolute;
+  padding: 8px 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  @include gradientColor($color-white);
+  text-align: center;
+}
+
+.flashcard__rarity {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 8px;
+  background-color: rgba($color-dark, 0.5);
+  color: $color-white;
+  font-weight: bold;
+  font-size: 10px;
+  border-radius: 4px;
+}
+
+// Rarity styles
+.flashcard {
+  &.-Common {
+    .flashcard__word {
+      background-image: url('/assets/illustrations/common-flashcard.png');
+      @include gradientColor($color-white);
+      color: $color-dark;
+      animation: glowing-color-white 2s infinite;
+    }
+  }
+  &.-Uncommon {
+    background-image: url('/assets/illustrations/uncommon-flashcard.png');
+    @include glowingBorder($color-highlight-4, 0.5);
+    .flashcard__word {
+      @include gradientColor($color-highlight-4);
+      animation: glowing-color-highlight-4 2s infinite;
+    }
+  }
+  &.-Rare {
+    background-image: url('/assets/illustrations/rare-flashcard.png');
+    @include glowingBorder($color-highlight-2, 1);
+    .flashcard__word {
+      @include gradientColor($color-highlight-2);
+      animation: glowing-color-highlight-2 2s infinite;
+    }
+  }
+  &.-Exotic {
+    background-image: url('/assets/illustrations/exotic-flashcard.png');
+    @include glowingBorder($color-highlight-1, 1.5);
+    .flashcard__word {
+      @include gradientColor($color-highlight-1);
+      animation: glowing-color-highlight-1 2s infinite;
+    }
+  }
+  &.-Legendary {
+    background-image: url('/assets/illustrations/legendary-flashcard.png');
+    @include glowingBorder($color-highlight-3, 2);
+    .flashcard__word {
+      animation: glowing-color-highlight-3 2s infinite;
+      @include gradientColor($color-highlight-3);
+    }
+  }
+  &.-isBack {
+    background-image: url('/assets/backgrounds/background_card.png');
+  }
+}
+@keyframes glowing-color-white {
+  $glow-size: 1px;
+  0% {
+    box-shadow: 0 0 $glow-size $color-white, 0 0 $glow-size * 2 $color-white, 0 0 $glow-size * 4 $color-white,
+      0 0 $glow-size * 8 $color-white;
+  }
+  50% {
+    box-shadow: 0 0 $glow-size * 2 $color-white, 0 0 $glow-size * 4 $color-white, 0 0 $glow-size * 8 $color-white,
+      0 0 $glow-size * 16 $color-white;
+  }
+  100% {
+    box-shadow: 0 0 $glow-size $color-white, 0 0 $glow-size * 2 $color-white, 0 0 $glow-size * 4 $color-white,
+      0 0 $glow-size * 8 $color-white;
+  }
+}
+
+@keyframes glowing-color-highlight-2 {
+  $glow-size: 5px;
+
+  0% {
+    box-shadow: 0 0 $glow-size $color-highlight-2, 0 0 $glow-size * 2 $color-highlight-2,
+      0 0 $glow-size * 4 $color-highlight-2, 0 0 $glow-size * 8 $color-highlight-2;
+  }
+  50% {
+    box-shadow: 0 0 $glow-size * 2 $color-highlight-2, 0 0 $glow-size * 4 $color-highlight-2,
+      0 0 $glow-size * 8 $color-highlight-2, 0 0 $glow-size * 16 $color-highlight-2;
+  }
+  100% {
+    box-shadow: 0 0 $glow-size $color-highlight-2, 0 0 $glow-size * 2 $color-highlight-2,
+      0 0 $glow-size * 4 $color-highlight-2, 0 0 $glow-size * 8 $color-highlight-2;
+  }
+}
+
+@keyframes glowing-color-highlight-4 {
+  $glow-size: 5px;
+
+  0% {
+    box-shadow: 0 0 $glow-size $color-highlight-4, 0 0 $glow-size * 2 $color-highlight-4,
+      0 0 $glow-size * 4 $color-highlight-4, 0 0 $glow-size * 8 $color-highlight-4;
+  }
+  50% {
+    box-shadow: 0 0 $glow-size * 2 $color-highlight-4, 0 0 $glow-size * 4 $color-highlight-4,
+      0 0 $glow-size * 8 $color-highlight-4, 0 0 $glow-size * 16 $color-highlight-4;
+  }
+  100% {
+    box-shadow: 0 0 $glow-size $color-highlight-4, 0 0 $glow-size * 2 $color-highlight-4,
+      0 0 $glow-size * 4 $color-highlight-4, 0 0 $glow-size * 8 $color-highlight-4;
+  }
+}
+
+@keyframes glowing-color-highlight-1 {
+  $glow-size: 5px;
+
+  0% {
+    box-shadow: 0 0 $glow-size $color-highlight-1, 0 0 $glow-size * 2 $color-highlight-1,
+      0 0 $glow-size * 4 $color-highlight-1, 0 0 $glow-size * 8 $color-highlight-1;
+  }
+  50% {
+    box-shadow: 0 0 $glow-size * 2 $color-highlight-1, 0 0 $glow-size * 4 $color-highlight-1,
+      0 0 $glow-size * 8 $color-highlight-1, 0 0 $glow-size * 16 $color-highlight-1;
+  }
+  100% {
+    box-shadow: 0 0 $glow-size $color-highlight-1, 0 0 $glow-size * 2 $color-highlight-1,
+      0 0 $glow-size * 4 $color-highlight-1, 0 0 $glow-size * 8 $color-highlight-1;
+  }
+}
+
+@keyframes glowing-color-highlight-3 {
+  $glow-size: 5px;
+
+  0% {
+    box-shadow: 0 0 $glow-size $color-highlight-3, 0 0 $glow-size * 2 $color-highlight-3,
+      0 0 $glow-size * 4 $color-highlight-3, 0 0 $glow-size * 8 $color-highlight-3;
+  }
+  50% {
+    box-shadow: 0 0 $glow-size * 2 $color-highlight-3, 0 0 $glow-size * 4 $color-highlight-3,
+      0 0 $glow-size * 8 $color-highlight-3, 0 0 $glow-size * 16 $color-highlight-3;
+  }
+  100% {
+    box-shadow: 0 0 $glow-size $color-highlight-3, 0 0 $glow-size * 2 $color-highlight-3,
+      0 0 $glow-size * 4 $color-highlight-3, 0 0 $glow-size * 8 $color-highlight-3;
+  }
+}

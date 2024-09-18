@@ -1,8 +1,14 @@
 import React, { memo } from 'react';
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 
-const DotTyping = memo(() => {
-  return <div className={styles.dotTyping}></div>;
+interface DotTypingProps {
+  className?: string;
+}
+
+const DotTyping = memo(({ className }: DotTypingProps) => {
+  const dotTypingClasses = classNames(styles.dotTyping, className);
+  return <div className={dotTypingClasses}></div>;
 });
 
 export default DotTyping;

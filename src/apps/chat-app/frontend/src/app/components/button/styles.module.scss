@@ -1,14 +1,15 @@
-@import '../../../styles/colors.scss';
+@import '../../../styles/main';
 
 .button {
   border: none;
   background-color: $color-highlight-1;
   padding: 10px;
-  border-radius: 10px;
-  font-size: 12px;
-  color: $color-dark;
-
+  border-radius: 0px;
+  font-size: 14px;
+  color: $color-white;
+  transition: all 0.3s ease;
+  @include glowingBorder($color-highlight-1, 0.2);
   &:hover {
-    background-color: darken($color-highlight-1, 10%);
+    transform: scaleY(1.05);
   }
 }

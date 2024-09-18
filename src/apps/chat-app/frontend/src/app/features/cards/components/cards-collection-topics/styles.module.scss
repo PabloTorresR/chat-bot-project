@@ -1,0 +1,50 @@
+@import '../../../../../styles/main';
+.cardsCollectionTopics {
+  display: flex;
+  flex-direction: column;
+  @include backgroundPane($color-highlight-1, 30%);
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.cardsCollectionTopics__title {
+  color: $color-text;
+  margin: 16px;
+  text-align: center;
+  background: $color-highlight-1;
+  @include shadow1d;
+
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  > img {
+    width: 36px;
+    height: 36px;
+  }
+  > h3 {
+    font-size: 16px;
+  }
+}
+
+.cardsCollectionTopics__topics {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 80vh;
+}
+
+.cardsCollectionTopics__topics__elem {
+  color: $color-text;
+  margin: 4px;
+  padding: 8px 16px;
+  border-left: 4px solid transparent; //avoids the button to move when isActive
+  border: none;
+
+  &.-isActive {
+    border-left: 4px solid $color-highlight-1;
+    // @include glowingBorder($color-highlight-1, 0.4);
+  }
+}
