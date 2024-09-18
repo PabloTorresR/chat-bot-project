@@ -1,0 +1,11 @@
+@import '../../../styles/main';
+
+#contentContainer__conversation {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 48px;
+}

@@ -1,0 +1,38 @@
+@import '../../../styles/main';
+
+$secondary-color: #6c757d;
+
+.collection {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: 48px 1fr 48px;
+  grid-template-areas:
+    'top right'
+    'content right'
+    'bottom right';
+}
+
+.collection__top {
+  grid-area: top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.collection__content {
+  grid-area: content;
+}
+
+.collection__bottom {
+  padding: 0 32px;
+  grid-area: bottom;
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.collection__rightBar {
+  grid-area: right;
+}

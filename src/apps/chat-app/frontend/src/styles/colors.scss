@@ -1,15 +1,22 @@
-$color-white: #fff;
-$color-dark: #0c111c;
+$color-white: #f0f3ff;
+$color-dark: #312244;
 
 $color-very-light: #f8f6f4;
 $color-error: #ff6969;
-$color-light: #e4e4e4;
-$color-text-light: #dfe6e6;
+$color-light: #f0f3ff;
+$color-text-light: #dfe6e664;
 
-$color-highlight-1: $color-white;
-$color-highlight-2: #46484f;
-$color-highlight-3: #3d63dd;
+$color-highlight-1: #ff006e;
+$color-highlight-2: #8338ec;
+$color-highlight-3: #fee440;
+$color-highlight-4: #00f5d4;
 
 $color-background: $color-dark;
 $color-text: $color-white;
-$color-border: $color-highlight-2;
+$color-border: $color-text-light;
+
+$gradient-1-2: linear-gradient(to bottom right, $color-highlight-1, $color-highlight-2);
+$gradient-2-3: linear-gradient(to bottom right, $color-highlight-2, $color-highlight-3);
+$gradient-3-4: linear-gradient(to bottom right, $color-highlight-3, $color-highlight-4);
+$gradient-4-1: linear-gradient(to bottom right, $color-highlight-4, $color-highlight-1);
+$gradient-2-4: linear-gradient(to bottom right, $color-highlight-2, $color-highlight-4);

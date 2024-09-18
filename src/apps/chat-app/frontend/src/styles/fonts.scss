@@ -58,3 +58,10 @@
   src: local('Eina03-Bold'), url('./fonts/Eina03-Bold.woff2') format('woff2'),
     url('./fonts/Eina03-Bold.woff') format('woff'), url('./fonts/Eina03-Bold.otf') format('opentype');
 }
+
+@font-face {
+  font-family: 'Space Grotesk', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}

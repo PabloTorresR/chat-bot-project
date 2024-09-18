@@ -2,6 +2,8 @@
 export namespace RouteName {
   export enum Routes {
     HOME = '/',
+    CONVERSATIONS = '/conversations',
+    COLLECTION = '/collection',
     MAINTENANCE = '/maintenance',
     NOT_FOUND = '/not-found',
     AUTH = '/auth',
@@ -16,6 +18,9 @@ export namespace RouteName {
 export namespace RoutePath {
   export enum Name {
     HOME = 'HOME',
+    CONVERSATIONS = 'CONVERSATIONS',
+    COLLECTION = 'COLLECTION',
+    PRACTICE = 'PRACTICE',
     MAINTENANCE = 'MAINTENANCE',
     AUTH = 'AUTH',
     SIGN_IN = 'SIGN_IN',
@@ -26,7 +31,10 @@ export namespace RoutePath {
 
   export const Route: Record<Name, string> = {
     [Name.HOME]: RouteName.Routes.HOME,
+    [Name.CONVERSATIONS]: RouteName.Routes.CONVERSATIONS,
+    [Name.COLLECTION]: RouteName.Routes.COLLECTION,
     [Name.MAINTENANCE]: RouteName.Routes.MAINTENANCE,
+    [Name.PRACTICE]: RouteName.Routes.HOME, //NOTE: COMMING SOON
     [Name.AUTH]: RouteName.Routes.AUTH,
     [Name.SIGN_IN]: RouteName.Routes.AUTH + RouteName.RoutesAuth.SIGN_IN,
     [Name.SIGN_UP]: RouteName.Routes.AUTH + RouteName.RoutesAuth.SIGN_UP,

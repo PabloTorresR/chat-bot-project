@@ -11,6 +11,8 @@ const SignUpRoute = lazy(() => import('@chat-app/features/user/components/sign-i
 const SignUpConfirmRoute = lazy(
   () => import('@chat-app/features/user/components/sign-in.sign-up/components/confirm-sign-up'),
 );
+const ConversationsRoute = lazy(() => import('@chat-app/routes/conversations'));
+const CollectionRoute = lazy(() => import('@chat-app/routes/collection'));
 
 //NOTE: replace login for the parent that includes it and also signup
 export const AppRoutes = () => (
@@ -22,7 +24,10 @@ export const AppRoutes = () => (
           <MainLayout />
         </AuthRequiredRoute>
       }
-    ></Route>
+    >
+      <Route path={RoutePath.Route.CONVERSATIONS} element={<ConversationsRoute />} />
+      <Route path={RoutePath.Route.COLLECTION} element={<CollectionRoute />} />
+    </Route>
     <Route path={RoutePath.Route.AUTH} element={<AuthRoutesWrapper />}>
       <Route path={RoutePath.Route.SIGN_IN} element={<SignInRoute />}></Route>
       <Route path={RoutePath.Route.SIGN_UP} element={<SignUpRoute />}></Route>
