@@ -1,29 +1,43 @@
-@import '../../../../../../../styles/colors.scss';
-.floatingContainer {
-  height: 320px;
-  width: 340px;
+@import '../../../../../../../styles/main';
+.signIn {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 200px;
+}
+
+.floatingContainer {
+  height: 320px;
+  width: 340px;
+  padding: 20px;
+  border-radius: 2px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid $color-highlight-2;
   font-style: oblique;
-  background-color: rgba(255, 255, 255, 0.028);
   backdrop-filter: blur(5px);
+  @include backgroundPane($color-highlight-1, 0.18);
+  @include shadow1d;
+}
+
+.signIn__leftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
 }
 
 .floatingContainer h2 {
   text-align: center;
   margin-bottom: 32px;
-  color: $color-highlight-1;
+  color: $color-text;
 }
 
 .floatingContainer input {
@@ -31,20 +45,21 @@
   width: 300px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid $color-highlight-2;
-  border-radius: 3px;
+  border-radius: 2px;
+  border: none;
   background-color: $color-dark;
-  color: $color-highlight-1;
+  color: $color-text;
+  @include shadow1d;
 }
 
 .floatingContainer__submitButton {
   display: block;
   width: 300px;
   padding: 10px;
-  background-color: $color-highlight-3;
-  color: $color-highlight-1;
+  background-color: $color-highlight-2;
+  color: $color-text;
   border: none;
-  border-radius: 3px;
+  border-radius: 2px;
   cursor: pointer;
   position: absolute;
   bottom: 72px;
@@ -52,8 +67,9 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  @include glowingBorder($color-highlight-2, 0.2);
   &:hover {
-    background-color: darken($color-highlight-3, 5%);
+    background-color: darken($color-highlight-2, 5%);
   }
 }
 
@@ -74,7 +90,7 @@
 }
 
 .errorMessage {
-  color: $color-highlight-3;
+  color: $color-highlight-1;
   margin: 8px 0;
   font-size: 12px;
   font-style: italic;

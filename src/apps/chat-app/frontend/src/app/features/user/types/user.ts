@@ -4,4 +4,5 @@ export interface User {
   email_verified?: boolean;
   sub?: string;
   avatar?: string;
+  language?: string;
 }

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Conversation } from '../types/conversation';
-import { GET_CONVERSATIONS_QUERY_PARAMS } from '../enums/query-params';
+import { GET_CONVERSATIONS_QUERY_PARAMS } from '../../../enums/query-params';
 import { getConversations } from '../api/conversations';
 import { FilterType } from 'dtos-lib/chatapp/filters';
 interface Props {

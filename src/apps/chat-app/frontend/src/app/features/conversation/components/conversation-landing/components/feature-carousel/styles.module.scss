@@ -1,0 +1,72 @@
+@import '../../../../../../../styles/main';
+.featuresCarousel {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 40px;
+  @include backgroundPane($color-highlight-1, 0.3);
+  padding: 20px;
+  max-width: 800px;
+}
+.featuresCarousel__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 200px;
+  font-size: 16px;
+  text-align: center;
+  img {
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+    border-radius: 2px;
+  }
+  &.-red {
+    img {
+      @include gradientColor($color-highlight-1);
+      @include shadow1d();
+    }
+    strong {
+      color: $color-highlight-1;
+    }
+  }
+  &.-blue {
+    img {
+      @include gradientColor($color-highlight-4);
+      @include shadow1d();
+    }
+    strong {
+      color: $color-highlight-4;
+    }
+  }
+  &.-purple {
+    img {
+      @include gradientColor($color-highlight-2);
+      @include shadow1d();
+    }
+    strong {
+      color: $color-highlight-2;
+    }
+  }
+  &.-darkPurple {
+    img {
+      @include gradientColor(darken($color-highlight-1, 18%));
+      @include shadow1d();
+    }
+    strong {
+      color: darken($color-highlight-1, 18%);
+    }
+  }
+  &.-yellow {
+    img {
+      @include gradientColor($color-highlight-3);
+      @include shadow1d();
+    }
+    strong {
+      color: $color-highlight-3;
+    }
+  }
+}

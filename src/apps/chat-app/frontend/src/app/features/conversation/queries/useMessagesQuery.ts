@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { formatDateToyyyyMMDD } from '../../../utils/time';
 import { Message } from '../types/message';
 import { FilterType } from 'dtos-lib/chatapp/filters';
-import { GET_MESSAGES_QUERY_PARAMS } from '../enums/query-params';
+import { GET_MESSAGES_QUERY_PARAMS } from '@chat-app/enums/query-params';
 import { getMessages } from '../api/messages';
 
 interface Props {

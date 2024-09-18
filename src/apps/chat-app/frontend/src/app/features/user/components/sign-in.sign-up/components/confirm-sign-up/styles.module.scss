@@ -1,4 +1,4 @@
-@import '../../../../../../../styles/colors.scss';
+@import '../../../../../../../styles/main';
 .floatingContainer {
   height: 260px;
   width: 440px;
@@ -8,23 +8,22 @@
   transform: translate(-50%, -50%);
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid $color-highlight-2;
   font-style: oblique;
 
-  background-color: rgba(255, 255, 255, 0.028);
+  @include backgroundPane($color-highlight-1, 0.18);
+  @include shadow1d;
   backdrop-filter: blur(5px);
 }
 
 .floatingContainer h2 {
   text-align: center;
   margin-bottom: 32px;
-  color: $color-highlight-1;
+  color: $color-text;
 }
 
 .floatingContainer input {
@@ -32,18 +31,18 @@
   width: 300px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid $color-highlight-2;
-  border-radius: 3px;
+  border: none;
+  border-radius: 2px;
   background-color: $color-dark;
-  color: $color-highlight-1;
+  color: $color-text;
 }
 
 .floatingContainer__submitButton {
   display: block;
   width: 300px;
   padding: 10px;
-  background-color: $color-highlight-3;
-  color: $color-highlight-1;
+  background-color: $color-highlight-1;
+  color: $color-text;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -53,8 +52,9 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  @include glowingBorder($color-highlight-1, 0.2);
   &:hover {
-    background-color: darken($color-highlight-3, 5%);
+    background-color: darken($color-highlight-1, 5%);
   }
 }
 

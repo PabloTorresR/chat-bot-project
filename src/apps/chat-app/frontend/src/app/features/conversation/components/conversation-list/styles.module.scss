@@ -1,4 +1,4 @@
-@import '../../../../../styles/colors';
+@import '../../../../../styles/main';
 .conversationList {
   width: 240px;
   display: grid;
@@ -6,22 +6,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 32px;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.068);
-  backdrop-filter: blur(5px);
-  border-radius: 8px;
+  gap: 16px;
+  height: 90%;
+  @include backgroundPane($color-highlight-1, 30%);
+  backdrop-filter: blur(10px);
   padding: 16px;
   padding-bottom: 0;
+  // @include glowingBorder($color-highlight-1, 0.3);
+  @include shadow1d;
 
   &__newChat {
     width: 240px;
     color: $color-text;
     transition: all 0.3s ease;
-    border: 1px solid $color-text;
-    border-radius: 8px;
     padding: 8px;
-    font-size: 14px;
+    font-size: 16px;
     display: flex;
     justify-content: center;
     gap: 12px;
@@ -32,33 +31,61 @@
         fill: $color-text;
       }
     }
+    background-color: $color-highlight-1;
     &:hover {
-      background-color: $color-highlight-2;
+      transform: scale(1.05);
+      @include shadow1d;
     }
   }
 }
 
 .conversationList__item {
-  padding: 10px 0;
+  padding: 20px 0;
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: $color-text;
   list-style-type: none;
   width: 220px;
-  border-radius: 8px;
   height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin: 0 5px;
+  margin: 10px;
+  position: relative;
 
-  &:hover {
-    background-color: $color-highlight-2;
+  &__title {
+    font-weight: 600;
   }
-
+  &__date {
+    color: $color-highlight-3;
+  }
+  &__x {
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+  }
+  &:hover,
   &.-active {
-    border: 1px solid $color-highlight-2;
+    @include shadow1d;
+    background-color: $color-highlight-1;
+
+    .conversationList__item__x {
+      opacity: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $color-text;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover {
+        border: 1px solid $color-text;
+        border-radius: 2px;
+      }
+    }
   }
 }
 
@@ -67,5 +94,6 @@
   overflow-x: hidden;
   height: 100%;
   width: 100%;
-  gap: 8px;
+  gap: 16px;
+  border-top: 1px solid $color-border;
 }

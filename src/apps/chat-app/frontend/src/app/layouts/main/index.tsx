@@ -1,24 +1,22 @@
-import { MessageInputBox } from '../../features/conversation/components/message-input-box';
-import Conversation from '../../features/conversation/components/conversation';
-
 import styles from './styles.module.scss';
 import Header from '../../components/header';
-import ConversationList from '../../features/conversation/components/conversation-list';
-import useConversations from '../../features/conversation/hooks/useConversations';
-import { PageList } from '@chat-app/features/pages/components/page-list';
-import ConversationLanding from '@chat-app/features/conversation/components/conversation-landing';
+import { PageList } from '@chat-app/layouts/main/page-list';
 import { useIsSidebarExpandedSelector } from '@chat-app/context/ui/selectors';
 import { useCallback } from 'react';
 import ExpandButton from '@chat-app/components/expand-button';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Home } from '@chat-app/routes/home';
+import { RouteName } from '@chat-app/routes/namespaces';
 
 export const MainLayout = () => {
-  const { currentConversation } = useConversations();
   const isSidebarExpanded = useIsSidebarExpandedSelector();
 
   const handleExpandSidebar = useCallback(
     () => isSidebarExpanded?.actions.toggleIsSidebarExpanded(),
     [isSidebarExpanded?.actions],
   );
+
+  const currentRoute = useLocation().pathname;
 
   return (
     <div id={styles.mainContainer}>
@@ -33,19 +31,7 @@ export const MainLayout = () => {
           isExpanded={isSidebarExpanded?.value ?? true}
         />
       </div>
-      <div id={styles.contentContainer}>
-        <ConversationList />
-        <div id={styles.contentContainer__conversation}>
-          {currentConversation ? (
-            <>
-              <Conversation />
-              <MessageInputBox />
-            </>
-          ) : (
-            <ConversationLanding />
-          )}
-        </div>
-      </div>
+      <div id={styles.contentContainer}>{currentRoute === RouteName.Routes.HOME ? <Home /> : <Outlet />}</div>
     </div>
   );
 };

@@ -19,6 +19,7 @@ class MessageBuilder {
     message: string,
     conversationId: string,
     userId: string,
+    userLanguage: string,
     conversationHistory?: Message[],
   ): PostMessagesRequest => {
     const messageId = uuidv4();
@@ -32,6 +33,7 @@ class MessageBuilder {
         conversationId,
       },
       messageHistory: this._getConversationHistory(conversationHistory),
+      userLanguage: userLanguage,
     };
   };
 }

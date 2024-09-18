@@ -3,6 +3,7 @@ import { useMap } from 'react-use';
 import { Auth, Hub } from 'aws-amplify';
 import { queryClient } from '../../../../../config/react-query';
 import { User } from '../../types/user';
+import { filterCognitoAttributes } from '../../utils/filterCognitoAttributes';
 
 export const useAuthManager = () => {
   const [user, { set, setAll }] = useMap<User>({});
@@ -39,16 +40,19 @@ export const useAuthManager = () => {
       email,
       password,
       preferred_username,
+      language,
     }: {
       email: string;
       password: string;
       preferred_username: string;
+      language: string;
     }) => {
       const result = await Auth.signUp({
         username: email,
         password,
         attributes: {
-          preferred_username,
+          'custom:preferred_username': preferred_username,
+          'custom:language': language,
         },
         autoSignIn: {
           enabled: true,
@@ -56,6 +60,7 @@ export const useAuthManager = () => {
       });
       set('email', email);
       set('preferred_username', preferred_username);
+      set('language', language);
       return result;
     },
     [set],
@@ -79,7 +84,9 @@ export const useAuthManager = () => {
 
       //NOTE: dmitry tenia aqui una llamada a un endpoint dentro del api gateway para obtener la informacion del usuario
       //luego cogía y lo metía con el setAll({...attributes, ...data})
-      setAll(attributes);
+
+      const filteredAttributes = filterCognitoAttributes(attributes);
+      setAll(filteredAttributes);
       setIsLoggedIn(true);
     } catch (error) {
       console.warn(error);
@@ -103,7 +110,8 @@ export const useAuthManager = () => {
         return;
       }
       if (payload.event === 'autoSignIn') {
-         setAll(payload.data?.attributes);
+        const filteredAttributes = filterCognitoAttributes(payload.data?.attributes);
+        setAll(filteredAttributes);
         setIsLoggedIn(true);
       }
     });

@@ -6,6 +6,11 @@ import { useCallback, useState } from 'react';
 import styles from './styles.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from '@chat-app/routes/namespaces';
+import Card from '@chat-app/features/cards/components/card';
+import MessageItem from '@chat-app/features/conversation/components/conversation/components/message-item';
+import { MessageSender } from '@chat-app/features/conversation/enums/message-sender';
+import USER_DEFAULT_AVATAR from '/SVG/icn_person.svg';
+
 export interface SignInFieldValues extends FieldValues {
   email: string;
   password: string;
@@ -56,21 +61,39 @@ const SignIn = () => {
   }, [navigate]);
 
   return (
-    <div className={styles.floatingContainer}>
-      <h2>Welcome back!</h2>
-      <form onSubmit={handleSubmit(handleSignIn)}>
-        <input type="email" placeholder="Email" {...register('email')} />
-        {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
-        <input type="password" placeholder="Password" {...register('password')} />
-        {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
-        {errors.generalError && <p className={styles.errorMessage}>{errors.generalError.message as string}</p>}
-        <button className={styles.floatingContainer__submitButton} type="submit">
-          Sign In
+    <div className={styles.signIn}>
+      <div className={styles.signIn__leftSide}>
+        <MessageItem
+          content={'Generate words in Spanish about signing in an awesome app'}
+          messageSender={MessageSender.USER}
+          avatar={USER_DEFAULT_AVATAR}
+        />
+        <Card
+          foreignWord="Iniciar Sesión"
+          nativeWord="Sign In"
+          example="Si ya tienes una cuenta puedes iniciar sesión aquí"
+          exampleNative="If you already have an account you can sign in here"
+          popularExample="The Matrix (1999): Necesitas iniciar sesión para acceder al sistema"
+          popularExampleNative="The Matrix (1999): You need to log in to access the system"
+          difficulty={3}
+        />
+      </div>
+      <div className={styles.floatingContainer}>
+        <h2>Welcome back!</h2>
+        <form onSubmit={handleSubmit(handleSignIn)}>
+          <input type="email" placeholder="Email" {...register('email')} />
+          {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
+          <input type="password" placeholder="Password" {...register('password')} />
+          {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
+          {errors.generalError && <p className={styles.errorMessage}>{errors.generalError.message as string}</p>}
+          <button className={styles.floatingContainer__submitButton} type="submit">
+            Sign In
+          </button>
+        </form>
+        <button className={styles.floatingContainer__cta} onClick={() => handleGoToSignUp()}>
+          Register now!
         </button>
-      </form>
-      <button className={styles.floatingContainer__cta} onClick={() => handleGoToSignUp()}>
-        Register now!
-      </button>
+      </div>
     </div>
   );
 };
