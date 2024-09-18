@@ -8,7 +8,7 @@ from modules.messages.domain.value_objects import (
 )
 
 
-class LangChainHistoryFormatter(HistoryFormatter):
+class BufferMemoryHistoryFormatter(HistoryFormatter):
     def __init__(self, default_message: Optional[str] = ""):
         self.default_message = default_message
 

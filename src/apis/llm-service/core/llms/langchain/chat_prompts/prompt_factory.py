@@ -2,6 +2,7 @@ from langchain.prompts.chat import (
     SystemMessagePromptTemplate,
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
+    AIMessagePromptTemplate,
 )
 
 

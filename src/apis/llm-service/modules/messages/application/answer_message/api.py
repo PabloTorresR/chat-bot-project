@@ -20,12 +20,13 @@ async def answer_message(
         conversation_id=body.get("message", {}).get("conversationId"),
         **body.get("message", {}),
     )
+    user_language = body.get("userLanguage", {})
     message_history = [
         HistoryMessage.from_primitives(created_at=message["createdAt"], **message)
         for message in body.get("messageHistory", [])
     ]
 
-    return await service.run(message, message_history)
+    return await service.run(message, message_history, user_language=user_language)
 
 
 @router.get(path="/", name="Status")
