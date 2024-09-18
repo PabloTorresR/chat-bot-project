@@ -1,4 +1,5 @@
-import { DynamoDBMessageRepository } from './../../../../../Contexts/Chatapp/Messages/infrastructure/persistence/dynamodb/DynamoDBMessageRepository';
+import { DynamoDBCardRepository } from 'chatapp-context/Cards/infraestructure/persistence/dynamodb/DynamoDBCardRepository';
+import { DynamoDBMessageRepository } from 'chatapp-context/Messages/infrastructure/persistence/dynamodb/DynamoDBMessageRepository';
 import { DynamoDBConversationRepository } from 'chatapp-context/Conversations/infrastructure/persistence/dynamodb/DynamoDBConversationRepository';
 import { Module } from '@nestjs/common';
 import { providers } from './db.providers';
@@ -11,6 +12,10 @@ const repositoryProviders = [
   {
     provide: 'MessageRepository',
     useClass: DynamoDBMessageRepository,
+  },
+  {
+    provide: 'CardRepository',
+    useClass: DynamoDBCardRepository,
   },
 ];
 

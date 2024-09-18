@@ -33,10 +33,13 @@ class MessageValidator {
   @IsString()
   userId: string;
 }
-export class MessageCreateDto {
+export class MessagePostDto {
   @ValidateNested()
   message: MessageValidator;
 
   @ValidateNested()
   messageHistory: HistoryMessageValidator[];
+
+  @IsString()
+  userLanguage: string;
 }

@@ -10,4 +10,7 @@ export class ConversationCreateDto implements PostConversationsRequest {
 
   @IsString()
   userId: string;
+
+  @IsString()
+  createdAt: string;
 }

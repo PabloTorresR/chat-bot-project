@@ -3,84 +3,32 @@
     "baseUrl": "./src",
     "paths": {
       // "@/*": ["./*"],
-      "@chat-app/config/*": [
-        "./config/*"
-      ],
-      "@chat-app/config/": [
-        "./config"
-      ],
-      "@chat-app/locales/*": [
-        "./locales/*"
-      ],
-      "@chat-app/components/*": [
-        "./app/components/*"
-      ],
-      "@chat-app/components/": [
-        "./app/components"
-      ],
-      "@chat-app/features/": [
-        "./app/features/"
-      ],
-      "@chat-app/features/*": [
-        "./app/features/*"
-      ],
-      "@chat-app/enums/*": [
-        "./app/enums/*"
-      ],
-      "@chat-app/enums": [
-        "./app/enums"
-      ],
-      "@chat-app/hooks/*": [
-        "./app/hooks/*"
-      ],
-      "@chat-app/routes/*": [
-        "./app/routes/*"
-      ],
-      "@chat-app/routes": [
-        "./app/routes"
-      ],
-      "@chat-app/layouts/*": [
-        "./app/layouts/*"
-      ],
-      "@chat-app/layouts": [
-        "./app/layouts"
-      ],
-      "@chat-app/interfaces/*": [
-        "./app/interfaces/*"
-      ],
-      "@chat-app/interfaces": [
-        "./app/interfaces"
-      ],
-      "@chat-app/context/*": [
-        "./app/context/*"
-      ],
-      "@chat-app/context": [
-        "./app/context"
-      ],
-      "@chat-app/constants/*": [
-        "./app/constants/*"
-      ],
-      "@chat-app/constants": [
-        "./app/constants"
-      ],
-      "@chat-app/styles/*": [
-        "./styles/*"
-      ],
-      "@chat-app/types/*": [
-        "./app/types/*"
-      ],
-      "@chat-app/types": [
-        "./app/types"
-      ],
-      "@chat-app/utils/*": [
-        "./utils/*"
-      ],
-      "@chat-app/utils": [
-        "./utils"
-      ],
-      "@chat-app/assets/*": [
-        "./assets/*"
-      ]
+      "@chat-app/config/*": ["./config/*"],
+      "@chat-app/config/": ["./config"],
+      "@chat-app/locales/*": ["./locales/*"],
+      "@chat-app/components/*": ["./app/components/*"],
+      "@chat-app/components/": ["./app/components"],
+      "@chat-app/features/": ["./app/features/"],
+      "@chat-app/features/*": ["./app/features/*"],
+      "@chat-app/enums/*": ["./app/enums/*"],
+      "@chat-app/enums": ["./app/enums"],
+      "@chat-app/hooks/*": ["./app/hooks/*"],
+      "@chat-app/routes/*": ["./app/routes/*"],
+      "@chat-app/routes": ["./app/routes"],
+      "@chat-app/layouts/*": ["./app/layouts/*"],
+      "@chat-app/layouts": ["./app/layouts"],
+      "@chat-app/interfaces/*": ["./app/interfaces/*"],
+      "@chat-app/interfaces": ["./app/interfaces"],
+      "@chat-app/context/*": ["./app/context/*"],
+      "@chat-app/context": ["./app/context"],
+      "@chat-app/constants/*": ["./app/constants/*"],
+      "@chat-app/constants": ["./app/constants"],
+      "@chat-app/styles/*": ["./styles/*"],
+      "@chat-app/types/*": ["./app/types/*"],
+      "@chat-app/types": ["./app/types"],
+      "@chat-app/utils/*": ["./app/utils/*"],
+      "@chat-app/utils": ["./app/utils"],
+      "@chat-app/assets/*": ["./assets/*"]
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { MessagesService } from './messages.service';
 import { MessageGetDto } from './dto/message.get.dto';
-import { MessageCreateDto } from './dto/message.create.dto';
+import { MessagePostDto } from './dto/message.post.dto';
 
 @Controller('messages')
 export class MessagesController {
@@ -11,7 +11,7 @@ export class MessagesController {
     return this.messagesService.findAll(query);
   }
   @Post()
-  newUserMessage(@Body() body: MessageCreateDto) {
-    return this.messagesService.newUserMessage(body);
+  postUserMessage(@Body() body: MessagePostDto) {
+    return this.messagesService.postUserMessage(body);
   }
 }
