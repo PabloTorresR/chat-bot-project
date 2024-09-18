@@ -1,16 +1,10 @@
 {
-  "include": [
-    ".",
-  ],
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules"
-  ],
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist",
     "experimentalDecorators": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   }
 }

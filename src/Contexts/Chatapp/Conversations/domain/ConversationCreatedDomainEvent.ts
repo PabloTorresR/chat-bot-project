@@ -1,9 +1,12 @@
 import { DomainEvent } from 'shared-context/domain/DomainEvent';
+
 export type DomainEventAttributes = { [key: string]: unknown };
 
 export type CreateConversationDomainEventAttributes = {
   readonly title: string;
   readonly userId: string;
+  readonly messageCounter: number;
+  readonly createdAt: string;
 };
 
 export class ConversationCreatedDomainEvent extends DomainEvent {
@@ -11,11 +14,15 @@ export class ConversationCreatedDomainEvent extends DomainEvent {
 
   readonly title: string;
   readonly userId: string;
+  readonly messageCounter: number;
+  readonly createdAt: string;
 
   constructor({
     aggregateId,
     title,
     userId,
+    messageCounter,
+    createdAt,
     eventId,
     occurredOn,
   }: {
@@ -23,18 +30,24 @@ export class ConversationCreatedDomainEvent extends DomainEvent {
     eventId?: string;
     title: string;
     userId: string;
+    createdAt: string;
+    messageCounter: number;
     occurredOn?: Date;
   }) {
     super({ eventName: ConversationCreatedDomainEvent.EVENT_NAME, aggregateId, eventId, occurredOn });
     this.title = title;
     this.userId = userId;
+    this.messageCounter = messageCounter;
+    this.createdAt = createdAt;
   }
 
   toPrimitives(): CreateConversationDomainEventAttributes {
-    const { title, userId } = this;
+    const { title, userId, messageCounter, createdAt } = this;
     return {
       title,
       userId,
+      messageCounter,
+      createdAt,
     };
   }
 
@@ -49,6 +62,8 @@ export class ConversationCreatedDomainEvent extends DomainEvent {
       aggregateId,
       title: attributes.title,
       userId: attributes.userId,
+      messageCounter: attributes.messageCounter,
+      createdAt: attributes.createdAt,
       eventId,
       occurredOn,
     });

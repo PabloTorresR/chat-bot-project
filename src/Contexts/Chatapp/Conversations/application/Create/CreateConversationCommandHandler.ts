@@ -4,6 +4,7 @@ import { Command } from 'shared-context/domain/Command';
 import { ConversationId } from '../../../Shared/domain/ConversationId';
 import { ConversationTitle } from '../../domain/ConversationTitle';
 import { CreateConversationCommand } from '../../domain/CreateConversationCommand';
+import { ConversationCreatedAt } from '../../domain/ConversationCreatedAt';
 
 export class CreateConversationCommandHandler implements CommandHandler<CreateConversationCommand> {
   constructor(private conversationCreator: ConversationCreator) {}
@@ -16,6 +17,7 @@ export class CreateConversationCommandHandler implements CommandHandler<CreateCo
     const id = new ConversationId(command.id);
     const title = new ConversationTitle(command.title);
     const userId = new ConversationTitle(command.userId);
-    await this.conversationCreator.run({ id, title, userId });
+    const createdAt = ConversationCreatedAt.createFromString(command.createdAt);
+    await this.conversationCreator.run({ id, title, userId, createdAt });
   }
 }

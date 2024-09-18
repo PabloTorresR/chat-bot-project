@@ -1,6 +1,6 @@
 import { AggregateRoot } from '../../../domain/AggregateRoot';
 import { Criteria } from '../../../domain/criteria/Criteria';
-import { DynamoDBDocumentClient, PutCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
+import { DeleteCommand, DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { DynamoDBCriteriaConverter } from './DynamoDBCriteriaConverter';
 import { Inject } from '@nestjs/common';
 
@@ -37,11 +37,39 @@ export abstract class DynamoDBRepository<T extends AggregateRoot> {
       Limit: query.limit,
     };
     const result = await this._client.send(new ScanCommand(params));
-
     return result.Items as D[];
   }
 
   protected getClient(): DynamoDBDocumentClient {
     return this._client;
+  }
+
+  protected async updateField(id: string, field: string, value: string): Promise<void> {
+    const table = this.tableName();
+    const client = this.getClient();
+    await client.send(
+      new UpdateCommand({
+        TableName: table,
+        Key: {
+          _id: id,
+        },
+        UpdateExpression: `SET ${field} = :value`,
+        ExpressionAttributeValues: {
+          ':value': value,
+        },
+      }),
+    );
+  }
+  protected async delete(id: string): Promise<void> {
+    const table = this.tableName();
+    const client = this.getClient();
+    await client.send(
+      new DeleteCommand({
+        TableName: table,
+        Key: {
+          _id: id,
+        },
+      }),
+    );
   }
 }

@@ -4,6 +4,7 @@ interface ConversationResponse {
   id: string;
   title: string;
   userId: string;
+  createdAt: string;
 }
 
 export class ConversationsResponse {

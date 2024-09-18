@@ -9,6 +9,21 @@ resource "aws_cognito_user_pool" "user_pool" {
     developer_only_attribute = false
   }
 
+  schema {
+    name                     = "preferred_username"
+    attribute_data_type      = "String"
+    mutable                  = true
+    required                 = false
+    developer_only_attribute = false
+  }
+
+  schema {
+    name                     = "language"
+    attribute_data_type      = "String"
+    mutable                  = true
+    required                 = false
+    developer_only_attribute = false
+  }
   password_policy {
     minimum_length                   = 8
     require_lowercase                = true
@@ -44,7 +59,9 @@ resource "aws_cognito_user_pool_client" "userpool_client" {
 
   user_pool_id                  = aws_cognito_user_pool.user_pool.id
   generate_secret               = false
-  refresh_token_validity        = 90
+  refresh_token_validity        = 1
+  access_token_validity         = 60
+  id_token_validity             = 60
   prevent_user_existence_errors = "ENABLED"
   explicit_auth_flows = [
     "ALLOW_REFRESH_TOKEN_AUTH",

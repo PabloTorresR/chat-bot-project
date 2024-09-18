@@ -3,6 +3,7 @@ import { ConversationId } from '../../../Shared/domain/ConversationId';
 import { ConversationTitle } from '../../domain/ConversationTitle';
 import { CreateConversationCommand } from '../../domain/CreateConversationCommand';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import { ConversationCreatedAt } from '../../domain/ConversationCreatedAt';
 
 @CommandHandler(CreateConversationCommand)
 export class CreateConversationCommandHandler implements ICommandHandler<CreateConversationCommand> {
@@ -12,6 +13,7 @@ export class CreateConversationCommandHandler implements ICommandHandler<CreateC
     const id = new ConversationId(command.id);
     const title = new ConversationTitle(command.title);
     const userId = new ConversationTitle(command.userId);
-    await this.conversationCreator.run({ id, title, userId });
+    const createdAt = ConversationCreatedAt.createFromString(command.createdAt);
+    await this.conversationCreator.run({ id, title, userId, createdAt });
   }
 }

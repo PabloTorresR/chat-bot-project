@@ -4,12 +4,18 @@ import { Conversation } from '../../domain/Conversation';
 import { ConversationTitle } from '../../domain/ConversationTitle';
 import { ConversationRepository } from '../../domain/ConversationRepository';
 import { UserId } from '../../../Shared/domain/UserId';
+import { ConversationCreatedAt } from '../../domain/ConversationCreatedAt';
 
 export class ConversationCreator {
   constructor(private repository: ConversationRepository, private eventBus: EventBus) {}
 
-  async run(params: { id: ConversationId; title: ConversationTitle; userId: UserId }): Promise<void> {
-    const conversation = Conversation.create(params.id, params.title, params.userId);
+  async run(params: {
+    id: ConversationId;
+    title: ConversationTitle;
+    userId: UserId;
+    createdAt: ConversationCreatedAt;
+  }): Promise<void> {
+    const conversation = Conversation.create(params.id, params.title, params.userId, params.createdAt);
     await this.repository.save(conversation);
     await this.eventBus.publish(conversation.pullDomainEvents());
   }

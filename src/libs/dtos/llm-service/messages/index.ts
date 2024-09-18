@@ -1,9 +1,10 @@
 export type PostAnswerMessageRequest = {
   message: Message;
   messageHistory: HistoryMessage[];
+  userLanguage: string;
 };
 
-export type PostAnswerMessageResponse = string;
+export type PostAnswerMessageResponse = { response: string; [key: string]: unknown };
 
 interface Message {
   id: string;

@@ -1,46 +1,28 @@
-import { HttpRequest } from '@aws-sdk/protocol-http';
+import { AwsRequestSigner } from 'shared-context/infrastructure/Aws/AwsRequestSigner';
 import { PostAnswerMessageRequest, PostAnswerMessageResponse } from 'dtos-lib/llm-service/messages';
 import { MessageAnswerGenerator } from '../../domain/MessageAnswerGenerator';
+import { Inject, Injectable } from '@nestjs/common';
 import axios from 'axios';
-import { SignatureV4 } from '@aws-sdk/signature-v4';
-import { defaultProvider } from '@aws-sdk/credential-provider-node';
-import { Sha256 } from '@aws-crypto/sha256-js';
 
+@Injectable()
 export class LlmServiceMessageAnswerGenerator implements MessageAnswerGenerator {
+  constructor(@Inject('AwsRequestSigner') private readonly awsRequestSigner: AwsRequestSigner) {}
   private getAnswerMessageUrl(): string {
     const url = process.env.LLM_SERVICE_URL;
     return `${url}/message/answer`;
   }
 
-  private getCredentials() {
-    return defaultProvider();
+  private async generateSigned(body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
+    const url = this.getAnswerMessageUrl();
+    try {
+      return await this.sendSignedRequest<PostAnswerMessageResponse>(url, body);
+    } catch (e) {
+      throw new Error(`Failed to send message to ${url}: ${e.message}`);
+    }
   }
 
-  private async getSignedRequest(url: string, body: PostAnswerMessageRequest): Promise<HttpRequest> {
-    const apiUrl = new URL(url);
-    const signer = new SignatureV4({
-      service: 'execute-api',
-      region: 'eu-central-1',
-      credentials: this.getCredentials(),
-      sha256: Sha256,
-    });
-
-    return signer.sign({
-      method: 'POST',
-      hostname: apiUrl.host,
-      path: apiUrl.pathname,
-      protocol: apiUrl.protocol,
-      headers: {
-        'Content-Type': 'application/json',
-        host: apiUrl.hostname, // compulsory
-      },
-      body: JSON.stringify(body),
-    }) as Promise<HttpRequest>;
-  }
-
-  private async sendRequest(url: string, body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
-    const signedRequest = await this.getSignedRequest(url, body);
-    console.log('signedRequest', signedRequest);
+  private async sendSignedRequest<R>(url: string, body: unknown): Promise<R> {
+    const signedRequest = await this.awsRequestSigner.getSignedRequest(url, body);
     const response = await axios.request({
       ...signedRequest,
       url,
@@ -49,12 +31,20 @@ export class LlmServiceMessageAnswerGenerator implements MessageAnswerGenerator 
     return response.data;
   }
 
-  async generate(body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
+  private async generateUnsigned(body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
     const url = this.getAnswerMessageUrl();
     try {
-      return await this.sendRequest(url, body);
+      return (await axios.post(url, body)).data;
     } catch (e) {
-      throw new Error(`Failed to send message to ${url}: ${e.message}`);
+      throw new Error(`Failed to send message to, ${url} with body, ${(body.message, e.message)}`);
+    }
+  }
+
+  async generate(body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
+    if (process.env.NODE_ENV === 'dev') {
+      return this.generateUnsigned(body);
+    } else {
+      return this.generateSigned(body);
     }
   }
 }

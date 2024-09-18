@@ -1,6 +1,7 @@
 export type PostMessagesRequest = {
   message: Message;
   messageHistory: HistoryMessage[];
+  userLanguage: string;
 };
 
 export interface PostMessagesResponse extends Message {}

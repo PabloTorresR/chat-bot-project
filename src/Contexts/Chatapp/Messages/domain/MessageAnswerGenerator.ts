@@ -1,3 +1,3 @@
 export interface MessageAnswerGenerator {
-  generate(body: unknown): Promise<string>;
+  generate(body: unknown): Promise<{ response: string; [key: string]: unknown }>;
 }

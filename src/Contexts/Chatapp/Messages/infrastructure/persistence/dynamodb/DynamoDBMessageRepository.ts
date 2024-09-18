@@ -2,8 +2,9 @@ import { Criteria } from 'shared-context/domain/criteria/Criteria';
 import { MessageRepository } from '../../../domain/MessageRepository';
 import { Message } from '../../../domain/Message';
 import { DynamoDBRepository } from 'shared-context/infrastructure/persistence/dynamodb/DynamoDBRepository';
-import { ScanCommand } from '@aws-sdk/lib-dynamodb';
+import { DeleteCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { Injectable } from '@nestjs/common';
+import { ConversationId } from '../../../../Shared/domain/ConversationId';
 
 interface MessageDocument extends Document {
   _id: string;
@@ -56,5 +57,28 @@ export class DynamoDBMessageRepository extends DynamoDBRepository<Message> imple
         sender: document.sender,
       }),
     );
+  }
+
+  public async deleteByConversationId(conversationId: ConversationId): Promise<void> {
+    const client = this.getClient();
+    const table = this.tableName();
+    const ids = await client.send(
+      new ScanCommand({
+        TableName: table,
+        ProjectionExpression: 'id',
+        FilterExpression: 'conversationId = :conversationId',
+        ExpressionAttributeValues: { ':conversationId': conversationId.value },
+      }),
+    );
+    for (const id of ids.Items) {
+      await client.send(
+        new DeleteCommand({
+          TableName: table,
+          Key: {
+            _id: id.id,
+          },
+        }),
+      );
+    }
   }
 }

@@ -12,9 +12,7 @@ import { Inject } from '@nestjs/common';
 
 @CommandHandler(CreateMessageCommand)
 export class CreateMessageCommandHandler implements ICommandHandler<CreateMessageCommand> {
-  constructor(@Inject("MessageCreator") private messageCreator: MessageCreator) {}
-
-
+  constructor(@Inject('MessageCreator') private messageCreator: MessageCreator) {}
   async execute(command: CreateMessageCommand): Promise<void> {
     const id = new MessageId(command.id);
     const conversationId = new ConversationId(command.conversationId);
