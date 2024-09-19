@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
-  height: 90%;
+  height: calc(100% - 32px); // 32px is the padding of the parent container
   @include backgroundPane($color-highlight-1, 30%);
   backdrop-filter: blur(10px);
   padding: 16px;
@@ -96,4 +96,11 @@
   width: 100%;
   gap: 16px;
   border-top: 1px solid $color-border;
+}
+
+.conversationList__spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 48px;
 }

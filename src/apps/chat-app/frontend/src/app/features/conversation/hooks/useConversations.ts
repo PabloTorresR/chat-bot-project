@@ -37,7 +37,7 @@ const useConversations = () => {
 
   const createConversation = async (userId: string) => {
     const newConversation = conversationService.createConversation(userId);
-    setSelectedConversation(newConversation.id);
+    setConversation(newConversation.id);
     await postConversations(newConversation);
     refetchConversations();
     return newConversation;

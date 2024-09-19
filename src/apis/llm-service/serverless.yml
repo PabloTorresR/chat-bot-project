@@ -15,19 +15,21 @@ functions:
   api:
     handler: app.handler
     name: llm-service
+    timeout: 30
     events:
-      - httpApi: "*"
+      - httpApi: '*'
     package:
       patterns:
-        - "src/**"
-        - "!requirements.txt"
-        - "!package.json"
-        - "!package-lock.json"
-        - "!.serverless/**"
-        - "!venv/**"
-        - "!env/**"
-        - "!envwin/**"
-        - "!node_modules/**"
+        - 'src/**'
+        - '!requirements.txt'
+        - '!package.json'
+        - '!package-lock.json'
+        - '!.serverless/**'
+        - '!venv/**'
+        - '!env/**'
+        - '!envwin/**'
+        - '!node_modules/**'
+        - '!notebooks/**'
 
 plugins:
   - serverless-python-requirements
@@ -38,7 +40,7 @@ custom:
   pythonRequirements:
     dockerizePip: true
     dockerImage: public.ecr.aws/sam/build-python3.11:latest-arm64
-    dockerRunCmdExtraArgs: ["--platform", "linux/arm64/v8"]
+    dockerRunCmdExtraArgs: ['--platform', 'linux/arm64/v8']
     # NOTE: this two lines prevent some caching problems with serverless-python-requirements, uncomment in case of getting errors
     useStaticCache: false
     useDownloadCache: false

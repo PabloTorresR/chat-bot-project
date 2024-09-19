@@ -6,14 +6,14 @@ import { PostMessagesRequest } from 'dtos-lib/chatapp/messages';
 import { GET_MESSAGES_QUERY_PARAMS } from '../../../enums/query-params';
 
 interface Props {
-  onMessageMessageSent?: () => void;
-  onMessageMessageReceived?: () => void;
+  onMessageSent?: () => void;
+  onMessageReceived?: () => void;
   queryParams: { [key in GET_MESSAGES_QUERY_PARAMS]: string | null };
 }
 
 interface SendMessageProps extends PostMessagesRequest {}
 
-const useSendMessageMutation = ({ queryParams, onMessageMessageSent, onMessageMessageReceived }: Props) => {
+const useSendMessageMutation = ({ queryParams, onMessageSent, onMessageReceived }: Props) => {
   const queryKey = Object.keys(queryParams).map(key => queryParams[key]);
   const sendMessageMutation = useMutation({
     mutationFn: postMessages,
@@ -33,9 +33,9 @@ const useSendMessageMutation = ({ queryParams, onMessageMessageSent, onMessageMe
 
   const sendMessage = async (body: SendMessageProps) => {
     try {
-      onMessageMessageSent?.();
+      onMessageSent?.();
       await sendMessageMutation.mutateAsync(body);
-      onMessageMessageReceived?.();
+      onMessageReceived?.();
     } catch (error) {
       console.error('Failed to send message:', error);
     }

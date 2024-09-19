@@ -15,8 +15,8 @@ const useConversationMessages = (conversationId: string, setIsLoading?: (state: 
   });
   const { sendMessage } = useSendMessageMutation({
     queryParams: { conversationId: conversationId ?? '', userId: user?.data.sub ?? '' },
-    onMessageMessageSent: () => setIsLoading?.(true),
-    onMessageMessageReceived: () => setIsLoading?.(false),
+    onMessageSent: () => setIsLoading?.(true),
+    onMessageReceived: () => setIsLoading?.(false),
   });
 
   const sendUserMessage = (

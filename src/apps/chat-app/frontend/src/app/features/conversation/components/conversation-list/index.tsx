@@ -73,7 +73,11 @@ const ConversationList = () => {
             </button>
           </button>
         ))}
-        {isGetConversationsLoading && <Spinner />}
+        {isGetConversationsLoading && (
+          <div className={styles.conversationList__spinner}>
+            <Spinner />
+          </div>
+        )}
       </div>
     </div>
   );
