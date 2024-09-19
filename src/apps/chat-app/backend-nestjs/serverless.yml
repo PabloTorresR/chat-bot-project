@@ -19,9 +19,10 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
-      Resource: "*"
+        - dynamodb:DeleteItem
+      Resource: '*'
     - Effect: Allow
-      Action: 
+      Action:
         - execute-api:Invoke
       Resource: ${env:LLM_SERVICE_API_GATEWAY_ARN}
   memorySize: 1024
@@ -52,15 +53,15 @@ functions:
 
     package:
       patterns:
-        - "**"
-        - "!node_modules/**"
-        - "!package.json"
-        - "!package-lock.json"
-        - "!.serverless/**"
-        - "!venv/**"
-        - "!env/**"
-        - "!**/*.spec.**"
-        - "!**/*.e2e-spec.**"
+        - '**'
+        - '!node_modules/**'
+        - '!package.json'
+        - '!package-lock.json'
+        - '!.serverless/**'
+        - '!venv/**'
+        - '!env/**'
+        - '!**/*.spec.**'
+        - '!**/*.e2e-spec.**'
 cors:
   origin: ${env:APP_PRODUCTION_URL}
   headers:
@@ -76,9 +77,9 @@ custom:
   serverless-offline:
     httpPort: 5001
   webpack:
-    webpackConfig: "webpack.config.js" # Name of webpack configuration file
+    webpackConfig: 'webpack.config.js' # Name of webpack configuration file
     includeModules: true # Node modules configuration for packaging
-    packager: "npm" # Packager that will be used to package your external modules
+    packager: 'npm' # Packager that will be used to package your external modules
 
 build:
   esbuild: false

@@ -23,6 +23,11 @@ export class LlmServiceMessageAnswerGenerator implements MessageAnswerGenerator 
 
   private async sendSignedRequest<R>(url: string, body: unknown): Promise<R> {
     const signedRequest = await this.awsRequestSigner.getSignedRequest(url, body);
+    console.log('signedRequest:', {
+      ...signedRequest,
+      url,
+      data: body,
+    });
     const response = await axios.request({
       ...signedRequest,
       url,
@@ -41,7 +46,7 @@ export class LlmServiceMessageAnswerGenerator implements MessageAnswerGenerator 
   }
 
   async generate(body: PostAnswerMessageRequest): Promise<PostAnswerMessageResponse> {
-    if (process.env.NODE_ENV === 'dev') {
+    if (process.env.DEPLOYMENT_MODE === 'local') {
       return this.generateUnsigned(body);
     } else {
       return this.generateSigned(body);

@@ -15,7 +15,6 @@ const ConversationCardsModal = () => {
 
   const handleAddCardToCollection = useCallback(
     (word: LlmWord) => {
-      console.log('word', word);
       actions.addCardToCollection(word);
       banner?.setValue({ content: `Card ${word.word} added to collection`, type: NotificationBannerType.CONFIRMATION });
     },

@@ -1,6 +1,7 @@
 import { HttpRequest } from '@aws-sdk/protocol-http';
 import { Injectable } from '@nestjs/common';
-import { SignatureV4, Sha256 } from 'aws-sdk/lib/signers/v4';
+import { SignatureV4 } from '@aws-sdk/signature-v4';
+import { Sha256 } from '@aws-crypto/sha256-js';
 import { defaultProvider } from '@aws-sdk/credential-provider-node';
 
 @Injectable()
