@@ -5,7 +5,7 @@
   "main": "index.js",
   "workspaces": [
     "src/apps/*/frontend",
-    "src/apps/*/backend-nestjs",
+    "src/apps/*/backend",
     "src/apis/*",
     "src/libs/*",
     "src/Contexts/*",
