@@ -10,7 +10,11 @@ from core.llms.langchain.multi_agents.agents.example_generator import (
 )
 from core.llms.langchain.multi_agents.agents.response import ResponseAgent
 from core.llms.langchain.multi_agents.agents.word_generator import WordGeneratorAgent
-from core.llms.langchain.config import OPEN_AI_CONFIG, OPEN_AI_LIGHT_CONFIG
+from core.llms.langchain.config import (
+    OPEN_AI_CONFIG,
+    OPEN_AI_EXAMPLES_CONFIG,
+    OPEN_AI_LIGHT_CONFIG,
+)
 from core.llms.langchain.multi_agents.memory.vocabulary_state import (
     VocabularyGeneratorState,
 )
@@ -31,11 +35,16 @@ class VocabularyAgentTeam:
             temperature=OPEN_AI_LIGHT_CONFIG["temperature"],
             api_key=OPEN_AI_LIGHT_CONFIG["api_key"],
         )
+        self.llm_examples = ChatOpenAI(
+            model=OPEN_AI_EXAMPLES_CONFIG["model"],
+            temperature=OPEN_AI_EXAMPLES_CONFIG["temperature"],
+            api_key=OPEN_AI_EXAMPLES_CONFIG["api_key"],
+        )
 
     def init_vocabulary_team(self):
         # summarizer_agent = SummarizerAgent()
         data_extractor_agent = ParameterExtractorAgent(llm=self.llm_light)
-        example_generator_agent = ExamplesGeneratorAgent(llm=self.llm)
+        example_generator_agent = ExamplesGeneratorAgent(llm=self.llm_examples)
         word_generator_agent = WordGeneratorAgent(llm=self.llm_light)
         difficulty_evaluator_agent = DifficultyEvaluatorAgent(llm=self.llm_light)
         response_agent = ResponseAgent(llm=self.llm)

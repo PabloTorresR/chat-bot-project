@@ -12,4 +12,10 @@ OPEN_AI_LIGHT_CONFIG = {
     "temperature": 0,
 }
 
+OPEN_AI_EXAMPLES_CONFIG = {
+    "api_key": os.environ.get("OPENAI_API_KEY", ""),
+    "model": "gpt-4o",
+    "temperature": 0.5,
+}
+
 __all__ = ["OPEN_AI_CONFIG", "OPEN_AI_LIGHT_CONFIG"]
