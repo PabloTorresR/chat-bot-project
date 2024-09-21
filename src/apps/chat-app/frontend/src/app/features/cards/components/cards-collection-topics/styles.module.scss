@@ -11,8 +11,8 @@
   color: $color-text;
   margin: 16px;
   text-align: center;
-  background: $color-highlight-1;
-  @include shadow1d;
+  border-left: 4px solid $color-highlight-2;
+  border-right: 4px solid $color-highlight-2;
 
   border-radius: 2px;
   display: flex;

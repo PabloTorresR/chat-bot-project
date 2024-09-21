@@ -46,6 +46,11 @@ const useConversations = () => {
   const clearConversation = () => setSelectedConversation(null);
 
   const setLastConversation = () => {
+    if (conversations?.length === 1) {
+      // If there is only one conversation, clear the selected conversation
+      setSelectedConversation(null);
+      return;
+    }
     setSelectedConversation(
       conversations?.filter(conversation => conversation.id !== selectedConversation)?.[0].id ?? null,
     );

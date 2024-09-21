@@ -29,16 +29,18 @@ const ConversationCardsModal = () => {
     <Modal overlayClassName={styles.modal__overlay} isOpen={modal.isOpen} className={styles.modal__innerContainer}>
       <img src={XIcon} className={styles.modal__closeIcon} onClick={modal.close} />
       <div className={styles.modal__title}>
-        Add to collection words about <span>{vocabulary.topics.join(', ')}</span>
+        Here are some words related to <span>{vocabulary.topics.join(', ')}</span>
       </div>
       <div className={styles.modal__subTitle}>
-        Keep growing your collection of <span>{capitalizeFirstLetter(vocabulary.language)}</span> flashcards!
+        Now pick which cards you want to add to your collection of{' '}
+        <span>{capitalizeFirstLetter(vocabulary.language)}</span> flashcards!
       </div>
       <CardsCarousell
         vocabulary={vocabulary}
         onAddClick={handleAddCardToCollection}
         onDeleteClick={actions.discardCard}
       />
+      <div className={styles.modal__footerText}> | Click any card to learn the meaning | </div>
     </Modal>
   );
 };

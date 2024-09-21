@@ -24,7 +24,7 @@ const CardsCollectionRarities = () => {
             difficulties.value.has(Number(key)) && styles['-isActive'],
           )}
         >
-          {value[0]}
+          {value}
         </button>
       ))}
     </div>

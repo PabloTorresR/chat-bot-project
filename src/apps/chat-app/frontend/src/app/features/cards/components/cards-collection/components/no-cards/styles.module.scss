@@ -1,0 +1,16 @@
+@import '../../../../../../../styles/main';
+.noCardsWarning {
+  color: $color-text;
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  > h2 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 36px;
+  }
+  > p {
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+}

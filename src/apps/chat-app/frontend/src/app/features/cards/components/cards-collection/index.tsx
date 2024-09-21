@@ -3,6 +3,7 @@ import useCollection from '../../hooks/useCollection';
 import Card from '../card';
 import styles from './styles.module.scss';
 import { capitalizeFirstLetter } from 'app/utils/format';
+import NoCardsWarning from './components/no-cards';
 
 export const CardsCollection = () => {
   const { cards, isLoading } = useCollection();
@@ -21,6 +22,7 @@ export const CardsCollection = () => {
           className={styles.collection__card}
         />
       ))}
+      {!cards?.length && !isLoading && <NoCardsWarning />}
       {isLoading && <Spinner />}
     </div>
   );

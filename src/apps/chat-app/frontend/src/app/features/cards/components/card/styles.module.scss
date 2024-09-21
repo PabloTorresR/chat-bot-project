@@ -59,7 +59,7 @@
   background-color: rgba($color-dark, 0.5);
   color: $color-white;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   border-radius: 4px;
 }
 
@@ -80,6 +80,9 @@
       @include gradientColor($color-highlight-4);
       animation: glowing-color-highlight-4 2s infinite;
     }
+    .flashcard__rarity {
+      color: $color-highlight-4;
+    }
   }
   &.-Rare {
     background-image: url('/assets/illustrations/rare-flashcard.png');
@@ -87,6 +90,9 @@
     .flashcard__word {
       @include gradientColor($color-highlight-2);
       animation: glowing-color-highlight-2 2s infinite;
+    }
+    .flashcard__rarity {
+      color: $color-highlight-2;
     }
   }
   &.-Exotic {
@@ -96,6 +102,9 @@
       @include gradientColor($color-highlight-1);
       animation: glowing-color-highlight-1 2s infinite;
     }
+    .flashcard__rarity {
+      color: $color-highlight-1;
+    }
   }
   &.-Legendary {
     background-image: url('/assets/illustrations/legendary-flashcard.png');
@@ -103,6 +112,9 @@
     .flashcard__word {
       animation: glowing-color-highlight-3 2s infinite;
       @include gradientColor($color-highlight-3);
+    }
+    .flashcard__rarity {
+      color: $color-highlight-3;
     }
   }
   &.-isBack {

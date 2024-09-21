@@ -36,3 +36,16 @@ $secondary-color: #6c757d;
 .collection__rightBar {
   grid-area: right;
 }
+
+@media (max-width: 1200px) {
+  .collection__rightBar {
+    display: none;
+  }
+  .collection {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'top'
+      'content'
+      'bottom';
+  }
+}
