@@ -1,7 +1,9 @@
+import { Suspense, useEffect, lazy } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useIsLoggedInSelector } from '@chat-app/features/user/context/selectors/auth-manager';
 import { RoutePath } from '@chat-app/routes/namespaces';
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+
+const MobileFallback = lazy(() => import(/* webpackChunkName: "MobileFallback" */ '@chat-app/layouts/mobile-fallback'));
 
 const AuthRoutesWrapper = () => {
   const isLoggedIn = useIsLoggedInSelector();
@@ -14,7 +16,14 @@ const AuthRoutesWrapper = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  return <Outlet />;
+  return (
+    <>
+      <Suspense fallback={null}>
+        <MobileFallback />
+      </Suspense>
+      <Outlet />
+    </>
+  );
 };
 
 export default AuthRoutesWrapper;

@@ -19,8 +19,7 @@ export const FeaturesCarousell = () => (
   <div className={styles.featuresCarousel}>
     <Swiper
       centeredSlides
-      slidesPerView={3}
-      spaceBetween={50}
+      slidesPerView={2}
       scrollbar={{ draggable: true }}
       navigation={true}
       mousewheel={true}
