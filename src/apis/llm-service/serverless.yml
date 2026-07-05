@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: python3.11
   region: eu-central-1
-  profile: 975050254610_AdministratorAccess
+  profile: ${env:AWS_PROFILE}
   environment:
     OPENAI_API_KEY: ${env:OPENAI_API_KEY}
   architecture: arm64
